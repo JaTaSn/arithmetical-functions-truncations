@@ -30,6 +30,9 @@ showing the paper's own lower bound is asymptotically an equality; the identific
 OEIS [A182843](https://oeis.org/A182843); and errata — one stated result of the 2000 paper is
 false, and two of its proofs are incomplete.
 
+A **[browsable rendering of the Lean code](dirichlet-revisited/LEAN/docs/)** is committed
+alongside it, generated with doc-gen4 — the same tool behind the Mathlib API docs.
+
 The central algebraic step is **machine-checked**: `dirichlet-revisited/LEAN/` proves Conjecture
 4.6 end to end in Lean 4 + Mathlib, 0 `sorry`, standard axioms only, assuming nothing but the
 Eliahou–Kervaire input (which enters as a definition, not an axiom).

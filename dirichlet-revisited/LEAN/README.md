@@ -20,6 +20,15 @@ seconds**; a later `lake exe cache get` in a fresh clone then finds everything l
 in seconds. Nothing here is built from Mathlib source, so the hour-plus figure you may have seen
 for Mathlib projects does not apply.
 
+## A readable view
+
+**[`docs/`](docs/)** holds a **doc-gen4** rendering of the whole formalization — the same tool that
+produces the Mathlib API documentation. Every declaration with its signature, docstring and
+defining equation, navigable, with `source` links back to GitLab. Open `docs/index.html`, or go
+straight to [`docs/DirichletTruncations/Chain.html`](docs/DirichletTruncations/Chain.html) for the
+end-to-end theorem. 244 KB, committed as generated; see [`docs/README.md`](docs/README.md) for how
+it was built and the two traps in doing so.
+
 ## What is assumed and what is proved
 
 The one thing taken on trust is **Corollary 4.4 of Snellman (2000)** — that
