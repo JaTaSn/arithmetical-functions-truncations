@@ -1,6 +1,6 @@
 /-
 Copyright (c) 2026 Jan Snellman. All rights reserved.
-Released under the terms stated in the repository README.
+Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jan Snellman
 -/
 import DirichletTruncations.Sieve

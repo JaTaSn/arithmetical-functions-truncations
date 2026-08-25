@@ -19,3 +19,6 @@ Upload the contents of this directory (excluding this README).
    author for everything in the submission, including references. The manuscript's Acknowledgements
    disclose the assistance in full; the reference list has been checked against primary sources.
 3. Suggested primary class: `math.AC` (commutative algebra), cross-list `math.NT`.
+4. Once the preprint has an arXiv id, consider the [Palomar registry](https://palomar-registry.org/)
+   for the formalization — see the repository README's *Registries* section, and note the caveat
+   there about what is and is not formalized.
