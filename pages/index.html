@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arithmetical functions: truncations, revisited</title>
+<style>
+  :root {
+    --bg: #fdfdfc; --fg: #1a1a18; --muted: #5d5d57; --rule: #e0e0da;
+    --link: #1c5d99; --card: #f6f6f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#16161a; --fg:#e6e6e1; --muted:#a0a099; --rule:#32323a;
+            --link:#7fb3d9; --card:#1e1e24; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.6 Georgia,'Times New Roman',serif;
+         padding:3rem 1.25rem; }
+  main { max-width: 46rem; margin: 0 auto; }
+  h1 { font-size:1.85rem; line-height:1.25; margin:0 0 .3rem; font-weight:600; }
+  .sub { color:var(--muted); font-size:1.02rem; margin:0 0 2rem; }
+  h2 { font-size:1.1rem; margin:2.4rem 0 .7rem; font-weight:600;
+       border-bottom:1px solid var(--rule); padding-bottom:.35rem; }
+  a { color:var(--link); }
+  .cards { display:grid; gap:.9rem; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); margin:1.2rem 0; }
+  .card { background:var(--card); border:1px solid var(--rule); border-radius:.5rem;
+          padding:1rem 1.1rem; }
+  .card h3 { margin:0 0 .35rem; font-size:1rem; font-weight:600; }
+  .card p { margin:0; font-size:.9rem; color:var(--muted); }
+  .eq { background:var(--card); border:1px solid var(--rule); border-radius:.4rem;
+        padding:.85rem 1rem; text-align:center; font-size:1.1rem; margin:1.1rem 0; }
+  footer { margin-top:3rem; padding-top:1rem; border-top:1px solid var(--rule);
+           font-size:.85rem; color:var(--muted); }
+  code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.88em; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Arithmetical functions: truncations, revisited</h1>
+<p class="sub">Jan Snellman &middot; Matematiska Institutionen, Link&ouml;pings Universitet</p>
+
+<p>The ring &Gamma; of all functions <b>&naturals;<sup>+</sup> &rarr; K</b> under Dirichlet
+convolution is an inverse limit of finite-dimensional <em>truncations</em> &Gamma;<sub>n</sub>.
+Each is a polynomial ring modulo a monomial ideal that is stable once the variables are reversed,
+so it has a computable minimal free resolution &mdash; the subject of a
+<a href="https://arxiv.org/abs/math/9904143">2000 paper</a>, revisited here.</p>
+
+<h2>The result</h2>
+<p>The generator counts governing that resolution turn out to be values of the classical sieve:</p>
+<div class="eq"><b>C<sub>n,v</sub> = &Phi;(n, p<sub>v</sub>)</b></div>
+<p>Legendre&rsquo;s sifting function &mdash; the number of integers in [1,&nbsp;n] with no prime
+factor &le;&nbsp;p<sub>v</sub>. From this follow a proof of the 2000 paper&rsquo;s Conjecture&nbsp;4.6,
+left open there; the average order C<sub>n</sub> ~ &pi;(n)&sup2;/2, showing that paper&rsquo;s own
+lower bound is asymptotically an equality; the identification of C<sub>n</sub> with
+<a href="https://oeis.org/A182843">OEIS&nbsp;A182843</a>; and errata &mdash; one stated result of the
+2000 paper is false, and two of its proofs are incomplete.</p>
+
+<h2>Read it</h2>
+<div class="cards">
+  <a class="card" href="truncations-revisited.pdf" style="text-decoration:none">
+    <h3>The manuscript &rarr;</h3>
+    <p>12 pages. Recap, errata, the main theorem, the proof of Conjecture 4.6, asymptotics, and
+       five open problems.</p>
+  </a>
+  <a class="card" href="lean/" style="text-decoration:none">
+    <h3>The Lean formalization &rarr;</h3>
+    <p>Conjecture 4.6 proved end to end in Lean&nbsp;4 + Mathlib, 0 <code>sorry</code>, standard
+       axioms only. Browsable API documentation.</p>
+  </a>
+</div>
+
+<h2>Reproducing everything</h2>
+<p>The <a href="https://gitlab.liu.se/jansn19/arithmetical-functions-truncations">repository</a>
+carries every script needed to reproduce both papers&rsquo; numbers: SageMath (which recomputes the
+generator counts by direct enumeration, deliberately not via the formulas under test), the original
+1999 Maple code, and a Macaulay2 check that confirms the 2000 paper&rsquo;s Betti-number formula
+against genuine minimal free resolutions for n&nbsp;=&nbsp;2&hellip;40.</p>
+
+<footer>
+  <p>Source: <a href="https://gitlab.liu.se/jansn19/arithmetical-functions-truncations">gitlab.liu.se/jansn19/arithmetical-functions-truncations</a>.
+  Code and formalization under Apache-2.0; manuscript under CC&nbsp;BY&nbsp;4.0. &copy;&nbsp;2026 Jan Snellman.</p>
+  <p>Produced with substantial assistance from Claude (Anthropic), under the author&rsquo;s direction
+  &mdash; as an assistant, not a co-author.</p>
+</footer>
+
+</main>
+</body>
+</html>

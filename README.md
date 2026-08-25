@@ -8,6 +8,13 @@ have computable minimal free resolutions.
 Each note gets its own directory: the manuscript, every script needed to reproduce its numbers, and
 any formalization. Below, the arXiv-ready bundles.
 
+## Published site
+
+Rendered at **<https://jansn19.gitlab-pages.liu.se/arithmetical-functions-truncations/>** — the
+manuscript, and a browsable view of the Lean formalization. GitLab shows `.html` as source, so the
+documentation only becomes readable through Pages; `.gitlab-ci.yml` publishes it and writes nothing
+back to the repository.
+
 ## Contents
 
 | Directory | Status |
