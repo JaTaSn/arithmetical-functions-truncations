@@ -1,0 +1,23 @@
+==========================================================================
+THE EXACT FORMULA   C_{n,v} = (r(n)-v+1) + E(n,v)
+==========================================================================
+
+[1] tested every (n,v) with 2 <= n <= 150, 1 <= v <= r(n)
+    counterexamples: NONE -- formula confirmed
+
+[2] Corollary: C_{n,v} != r(n)-v+1  <=>  p_{v+1}^2 <= n
+    counterexamples: NONE
+
+[3] Hence V(n) = max{v : C_{n,v} != r-v+1} = pi(floor(sqrt n)) - 1 = ell_1(n)
+    counterexamples: NONE -- Conjecture 4.6(2) follows
+
+[4] Closed form for C_n:  binom(r+1,2) + sum over composites x<=n of (pi(lpf x) - 1)
+    counterexamples: NONE -- closed form confirmed
+
+[5] The error term  C_n - binom(r+1,2), and its size
+      n      C_n - binom(r+1,2)     n^{3/2}/log^2 n     ratio
+      50               14                23.1     0.6060
+     100               37                47.2     0.7847
+     150               65                73.2     0.8883
+
+

@@ -1,0 +1,149 @@
+readlib(ifactors);
+
+primesSmallerOrEqual := proc(n)
+local i, S;
+S:= 0;
+i := 1;
+while (ithprime(i) <= n) do
+	S := S+1;
+	i := i+1;
+od;
+RETURN(S);
+end;
+
+GetSol := proc(n,v) option remember;
+local F,i,S,minprime, w, low, high;
+S:= 0;
+w := ithprime(v);
+if w > n then
+	RETURN(0);
+fi;
+low := max(2,ceil(10^(-10) +n/w));
+high := n;
+for i from low to high do
+F := ifactors(i)[2];
+minprime := sort(map(x->x[1],F))[1];
+if minprime >= w then
+	S := S+1;
+fi;
+od;
+RETURN(S);
+end;
+
+GetSolVerbose := proc(n,v) option remember;
+local F,i,S,minprime, w, low, high;
+S:= 0;
+w := ithprime(v);
+if w > n then
+	RETURN(0);
+fi;
+low := max(2,ceil(10^(-10) +n/w));
+high := n;
+for i from low to high do
+F := ifactors(i)[2];
+minprime := sort(map(x->x[1],F))[1];
+if minprime >= w then
+	S := S+1;
+	print(ifactor(i*ithprime(v))); 
+fi;
+od;
+RETURN(S);
+end;
+
+GetSolSum := proc(n)
+local i,S;
+S := 0;
+for i from 1 to n do
+S := S + GetSol(n,i);
+od;
+RETURN(S);
+end;
+
+GenTab := proc(b)
+local i,j,p,S,x,y;
+p:=2;
+while (ithprime(p) < b) do p := p+1; od;
+S := matrix(b,p,(x,y)->GetSol(x,y));
+RETURN(S);
+end;
+
+
+
+
+GetSolGrad := proc(n,v) option remember;
+local F,i,S,minprime, w, low, high, d,k,L;
+S:= 0;
+w := ithprime(v);
+if w > n then
+	RETURN(0);
+fi;
+low := max(2,ceil(10^(-10) +n/w));
+high := n;
+for i from low to high do
+F := ifactors(i)[2];
+minprime := sort(map(x->x[1],F))[1];
+if minprime >= w then
+	d := 0;
+	L := map(x->x[2],F);
+	for k from 1 to nops(L) do d := d+L[k]; od;
+	S := S+u^d;
+fi;
+od;
+RETURN(sort(expand(u*S)));
+end;
+
+
+
+
+GenTabGrad := proc(b)
+local i,j,p,S,x,y;
+p:=2;
+while (ithprime(p) < b) do p := p+1; od;
+S := matrix(b,p,(x,y)->GetSolGrad(x,y));
+RETURN(S);
+end;
+
+
+
+B1 := proc(n)
+local i,summa, r;
+summa := 0;
+r := primesSmallerOrEqual(n);
+for i from 1 to r do
+	summa := summa + GetSol(n, 1 + r - i)*(i-1);
+od;
+RETURN(summa);
+end;
+
+
+
+PBI := proc(n)
+local r, i;
+r := primesSmallerOrEqual(n);
+RETURN(add( (1+t)^(i-1)*GetSol(n,1+r-i), i=1..r));
+end;
+
+PBKK := proc(n)
+local r, i;
+r := primesSmallerOrEqual(n);
+RETURN((1+t)^r / (1 - t^2*PBI(n)));
+end;
+
+
+GPBI := proc(n)
+local r, i;
+r := primesSmallerOrEqual(n);
+RETURN(add( (1+t*u)^(i-1)*GetSolGrad(n,1+r-i), i=1..r));
+end;
+
+GPBRI := proc(n)
+RETURN(1+t*GPBI(n));
+end;
+
+
+GPBKK := proc(n)
+local r, i;
+r := primesSmallerOrEqual(n);
+RETURN((1+t*u)^r / (1 - t^2*GPBI(n)));
+end;
+

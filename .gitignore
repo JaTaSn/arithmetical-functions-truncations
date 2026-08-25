@@ -1,0 +1,8 @@
+# LaTeX build products -- arXiv builds its own, and a stale PDF is how you
+# submit the wrong version
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+arxiv/**/*.pdf

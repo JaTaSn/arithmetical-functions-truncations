@@ -1,0 +1,168 @@
+Star := proc(A,B)
+local i,j,n,m,R;
+R := [];
+n := nops(A);
+m := nops(B);
+if (n = 0) then RETURN(B)
+elif (m=0) then RETURN(A)
+else
+	for i from 1 to n do
+	for j from 1 to m do
+		R := [op(R),A[i]*B[j]]
+	od; 
+	od;
+fi;
+R;
+end;
+
+V := proc(n) option remember;
+if (n < 1) then RETURN([])
+elif (n = 1) then RETURN([x[1], x[1]^2]);
+else RETURN(Star(V(n-1), [x[n], x[n]^2,x[n]^6]))
+fi;
+end;
+
+P := proc(n) option remember;
+if (n < 1) then RETURN([])
+elif (n = 1) then RETURN([x[1]^2]);
+else RETURN(Star(V(n-1),[x[n]^2]));
+fi;
+end;
+
+Q := proc(n) option remember;
+if (n < 2) then RETURN([])
+elif (n = 2) then RETURN([x[2]^6]);
+else RETURN([
+	op(Star(T(n-2),[x[n]^6])), 
+	op(Star(V(n-2),[x[n-1]*x[n]^6])),
+	op(Star(P(n-1),[x[n]^6]))
+	]);
+fi;
+end;
+
+T := proc(n) option remember; RETURN([op(P(n)), op(Q(n))]) end;
+
+
+Ted := proc(n,d)
+local i,w,R,S;
+R:= [];
+S := T(n);
+w := nops(S);
+for i from 1 to w do
+if (degree(S[i]) = d) then
+	R := [op(R), S[i]];
+fi;
+od;
+RETURN(R);
+end;
+
+
+deT := proc(d)
+local n, R;
+R := [];
+for n from 1 to d do
+	R := [op(R), op(Ted(n,d))];
+od;
+R;
+end;
+
+
+
+a := proc(n)
+local i,R;
+R := 1;
+for i from 1 to n-1 do
+	R := R*x[i];
+od;
+R := R*x[n]^2;
+end;
+
+b:= proc(n)
+local i, R;
+R := 1;
+for i from 1 to n-2 do
+	R := R*x[i];
+od;
+R := R*x[n]^6;
+end;
+
+
+A := proc(n) option remember;
+local i, L;
+L := [];
+for i from 1 to n do
+	L := [op(L), a(i)];
+od;
+L;
+end;
+
+B := proc(n) option remember;
+local i, L;
+L := [];
+for i from 2 to n do
+	L := [op(L), b(i)];
+od;
+L;
+end;
+
+G := proc(n) option remember; [op(A(n)), op(B(n))]; end;
+
+
+p := proc(n) option remember;
+local i, S, q,r, L;
+q := 0;
+S := combinat[subsets](G(n));
+while not S[finished] do 
+L := S[nextvalue]();
+r := nops(L);
+if r = 0  then q := q+1;
+else q := q + (-1)^r*lcm(op(L)); fi;
+od;
+q;
+end;
+
+pr := proc(n) option remember;
+local i, S, q,r, L;
+q := 0;
+S := combinat[subsets](G(n));
+while not S[finished] do 
+L := S[nextvalue]();
+r := nops(L);
+if r = 0  then q := q+1;
+else q := q + (-1)^r*s^r*lcm(op(L)); fi;
+od;
+q;
+end;
+ 
+xvars := proc(n) 
+local i;
+[seq(x[i],i=1..n)];
+end;
+
+
+#for i from 2 to 7 do
+#print(`Degree`,i);
+#print(`N-graded Hilb`, subs([seq(x[j]=t, j=1..i)], select(z -> (degree(z)=i),
+#p(i-1))));
+#print(`No terms in X-grad Hilb`, nops(select(z -> (degree(z)=i), p(i-1))));
+#print(`X-graded Hilb`,collect(sort(select(z -> (degree(z)=i), p(i-1))),s));
+#print(`Xr-graded Hilb`,collect(sort(select(z -> (degree(z,xvars(i-1))=i), pr(i-1))),s));
+#od;
+
+
+for i from 2 to 8 do
+print(`vars`,i);
+w:= sort(subs([seq(x[j]=t, j=1..i)],p(i)-p(i-1)));
+ww:=factor(w);
+print(p(i)-p(i-1),w,ww);
+od;
+
+v := proc(n)
+local i,A,B;
+if (n = 1) then RETURN(x[1]^2); 
+elif (n = 2) then RETURN((x[1]-1)*(x[1]+x[2]^4)*x[2]^2); fi; 
+A := 1; B := x[n]^2;
+for i from 1 to n-1 do A := A*(x[i] - 1); od;
+for i from 1 to n-2 do B := B*x[i]; od; 
+RETURN(A*B*(x[n-1] + x[n]^4));
+end;
