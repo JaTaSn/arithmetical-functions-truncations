@@ -13,6 +13,17 @@ have computable minimal free resolutions.
 Each note gets its own directory: the manuscript, every script needed to reproduce its numbers, and
 any formalization. Below, the arXiv-ready bundles.
 
+## Mirrors
+
+The canonical repository is on
+[gitlab.liu.se](https://gitlab.liu.se/jansn19/arithmetical-functions-truncations). It is
+**push-mirrored automatically** to
+[github.com/JaTaSn/arithmetical-functions-truncations](https://github.com/JaTaSn/arithmetical-functions-truncations),
+so that a public GitHub copy always exists — which the
+[Palomar registry](https://palomar-registry.org/) requires, and which is useful in its own right.
+Push to GitLab; GitHub follows within a few minutes. Do not commit to the GitHub copy — it is a
+mirror, and divergent refs are discarded.
+
 ## Published site
 
 Rendered at **<https://jansn19.gitlab-pages.liu.se/arithmetical-functions-truncations/>** — the
