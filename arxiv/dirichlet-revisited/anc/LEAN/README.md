@@ -13,7 +13,12 @@ clause (2)), and `Chain.lean` (which joins them into one end-to-end statement).
 cd LEAN && lake exe cache get && lake build DirichletTruncations
 ```
 
-(The Mathlib cache is already local on jts-pc, so this takes about 20 seconds rather than an hour.)
+**What to expect on a cold machine**: `lake exe cache get` downloads Mathlib's prebuilt `.olean`
+cache — roughly **900 MB compressed, unpacking to about 7 GB** — which is much the longest part and
+is a one-off. Once that is in `~/.cache/mathlib`, *this project itself* compiles in **about 20
+seconds**; a later `lake exe cache get` in a fresh clone then finds everything locally and returns
+in seconds. Nothing here is built from Mathlib source, so the hour-plus figure you may have seen
+for Mathlib projects does not apply.
 
 ## What is assumed and what is proved
 
