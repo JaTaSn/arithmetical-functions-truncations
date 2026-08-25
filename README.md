@@ -1,5 +1,10 @@
 # Arithmetical functions: truncations, revisited
 
+### 📖 Read this online: **<https://jansn19.gitlab-pages.liu.se/arithmetical-functions-truncations/>**
+*The manuscript, and a browsable rendering of the Lean formalization.*
+
+---
+
 Supporting material for a series of notes revisiting Jan Snellman's papers on **truncations of
 rings of arithmetical functions** — the finite-dimensional quotients Γ_n obtained by discarding
 everything supported above n, which turn out to be polynomial rings modulo monomial ideals and so
