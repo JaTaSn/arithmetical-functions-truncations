@@ -10,6 +10,16 @@
 %     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
 %     transfer he hoped for has not materialised -- extremal results are slack here,
 %     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
+%   2026-08-27d Claude-Code (jts-pc) -- the exact-splitting identity, proved and used.
+%     Lemma \ref{lem:split}: since pi(p_j) = j, S_2 = T - (P-1)P(2P-1)/6 exactly, with
+%     T = sum (j-1) pi(n/p_j). One third of the asymptotics becomes an elementary sum
+%     needing no analysis, and 2/3 is visibly 1 - 1/3. The remaining summand is CONSTANT
+%     to leading order, since pi(p)~(X/M)e^{-a} and pi(n/p)~(X/M)e^{a}, so the partition,
+%     the Riemann-Stieltjes sum, the mesh parameter K and the error term R_2 are all gone
+%     -- only a count of primes is needed. The estimate is now stated against
+%     pi(sqrt n)^3 rather than X^3/M^3, which is 15x less slack numerically and makes
+%     Figure 2 and eq:explicit the same normalisation, so the reconciliation paragraph
+%     that 27c needed could be deleted.
 %   2026-08-27c Claude-Code (jts-pc) -- Jan's revisions round 2, plus two structural
 %     changes he approved. Round 2: P^{A_n}_K displayed in Thm 16's proof; "the binding
 %     case" spelled out in Cor 19's; eq:gdef split into definition and conclusion.
@@ -720,7 +730,7 @@ and let \(S_2(n)\) be the part of the sum coming from \(x\) with \(\Om(x)=2\).
 
 Throughout what follows we abbreviate
 \begin{equation}\label{eq:XM}
-  X=\sqrt n,\qquad M=\log X=\tfrac12\log n,
+  X=\sqrt n,\qquad M=\log X=\tfrac12\log n,\qquad P=\pi(\sqrt n),
 \end{equation}
 and we write
 \begin{equation}\label{eq:gdef}
@@ -730,32 +740,74 @@ With this notation Lemma \ref{lem:semiprime} reads
 \begin{equation}\label{eq:S2asg}
   S_2(n)=\sum_{p\le X}g(p),
 \end{equation}
-the sum being over primes. Two facts are isolated
-first, so that the proof of Theorem \ref{thm:error} is a single limit argument.
+the sum being over primes.
 
-The substitution that governs everything is \(p=Xe^{-a}\), under which
-\(n/p=Xe^{a}\); the parameter \(a=\log(X/p)\ge0\) measures how far below
-\(\sqrt n\) the smaller prime factor lies.
+The next lemma is the reason the rest is short. It removes a full third of the
+asymptotics from the analysis, replacing it by an exact elementary sum.
+
+\begin{lemma}[Exact splitting]\label{lem:split}
+  Let \(p_1<p_2<\dots<p_P\) be the primes \(\le\sqrt n\), and put
+  \[
+    T(n)=\sum_{j=1}^{P}(j-1)\,\pi(n/p_j).
+  \]
+  Then
+  \begin{equation}\label{eq:split-exact}
+    S_2(n)=T(n)-\frac{(P-1)P(2P-1)}{6}.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  Since \(p_j\) is the \(j\)-th prime, \(\pi(p_j)=j\). So the summand of
+  \eqref{eq:S2asg} at \(p=p_j\) is
+  \[
+    g(p_j)=(j-1)\bigl(\pi(n/p_j)-j+1\bigr)=(j-1)\pi(n/p_j)-(j-1)^{2},
+  \]
+  and summing over \(j\),
+  \[
+    S_2(n)=T(n)-\sum_{j=1}^{P}(j-1)^{2}
+          =T(n)-\sum_{i=1}^{P-1}i^{2}
+          =T(n)-\frac{(P-1)P(2P-1)}{6}. \qedhere
+  \]
+\end{proof}
+
+\begin{remark}\label{rem:whytwothirds}
+  Lemma \ref{lem:split} explains where the constant \(\tfrac23\) comes from.
+  Dividing \eqref{eq:split-exact} by \(P^{3}\) and expanding the second term
+  \emph{exactly},
+  \begin{equation}\label{eq:sqexact}
+    \frac{S_2(n)}{P^{3}}=\frac{T(n)}{P^{3}}-\frac13+\frac1{2P}-\frac1{6P^{2}} .
+  \end{equation}
+  So \(\tfrac23=1-\tfrac13\), where the \(1\) is the one thing still requiring
+  the prime number theorem --- that \(T(n)\sim P^{3}\), Proposition
+  \ref{prop:T} below --- and the \(\tfrac13\) is \(\sum i^{2}\sim P^{3}/3\),
+  which requires nothing at all.
+\end{remark}
+
+The substitution governing \(T\) is \(p=Xe^{-a}\), under which \(n/p=Xe^{a}\);
+the parameter \(a=\log(X/p)\ge0\) measures how far below \(\sqrt n\) the
+smaller prime factor lies. Note that the summand of \(T\) is, to leading order,
+\emph{constant} in \(a\): the two factors \(\pi(p)-1\approx(X/M)e^{-a}\) and
+\(\pi(n/p)\approx(X/M)e^{a}\) have reciprocal exponentials. This is why no
+Riemann sum is needed below --- only a count of the primes involved.
 
 \begin{lemma}\label{lem:pnt-unif}
-  Let \(c_1\) be an absolute constant for which \(\pi(y)\le c_1y/\log y\)
-  \((y\ge2)\), as furnished by Chebyshev, and let \(A_0\) be an absolute
-  constant for which \(|\pi(y)-y/\log y|\le A_0\,y/\log^{2}y\) \((y\ge2)\).
-  There is an absolute constant \(A_1\) such that for every \(W\ge1\), every
-  \(n\) with \(M\ge2W\), and every real \(a\in[0,W]\),
+  Let \(A_0\) be an absolute constant for which
+  \(|\pi(y)-y/\log y|\le A_0\,y/\log^{2}y\) \((y\ge2)\). There is an absolute
+  constant \(A_1\) such that for every \(W\ge1\), every \(n\) with
+  \(M\ge2W\) and \(X\ge M^{2}\), and every real \(a\in[0,W]\),
   \begin{equation}\label{eq:pnt-sub}
     \begin{aligned}
-      \pi\bigl(Xe^{-a}\bigr)-1
+      \pi\bigl(Xe^{-a}\bigr)
         &=\frac XM\left(e^{-a}+\theta_1\,\frac{A_1(W+1)}{M}\right),\\
-      \pi\bigl(Xe^{a}\bigr)-\pi\bigl(Xe^{-a}\bigr)+1
-        &=\frac XM\left(2\sinh a+\theta_2\,\frac{A_1(W+1)e^{W}}{M}\right),
+      \pi\bigl(Xe^{a}\bigr)
+        &=\frac XM\left(e^{a}+\theta_2\,\frac{A_1(W+1)e^{W}}{M}\right),
     \end{aligned}
   \end{equation}
   where \(|\theta_1|,|\theta_2|\le1\).
 
-  The point of the second bound is that its error constant grows with \(W\),
-  because \(2\sinh a\) itself does; this is what will limit how fast \(W\) may
-  be allowed to grow with \(n\) in Theorem \ref{thm:error}.
+  The error constant in the second line grows with \(W\), because \(e^{a}\)
+  itself does; this is what limits how fast \(W\) may be allowed to grow with
+  \(n\).
 \end{lemma}
 
 \begin{proof}
@@ -766,91 +818,115 @@ The substitution that governs everything is \(p=Xe^{-a}\), under which
   \[
     \pi\bigl(Xe^{-a}\bigr)
       =\frac{Xe^{-a}}{M-a}+\theta\,A_0\frac{Xe^{-a}}{(M-a)^{2}},
-      \qquad|\theta|\le1 .
+      \qquad|\theta|\le1 ,
   \]
-  Since \(M-a\ge\tfrac12M\) and \(e^{-a}\le1\), the second term is at most
+  and since \(M-a\ge\tfrac12M\) and \(e^{-a}\le1\) the second term is at most
   \(4A_0X/M^{2}\). For the first, \(0\le a/M\le\tfrac12\) gives
   \[
-    \frac{e^{-a}}{1-a/M}-e^{-a}
-      =e^{-a}\cdot\frac{a/M}{1-a/M},
+    \frac{e^{-a}}{1-a/M}-e^{-a}=e^{-a}\cdot\frac{a/M}{1-a/M},
     \qquad\left|\;\cdot\;\right|\le\frac{2a}{M}\le\frac{2W}{M},
   \]
-  so
-  \[
-    \pi\bigl(Xe^{-a}\bigr)
-      =\frac XM\left(e^{-a}+\theta_1'\,\frac{2W+4A_0}{M}\right),
-      \qquad|\theta_1'|\le1 .
-  \]
-  It remains to subtract \(1\). That changes the left side by \(1\), which is
-  absorbed by the error term as soon as \((X/M)(1/M)\ge1\), i.e.\ \(X\ge M^{2}\),
-  and this holds for all large \(n\) since \(M=\tfrac12\log n\). So the first
-  line of \eqref{eq:pnt-sub} holds with \(A_1=2+4A_0+1\).
+  so the first line holds with \(A_1\ge2+4A_0\).
 
   \emph{Second line.} The same computation with \(\log y=M+a\), using
-  \(M+a\le\tfrac32M\) and \(e^{a}\le e^{W}\), gives
-  \[
-    \pi\bigl(Xe^{a}\bigr)
-      =\frac XM\left(e^{a}+\theta'\,\frac{(W+A_0)e^{W}}{M}\right),
-      \qquad|\theta'|\le1 .
-  \]
-  Subtracting the first line and using \(e^{a}-e^{-a}=2\sinh a\) yields the
-  second, the two error terms combining into one of size at most
-  \(A_1(W+1)e^{W}/M\).
+  \(M+a\le\tfrac32M\) and \(e^{a}\le e^{W}\), gives an error at most
+  \((W+A_0)e^{W}/M\) after division by \(X/M\).
 \end{proof}
 
 \begin{lemma}\label{lem:tail}
   There is an absolute constant \(c_0\) such that, for every \(W\) with
   \(1\le W\le M/2\),
   \[
-    \sum_{p\le Xe^{-W}}g(p)\ \le\ c_0\,e^{-W}\,\frac{n^{3/2}}{\log^{3}n}
-      \ +\ o\!\left(\frac{n^{3/2}}{\log^{3}n}\right),
+    \sum_{p\le Xe^{-W}}\pi(p)\,\pi(n/p)
+      \ \le\ c_0\,e^{-W}\,\frac{X^{3}}{M^{3}}
+      \ +\ c_0\,\frac{X^{3}}{M^{3}}\cdot\frac{\log n}{n^{1/4}} .
   \]
-  the \(o\)-term being independent of \(W\).
+  The same bound holds for \(\sum_{p\le Xe^{-W}}g(p)\) and for
+  \(\sum_{p\le Xe^{-W}}(\pi(p)-1)\pi(n/p)\), both summands being at most
+  \(\pi(p)\pi(n/p)\).
 \end{lemma}
 
 \begin{proof}
-  Split at \(n^{1/4}\), and write \(L=\log n=2M\) throughout.
+  Let \(c_1\) be an absolute constant with \(\pi(y)\le c_1y/\log y\)
+  (Chebyshev), and write \(L=\log n=2M\). Split at \(n^{1/4}\).
 
-  \emph{Range \(p\le n^{1/4}\).} Here \(\log(n/p)\ge\tfrac34L\), so by
-  Chebyshev
+  \emph{Range \(p\le n^{1/4}\).} Here \(\log(n/p)\ge\tfrac34L\), so
   \[
-    g(p)\ \le\ \pi(p)\,\pi(n/p)
-      \ \le\ c_1^{2}\,\frac{n}{\log p\cdot\log(n/p)}
-      \ \le\ \frac{4c_1^{2}}{3\log2}\cdot\frac nL .
+    \pi(p)\,\pi(n/p)\ \le\ c_1^{2}\,\frac{n}{\log p\cdot\log(n/p)}
+      \ \le\ \frac{4c_1^{2}}{3\log2}\cdot\frac nL ,
   \]
-  There are at most \(\pi(n^{1/4})\le 4c_1n^{1/4}/L\) such primes, so this
-  range contributes at most a constant times \(n^{5/4}/L^{2}\). Since
-  \[
-    \frac{n^{5/4}/L^{2}}{n^{3/2}/L^{3}}=\frac{L}{n^{1/4}}\longrightarrow0,
-  \]
-  that is \(o(n^{3/2}/\log^{3}n)\), uniformly in \(W\).
+  and there are at most \(\pi(n^{1/4})\le4c_1n^{1/4}/L\) such primes, giving a
+  constant times \(n^{5/4}/L^{2}\); relative to \(X^{3}/M^{3}=8n^{3/2}/L^{3}\)
+  that is a constant times \(L/n^{1/4}\).
 
   \emph{Range \(n^{1/4}<p\le Xe^{-W}\).} Here \(\log p\ge\tfrac14L\) and
-  \(\log(n/p)\ge\tfrac12L\), so
+  \(\log(n/p)\ge\tfrac12L\), so \(\pi(p)\pi(n/p)\le8c_1^{2}n/L^{2}\), while
   \[
-    g(p)\ \le\ \pi(p)\,\pi(n/p)\ \le\ c_1^{2}\,\frac{n}{\log p\cdot\log(n/p)}
-      \ \le\ 8c_1^{2}\,\frac{n}{L^{2}} .
+    \pi\bigl(Xe^{-W}\bigr)\ \le\ c_1\frac{Xe^{-W}}{M-W}
+      \ \le\ 2c_1\frac{Xe^{-W}}{M}=4c_1\frac{Xe^{-W}}{L}
   \]
-  The number of such primes is at most
+  by \(W\le M/2\). The product is at most
+  \(32c_1^{3}e^{-W}n^{3/2}/L^{3}=4c_1^{3}e^{-W}X^{3}/M^{3}\).
+\end{proof}
+
+\begin{proposition}\label{prop:T}
+  There are absolute constants \(C_0\) and \(n_0\) such that for \(n\ge n_0\)
   \[
-    \pi\bigl(Xe^{-W}\bigr)\ \le\ c_1\,\frac{Xe^{-W}}{M-W}
-      \ \le\ 2c_1\,\frac{Xe^{-W}}{M}\ =\ 4c_1\,\frac{Xe^{-W}}{L},
+    \left|\;\frac{M^{3}}{X^{3}}\,T(n)-1\;\right|
+      \ \le\ C_0\,\frac{\log M}{\sqrt M} .
   \]
-  using \(W\le M/2\). Multiplying the two bounds gives at most
+\end{proposition}
+
+\begin{proof}
+  Fix \(W\ge1\) with \(M\ge2W\), to be chosen. Split \(T\) at \(Xe^{-W}\); by
+  Lemma \ref{lem:tail} the part with \(p\le Xe^{-W}\) is at most
+  \(c_0(e^{-W}+\log n/n^{1/4})X^{3}/M^{3}\).
+
+  In the main range \(Xe^{-W}<p\le X\) put \(a=\log(X/p)\in[0,W)\). By
+  \eqref{eq:pnt-sub},
+  \begin{align*}
+    \bigl(\pi(p)-1\bigr)\pi(n/p)
+      =\frac{X^{2}}{M^{2}}
+       &\Bigl(e^{-a}+\theta_1\tfrac{A_1(W+1)}{M}-\tfrac MX\Bigr)\\
+       &\times
+       \Bigl(e^{a}+\theta_2\tfrac{A_1(W+1)e^{W}}{M}\Bigr).
+  \end{align*}
+  Expanding, the leading term is \(e^{-a}e^{a}=1\), and every other term
+  carries a factor \(A_1(W+1)e^{W}/M\) or \(M/X\); using \(e^{-a}\le1\),
+  \(e^{a}\le e^{W}\) and \(X\ge M^{2}\), all of them together are at most
+  \(A_2(W+1)e^{W}/M\) in absolute value, with \(A_2\) absolute. Hence
+  \begin{align*}
+    \sum_{Xe^{-W}<p\le X}\bigl(\pi(p)-1\bigr)\pi(n/p)
+      ={}&\frac{X^{2}}{M^{2}}
+          \Bigl(1+\theta_3\,\tfrac{A_2(W+1)e^{W}}{M}\Bigr)\\
+        &\times\#\{\,p : Xe^{-W}<p\le X\,\},
+  \end{align*}
+  \(|\theta_3|\le1\) --- this is where the summand being constant to leading
+  order does the work: no partition of \([0,W]\) and no Riemann sum is needed,
+  only the number of primes in the range. That number is, by
+  \eqref{eq:pnt-sub} again,
   \[
-    32c_1^{3}\,e^{-W}\,\frac{nX}{L^{3}}
-      =32c_1^{3}\,e^{-W}\,\frac{n^{3/2}}{L^{3}},
+    \pi(X)-\pi\bigl(Xe^{-W}\bigr)
+      =\frac XM\Bigl(1-e^{-W}+\theta_4\,\tfrac{2A_1(W+1)}{M}\Bigr).
   \]
-  so \(c_0=32c_1^{3}\) will do.
+  Multiplying, and adding the tail bound,
+  \[
+    \frac{M^{3}}{X^{3}}T(n)
+      =1+O\!\left(e^{-W}+\frac{(W+1)e^{W}}{M}+\frac{\log n}{n^{1/4}}\right),
+  \]
+  with an absolute implied constant. Now take \(W=\tfrac12\log M\), legitimate
+  for \(M\ge e^{2}\) since then \(W\ge1\) and \(M\ge2W\). It gives
+  \(e^{-W}=M^{-1/2}\) and \((W+1)e^{W}/M=(\tfrac12\log M+1)/\sqrt M\), both
+  \(O(\log M/\sqrt M)\), while \(\log n/n^{1/4}\) is smaller than either.
 \end{proof}
 
 \begin{theorem}\label{thm:error}
   There are absolute constants \(C\) and \(n_0\) such that for all \(n\ge n_0\)
   \begin{equation}\label{eq:explicit}
-    \left|\;\frac{M^{3}}{X^{3}}\,S_2(n)-\frac23\;\right|
-      \ \le\ C\,\frac{\log\log n}{\sqrt{\log n}} ,
+    \left|\;\frac{S_2(n)}{\pi(\sqrt n)^{3}}-\frac23\;\right|
+      \ \le\ C\,\frac{\log\log n}{\sqrt{\log n}} .
   \end{equation}
-  with \(X,M\) as in \eqref{eq:XM}. In particular, as \(n\to\infty\),
+  In particular, as \(n\to\infty\),
   \[
     S(n)\;\sim\;\tfrac23\,\pi(\sqrt n)^{3}
             \;\sim\;\frac{16}{3}\cdot\frac{n^{3/2}}{\log^{3}n},
@@ -865,148 +941,52 @@ The substitution that governs everything is \(p=Xe^{-a}\), under which
 \end{theorem}
 
 \begin{proof}
-  By Lemma \ref{lem:semiprime} it suffices to treat \(S_2\), because
+  By \eqref{eq:sqexact} it suffices to bound \(T(n)/P^{3}-1\), since the
+  remaining terms \(1/(2P)-1/(6P^{2})\) are \(O(1/P)=O(\log n/\sqrt n)\), far
+  smaller than the claimed bound. By Lemma \ref{lem:pnt-unif} with \(a=0\),
+  \(P=\pi(X)=(X/M)(1+\theta A_1/M)\), so
   \[
-    \frac{n^{4/3}/\log^{2}n}{n^{3/2}/\log^{3}n}
-      =\frac{\log n}{n^{1/6}}\longrightarrow0 .
+    \frac{T(n)}{P^{3}}=\frac{M^{3}}{X^{3}}T(n)\cdot\Bigl(\frac{X}{MP}\Bigr)^{3}
+      =\Bigl(1+O\bigl(\tfrac{\log M}{\sqrt M}\bigr)\Bigr)
+       \Bigl(1+O\bigl(\tfrac1M\bigr)\Bigr)
+      =1+O\!\left(\frac{\log M}{\sqrt M}\right)
   \]
+  by Proposition \ref{prop:T}. Substituting \(M=\tfrac12\log n\) gives
+  \eqref{eq:explicit}.
 
-  \emph{Why the mass is where it is.} Under \(p=Xe^{-a}\) the two factors of
-  \(g\) are given by \eqref{eq:pnt-sub}, and the number of primes per unit
-  \(a\) near \(p\) is about \(Xe^{-a}/M\). The product of the three is
-  \[
-    \frac{X^{3}}{M^{3}}\cdot 2e^{-2a}\sinh a ,
-  \]
-  which decays like \(e^{-a}\) as \(a\to\infty\). So the sum is concentrated on
-  \(a=O(1)\): both \(p\) and \(n/p\) lie within a bounded factor of \(\sqrt n\).
-  Lemma \ref{lem:tail} is the rigorous form of that statement, and the rest of
-  the proof evaluates the main range.
-
-  \emph{The main range.} Fix \(W\ge1\) and \(K\ge1\), and assume \(n\) large
-  enough that \(M\ge2W\). Cut \([0,W]\) into \(K\) equal pieces
-  \(a_i=iW/K\) \((0\le i\le K)\) and put \(t_i=Xe^{-a_i}\), so that
-  \(X=t_0>t_1>\dots>t_K=Xe^{-W}\). On \([t_{i+1},t_i]\) the factor
-  \(\pi(t)-1\) is non-decreasing in \(t\) and \(\pi(n/t)-\pi(t)+1\) is
-  non-increasing, so
-  \begin{align*}
-    m_i&:=\bigl(\pi(t_{i+1})-1\bigr)\bigl(\pi(n/t_i)-\pi(t_i)+1\bigr),\\
-    M_i&:=\bigl(\pi(t_i)-1\bigr)\bigl(\pi(n/t_{i+1})-\pi(t_{i+1})+1\bigr)
-  \end{align*}
-  satisfy \(m_i\le g(p)\le M_i\) for every prime \(p\in(t_{i+1},t_i]\). Writing
-  \(N_i=\pi(t_i)-\pi(t_{i+1})\) for the number of such primes,
-  \begin{equation}\label{eq:sandwich}
-    \sum_{i=0}^{K-1}m_iN_i\ \le\ \sum_{Xe^{-W}<p\le X}g(p)\ \le\
-    \sum_{i=0}^{K-1}M_iN_i .
-  \end{equation}
-  Every prime count appearing in \eqref{eq:sandwich} is evaluated at an
-  argument of the form \(Xe^{\pm a}\) with \(0\le a\le W\), so Lemma
-  \ref{lem:pnt-unif} applies to all of them with the \emph{same} constant \(c(W)\);
-  there are \(O(K)\) of them. Substituting \eqref{eq:pnt-sub} and expanding,
-  both outer members of \eqref{eq:sandwich} equal
-  \begin{equation}\label{eq:riemann}
-    \frac{X^{3}}{M^{3}}\sum_{i=0}^{K-1}
-      2e^{-a_i}\sinh(a_i)\bigl(e^{-a_i}-e^{-a_{i+1}}\bigr)
-    \;+\;R_1\;+\;R_2,
-  \end{equation}
-  where the two error terms are controlled separately:
-  \begin{itemize}
-    \item \(|R_1|\le c'(W,K)\,X^{3}/M^{4}\), collecting every cross term in
-      which at least one factor is an error term of \eqref{eq:pnt-sub}. There
-      are \(O(K)\) such terms, each of size \(O_W(X^{3}/M^{4})\), and \(K\) is
-      fixed before \(n\) grows.
-    \item \(|R_2|\le c''(W)\,\dfrac{X^{3}}{M^{3}}\cdot\dfrac WK\), from
-      replacing \(g\) by its one-sided extreme on each piece: the integrand
-      \(2e^{-2a}\sinh a\) has bounded derivative on \([0,W]\), so \(M_i-m_i\)
-      contributes \(O_W(W/K)\) in total.
-  \end{itemize}
-  The sum in \eqref{eq:riemann} is a Riemann--Stieltjes sum for
-  \(\int_0^W2e^{-2a}\sinh a\,\mathrm da\) with respect to
-  \(\mathrm d(-e^{-a})\), over a partition of mesh \(W/K\).
-
-  \emph{Collecting, with \(W\) and \(K\) chosen.} Write
-  \(F(a)=2e^{-2a}\sinh a=e^{-a}-e^{-3a}\), so that \(|F'|\le3\) everywhere and
-  \(\int_0^{\infty}F=1-\tfrac13=\tfrac23\). Four quantities separate
-  \(M^{3}S_2(n)/X^{3}\) from \(\tfrac23\), and each is now bounded explicitly,
-  with \(C_1,\dots,C_4\) absolute:
-  \begin{enumerate}
-    \item \emph{the tail}, \(\sum_{p\le Xe^{-W}}g(p)\): at most
-      \(C_1e^{-W}\) by Lemma \ref{lem:tail}, together with the term
-      \(C_1\log n\,/\,n^{1/4}\) from its range \(p\le n^{1/4}\);
-    \item \emph{the truncation of the integral},
-      \(\int_W^{\infty}F\le\int_W^{\infty}e^{-a}\,\mathrm da=e^{-W}\);
-    \item \emph{the mesh}, \(R_2\): at most \(C_2W/K\), since \(|F'|\le3\) and
-      the total variation of \(-e^{-a}\) is at most \(1\);
-    \item \emph{the prime number theorem}, \(R_1\): at most
-      \(C_3(W+1)e^{W}/M\), from \eqref{eq:pnt-sub} --- each of the
-      \(\pi(X)\le C_4X/M\) primes in the main range contributes an error
-      \((X^{2}/M^{2})\cdot A_1(W+1)e^{W}/M\), because \(e^{-a}\le1\) and
-      \(2\sinh a\le e^{W}\).
-  \end{enumerate}
-  Now make the choice
-  \begin{equation}\label{eq:WK}
-    W=\tfrac12\log M,\qquad K=\lceil M\rceil ,
-  \end{equation}
-  legitimate for \(M\ge e^{2}\), since then \(W\ge1\) and \(M\ge2W\). With it,
-  \[
-    e^{-W}=\frac1{\sqrt M},\qquad
-    \frac WK\le\frac{\log M}{2M},\qquad
-    \frac{(W+1)e^{W}}{M}=\frac{\tfrac12\log M+1}{\sqrt M},
-  \]
-  all three of which are \(O(\log M/\sqrt M)\); and \(\log n/n^{1/4}\) is
-  smaller than any of them. Hence
-  \[
-    \left|\frac{M^{3}}{X^{3}}S_2(n)-\frac23\right|
-      \ \le\ C\,\frac{\log M}{\sqrt M} ,
-  \]
-  which is \eqref{eq:explicit} after substituting \(M=\tfrac12\log n\).
-
-  \emph{Conversion.} By \eqref{eq:XM},
-  \[
-    \frac{X^{3}}{M^{3}}=\frac{n^{3/2}}{(\tfrac12\log n)^{3}}
-      =8\,\frac{n^{3/2}}{\log^{3}n},
-  \]
-  and \(X/M\sim\pi(\sqrt n)\), so \eqref{eq:explicit} gives
-  \(S_2(n)\sim\tfrac23\pi(\sqrt n)^{3}\sim\tfrac{16}{3}n^{3/2}/\log^{3}n\).
+  For the asymptotic statements, \(P=\pi(\sqrt n)\) and, by the prime number
+  theorem, \(\pi(\sqrt n)^{3}\sim(2\sqrt n/\log n)^{3}=8n^{3/2}/\log^{3}n\),
+  so \(S_2(n)\sim\tfrac23\pi(\sqrt n)^{3}\sim\tfrac{16}{3}n^{3/2}/\log^{3}n\).
   Lemma \ref{lem:semiprime} transfers this to \(S\), and Corollary
   \ref{cor:total} to \(C_n\).
 \end{proof}
 
 \begin{remark}\label{rem:hypotheses}
-  Two comments on what the proof of Theorem \ref{thm:error} actually uses.
+  Three comments on the proof.
 
-  The rate in \eqref{eq:explicit} is certainly not sharp: it is limited by the
-  crude truncation at \(a=W\), not by the arithmetic input. Sharpening it would
-  mean treating the whole range \(0\le a\le M\) rather than discarding
-  \(a>W\), which is a different and more delicate calculation. In fact the true
-  deviation is of order \(1/\log n\), far smaller than
-  \(\log\log n/\sqrt{\log n}\): at \(n=10^{14}\) the left-hand side of
-  \eqref{eq:explicit} is \(0.167\) against a bound of \(0.692\).
+  It uses no Riemann sums, no partition of the range, and no interchange of
+  limits: \(W\) is a explicit function of \(n\), and \eqref{eq:explicit} is a
+  single estimate. That is a consequence of Lemma \ref{lem:split}, which
+  removes the \(\tfrac13\) exactly, together with the observation that what
+  remains has a summand constant to leading order.
 
-  A reader comparing \eqref{eq:explicit} with Figure \ref{fig:ratio} should
-  note that the two normalise differently, and that the difference is not
-  small at any computable \(n\). Figure \ref{fig:ratio} divides by
-  \(\tfrac23\pi(\sqrt n)^{3}\), whereas \eqref{eq:explicit} divides by
-  \(X^{3}/M^{3}=(\sqrt n/\log\sqrt n)^{3}\); and
-  \(\pi(\sqrt n)\big/(X/M)=1+1/M+O(1/M^{2})\), so the two differ by a factor
-  \(1+3/M+O(1/M^{2})\). At \(n=10^{6}\) that is already a \(16\%\) discrepancy
-  in \(\pi(\sqrt n)\) and \(56\%\) once cubed. This is the same effect as the
-  one described in Remark \ref{rem:buchstab-trap}, and it is why
-  \eqref{eq:explicit} still reads \(1.10\) rather than \(0.67\) at
-  \(n=10^{6}\) while Figure \ref{fig:ratio} already reads \(1.06\).
+  The rate is not sharp. It is limited by the truncation at \(a=W\), not by the
+  arithmetic input, and the true deviation is of order \(1/\log n\): at
+  \(n=10^{14}\) the left-hand side of \eqref{eq:explicit} is \(0.011\) against
+  a bound of \(0.69\). Sharpening it would mean treating the whole range
+  \(0\le a\le M\) rather than discarding \(a>W\).
 
-  Conversely, the hypotheses can be weakened if one wants only the asymptotic
-  and no rate. Lemma \ref{lem:pnt-unif} was stated with the prime number
-  theorem in the sharp form \(\pi(y)=y/\log y+O(y/\log^{2}y)\), because that is
-  what produces an explicit error. But the bare prime number theorem,
-  \(\pi(y)\sim y/\log y\), already suffices for
-  \(S(n)\sim\tfrac23\pi(\sqrt n)^{3}\): for \(a\) in a \emph{fixed} range
-  \([0,W]\) the arguments \(Xe^{\pm a}\) all tend to infinity with \(n\), so
-  \(\pi(Xe^{\mp a})(M\pm a)/(Xe^{\mp a})\to1\) uniformly in \(a\), which turns
-  \eqref{eq:pnt-sub} into the same statement with \(A_1(W+1)e^{W}/M\) replaced
-  by an unspecified \(\varepsilon_W(n)\to0\); every later step uses only that
-  the relative errors vanish. This matters for anyone wishing to formalise the
-  argument in a proof assistant, since it removes the need for a prime number
-  theorem \emph{with} an error term.
+  The hypotheses can be weakened if one wants only the asymptotic and no rate.
+  Lemma \ref{lem:pnt-unif} was stated with the prime number theorem in the
+  sharp form \(\pi(y)=y/\log y+O(y/\log^{2}y)\) because that is what produces
+  an explicit error. The bare prime number theorem \(\pi(y)\sim y/\log y\)
+  already suffices for \(S(n)\sim\tfrac23\pi(\sqrt n)^{3}\): for \(a\) in a
+  \emph{fixed} range \([0,W]\) the arguments \(Xe^{\pm a}\) tend to infinity
+  with \(n\), so \eqref{eq:pnt-sub} holds with the error terms replaced by an
+  unspecified \(\varepsilon_W(n)\to0\), uniformly in \(a\), and every later
+  step uses only that the relative errors vanish. This matters to anyone
+  wishing to formalise the argument in a proof assistant, since it removes the
+  need for a prime number theorem \emph{with} an error term.
 \end{remark}
 
 \begin{remark}\label{rem:buchstab-trap}
