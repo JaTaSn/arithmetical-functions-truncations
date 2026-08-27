@@ -184,7 +184,9 @@ Third, the \emph{consequences}. Section \ref{sec:conjecture} proves Conjecture
 Poincaré--Betti series and was left open there with numerical evidence for
 \(n\le 25\). Section \ref{sec:asymptotics} determines the average order of
 \(C_n\), showing that
-\(C_n\sim\tfrac12\pi(n)^2\sim n^2/(2\log^2 n)\)
+\[
+  C_n\sim\tfrac12\pi(n)^{2}\sim\frac{n^{2}}{2\log^{2}n},
+\]
 and hence that the lower bound \(C_n\ge\binom{\pi(n)+1}{2}\) of Theorem 3.4(3) of
 \cite{Snellman2000} is asymptotically an equality. Section \ref{sec:next}
 collects what remains open.
@@ -268,12 +270,12 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
   \end{equation}
   a finite sum, since the terms vanish once \(P^{a}>y\). Substituting
   \eqref{eq:Rsum} into \eqref{eq:CasR}, the two sums telescope:
-  \[
-    C_{n,v}=R_P(n)-R_P(n/P)
-    =\sum_{a\ge0}\Phi\!\left(\tfrac{n}{P^{a}},P\right)
-     -\sum_{a\ge0}\Phi\!\left(\tfrac{n}{P^{a+1}},P\right)
-    =\Phi(n,P).\qedhere
-  \]
+  \begin{align*}
+    C_{n,v}&=R_P(n)-R_P(n/P)\\
+           &=\sum_{a\ge0}\Phi\!\left(\frac{n}{P^{a}},P\right)
+            -\sum_{a\ge0}\Phi\!\left(\frac{n}{P^{a+1}},P\right)\\
+           &=\Phi(n,P).\qedhere
+  \end{align*}
 \end{proof}
 
 \begin{example}
@@ -307,8 +309,8 @@ following reformulation, which is the form we shall use.
 \end{corollary}
 
 \begin{proof}
-  The integers counted by \(\Phi(n,p_v)\) are \(1\), the primes \(q\) with
-  \(p_v<q\le n\) --- of which there are \(\pi(n)-v\) --- and the composites
+  The integers counted by \(\Phi(n,p_v)\) are \(1\); the primes \(q\) with
+  \(p_v<q\le n\), of which there are \(\pi(n)-v\); and the composites
   counted by \(E(n,v)\). For the last sentence, \(E(n,v)=0\) exactly when there
   is no composite \(\le n\) all of whose prime factors exceed \(p_v\), and the
   least such composite is \(p_{v+1}^{2}\).
@@ -326,8 +328,10 @@ Corollary \ref{cor:split} contains Theorem 3.4(2) of \cite{Snellman2000} (put
 
 \begin{proof}
   Sum Corollary \ref{cor:split} over \(v=1,\dots,r\). The first terms contribute
-  \(\sum_{v=1}^{r}(r-v+1)=\binom{r+1}{2}\). For the second, exchange the order of
-  summation: a composite \(x\le n\) is counted by \(E(n,v)\) for exactly those
+  \[
+    \sum_{v=1}^{r}(r-v+1)=\sum_{j=1}^{r}j=\binom{r+1}{2}.
+  \]
+  For the second, exchange the order of summation: a composite \(x\le n\) is counted by \(E(n,v)\) for exactly those
   \(v\ge1\) with \(p_v<\lpf x\), and there are \(\pi(\lpf x)-1\) of those.
 \end{proof}
 
@@ -480,9 +484,15 @@ fraction reduces to
   P^{A_n}_K(t)=-\frac{(1+t)^{\ell_1(n)}}{q_n(t)},\qquad
   q_n(t)=\sum_{i=0}^{\ell_2(n)}h_i(n)t^{i},
 \end{equation}
-with (1) \(q_n(-1)\ne0\); (2) \(\ell_1(n)=\#\{\,p \text{ odd prime} :
-p^{2}\le n\,\}\); (3) \(\ell_2(n)=\ell_1(n)+1\); (4) \(h_0(n)=-1\);
-(5) \(h_1(n)=\pi(n)-\ell_1(n)\); (6) \(h_{\ell_2(n)}(n)=C_{n,1}=\lceil n/2\rceil\).
+where
+\begin{enumerate}
+  \item \(q_n(-1)\ne0\);
+  \item \(\ell_1(n)=\#\{\,p \text{ odd prime} : p^{2}\le n\,\}\);
+  \item \(\ell_2(n)=\ell_1(n)+1\);
+  \item \(h_0(n)=-1\);
+  \item \(h_1(n)=\pi(n)-\ell_1(n)\);
+  \item \(h_{\ell_2(n)}(n)=C_{n,1}=\lceil n/2\rceil\).
+\end{enumerate}
 We prove all six.
 
 The point of the next lemma is that the whole conjecture is controlled by a
@@ -519,19 +529,34 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
   By Lemmas \ref{lem:secondiff} and \ref{lem:c0} the order is the least
   \(k\ge1\) with \(c_k-2c_{k-1}+c_{k-2}\ne0\). Since \(c_{-1}=0\) and
   \(c_0=1\), an induction shows that the second differences vanish for all
-  \(k\le K\) precisely when \(c_k=k+1\) for all \(k\le K\); so the order is the
-  least \(k\ge1\) with \(c_k\ne k+1\), that is, with
-  \(C_{n,r-k}\ne r-(r-k)+1\).
+  \(k\le K\) precisely when \(c_k=k+1\) for all \(k\le K\). So the order is the
+  least \(k\ge1\) with
+  \[
+    c_k\ne k+1,\qquad\text{that is,}\qquad C_{n,r-k}\ne r-(r-k)+1 .
+  \]
 
-  By Corollary \ref{cor:split}, \(C_{n,v}\ne r-v+1\) if and only if
-  \(p_{v+1}^{2}\le n\), i.e.\ \(p_{v+1}\le\sqrt n\). The largest \(v\) with
-  this property is \(v=\pi(\lfloor\sqrt n\rfloor)-1\), and for \(n\ge4\) this
-  equals \(\#\{p\text{ odd} : p^{2}\le n\}=\ell_1(n)\), the two counts
-  differing only by the prime \(2\). Hence the least admissible \(k\) is
-  \(r-\ell_1(n)\). (If no such \(v\) exists, i.e.\ \(\ell_1(n)=0\), then
-  \(c_k=k+1\) for all \(k\le r-1\) and the first non-vanishing coefficient is
-  that of \(u^{r}\), namely \(-(0-2r+(r-1))=r+1\ne0\); the formula
-  \(r-\ell_1(n)=r\) still holds.)
+  By Corollary \ref{cor:split},
+  \[
+    C_{n,v}\ne r-v+1
+    \iff p_{v+1}^{2}\le n
+    \iff p_{v+1}\le\sqrt n .
+  \]
+  The largest \(v\) with this property is
+  \[
+    v=\pi\bigl(\lfloor\sqrt n\rfloor\bigr)-1
+     =\#\{\,p\text{ odd} : p^{2}\le n\,\}=\ell_1(n)
+     \qquad(n\ge4),
+  \]
+  the two counts differing only by the prime \(2\). Hence the least admissible
+  \(k\) is \(r-\ell_1(n)\).
+
+  If no such \(v\) exists, i.e.\ \(\ell_1(n)=0\), then \(c_k=k+1\) for all
+  \(k\le r-1\), and the first non-vanishing coefficient is that of \(u^{r}\),
+  namely
+  \[
+    -\bigl(0-2r+(r-1)\bigr)=r+1\ne0;
+  \]
+  the formula \(r-\ell_1(n)=r\) still holds.
 \end{proof}
 
 \begin{theorem}\label{thm:conj}
@@ -614,12 +639,21 @@ contributes in the limit.
 
 \begin{proof}
   By Corollary \ref{cor:total} the difference equals
-  \(\sum_{x\le n\text{ composite}}(\pi(\lpf x)-1)\), a sum of non-negative
-  terms. If \(x\le n\) is composite then \(\lpf x\le\sqrt x\le\sqrt n\), so each
-  term is at most \(\pi(\sqrt n)-1\); there are fewer than \(n\) composites
-  \(\le n\). The prime number theorem gives \(\pi(\sqrt n)\sim2\sqrt n/\log n\),
-  whence the stated \(O\)-bound, and
-  \(\binom{r+1}{2}\sim\pi(n)^{2}/2\sim n^{2}/(2\log^{2}n)\), which dominates it.
+  \[
+    C_n-\binom{\pi(n)+1}{2}=\sum_{x\le n\text{ composite}}\bigl(\pi(\lpf x)-1\bigr),
+  \]
+  a sum of non-negative terms. If \(x\le n\) is composite then
+  \(\lpf x\le\sqrt x\le\sqrt n\), so each term is at most \(\pi(\sqrt n)-1\), and
+  there are fewer than \(n\) composites \(\le n\); this gives the upper bound.
+  The prime number theorem gives \(\pi(\sqrt n)\sim2\sqrt n/\log n\), whence
+  \[
+    n\bigl(\pi(\sqrt n)-1\bigr)=O\!\left(\frac{n^{3/2}}{\log n}\right),
+  \]
+  while
+  \[
+    \binom{r+1}{2}\sim\frac{\pi(n)^{2}}{2}\sim\frac{n^{2}}{2\log^{2}n},
+  \]
+  which dominates it.
 \end{proof}
 
 \begin{corollary}
@@ -668,6 +702,106 @@ and let \(S_2(n)\) be the part of the sum coming from \(x\) with \(\Om(x)=2\).
   \(\sum_{p\le Y}1/\log p\ll Y/\log^{2}Y\).
 \end{proof}
 
+Throughout what follows we abbreviate
+\begin{equation}\label{eq:XM}
+  X=\sqrt n,\qquad M=\log X=\tfrac12\log n,
+\end{equation}
+and we write
+\begin{equation}\label{eq:gdef}
+  g(t)=\bigl(\pi(t)-1\bigr)\bigl(\pi(n/t)-\pi(t)+1\bigr),
+  \qquad\text{so that}\qquad S_2(n)=\sum_{p\le X}g(p)
+\end{equation}
+by Lemma \ref{lem:semiprime}, the sum being over primes. Two facts are isolated
+first, so that the proof of Theorem \ref{thm:error} is a single limit argument.
+
+The substitution that governs everything is \(p=Xe^{-a}\), under which
+\(n/p=Xe^{a}\); the parameter \(a=\log(X/p)\ge0\) measures how far below
+\(\sqrt n\) the smaller prime factor lies.
+
+\begin{lemma}\label{lem:pnt-unif}
+  Let \(c_1\) be an absolute constant for which \(\pi(y)\le c_1y/\log y\)
+  \((y\ge2)\), as furnished by Chebyshev. Fix \(W\ge1\). There is a constant
+  \(c(W)\), depending on \(W\) alone, such that for every \(n\) with
+  \(M\ge2W\) and every real \(a\in[0,W]\),
+  \begin{equation}\label{eq:pnt-sub}
+    \begin{aligned}
+      \pi\bigl(Xe^{-a}\bigr)-1
+        &=\frac XM\left(e^{-a}+\theta_1\frac{c(W)}{M}\right),\\
+      \pi\bigl(Xe^{a}\bigr)-\pi\bigl(Xe^{-a}\bigr)+1
+        &=\frac XM\left(2\sinh a+\theta_2\frac{c(W)}{M}\right),
+    \end{aligned}
+  \end{equation}
+  where \(|\theta_1|,|\theta_2|\le1\).
+\end{lemma}
+
+\begin{proof}
+  Write the prime number theorem as \(\pi(y)=y/\log y+O(y/\log^{2}y)\). For
+  \(y=Xe^{\mp a}\) we have \(\log y=M\mp a\), and \(0\le a\le W\le M/2\) gives
+  \(M/2\le\log y\le\tfrac32M\); in particular \(\log y\asymp M\) with absolute
+  constants. Hence
+  \[
+    \pi\bigl(Xe^{-a}\bigr)
+      =\frac{Xe^{-a}}{M-a}+O\!\left(\frac{X}{M^{2}}\right)
+      =\frac XM\cdot\frac{e^{-a}}{1-a/M}+O\!\left(\frac{X}{M^{2}}\right).
+  \]
+  Since \(0\le a/M\le\tfrac12\), the expansion \(1/(1-a/M)=1+O(a/M)\) holds with
+  an absolute constant, and \(a\le W\), so
+  \[
+    \frac{e^{-a}}{1-a/M}=e^{-a}+O\!\left(\frac WM\right).
+  \]
+  Subtracting \(1\) changes nothing at this precision, and the first line of
+  \eqref{eq:pnt-sub} follows on choosing \(c(W)\) larger than all the absolute
+  constants involved, times \(W\). The same computation with \(\log y=M+a\)
+  gives \(\pi(Xe^{a})=(X/M)(e^{a}+O(W/M))\), and subtracting the first line
+  yields the second, since \(e^{a}-e^{-a}=2\sinh a\).
+\end{proof}
+
+\begin{lemma}\label{lem:tail}
+  There is an absolute constant \(c_0\) such that, for every \(W\) with
+  \(1\le W\le M/2\),
+  \[
+    \sum_{p\le Xe^{-W}}g(p)\ \le\ c_0\,e^{-W}\,\frac{n^{3/2}}{\log^{3}n}
+      \ +\ o\!\left(\frac{n^{3/2}}{\log^{3}n}\right),
+  \]
+  the \(o\)-term being independent of \(W\).
+\end{lemma}
+
+\begin{proof}
+  Split at \(n^{1/4}\), and write \(L=\log n=2M\) throughout.
+
+  \emph{Range \(p\le n^{1/4}\).} Here \(\log(n/p)\ge\tfrac34L\), so by
+  Chebyshev
+  \[
+    g(p)\ \le\ \pi(p)\,\pi(n/p)
+      \ \le\ c_1^{2}\,\frac{n}{\log p\cdot\log(n/p)}
+      \ \le\ \frac{4c_1^{2}}{3\log2}\cdot\frac nL .
+  \]
+  There are at most \(\pi(n^{1/4})\le 4c_1n^{1/4}/L\) such primes, so this
+  range contributes at most a constant times \(n^{5/4}/L^{2}\). Since
+  \[
+    \frac{n^{5/4}/L^{2}}{n^{3/2}/L^{3}}=\frac{L}{n^{1/4}}\longrightarrow0,
+  \]
+  that is \(o(n^{3/2}/\log^{3}n)\), uniformly in \(W\).
+
+  \emph{Range \(n^{1/4}<p\le Xe^{-W}\).} Here \(\log p\ge\tfrac14L\) and
+  \(\log(n/p)\ge\tfrac12L\), so
+  \[
+    g(p)\ \le\ \pi(p)\,\pi(n/p)\ \le\ c_1^{2}\,\frac{n}{\log p\cdot\log(n/p)}
+      \ \le\ 8c_1^{2}\,\frac{n}{L^{2}} .
+  \]
+  The number of such primes is at most
+  \[
+    \pi\bigl(Xe^{-W}\bigr)\ \le\ c_1\,\frac{Xe^{-W}}{M-W}
+      \ \le\ 2c_1\,\frac{Xe^{-W}}{M}\ =\ 4c_1\,\frac{Xe^{-W}}{L},
+  \]
+  using \(W\le M/2\). Multiplying the two bounds gives at most
+  \[
+    32c_1^{3}\,e^{-W}\,\frac{nX}{L^{3}}
+      =32c_1^{3}\,e^{-W}\,\frac{n^{3/2}}{L^{3}},
+  \]
+  so \(c_0=32c_1^{3}\) will do.
+\end{proof}
+
 \begin{theorem}\label{thm:error}
   As \(n\to\infty\),
   \[
@@ -684,58 +818,85 @@ and let \(S_2(n)\) be the part of the sum coming from \(x\) with \(\Om(x)=2\).
 \end{theorem}
 
 \begin{proof}
-  Write \(X=\sqrt n\) and \(M=\log X=\tfrac12\log n\). By Lemma
-  \ref{lem:semiprime} it suffices to treat \(S_2\), since
-  \(n^{4/3}\log^{3}n/(n^{3/2}\log^{2}n)=n^{-1/6}\log n\to0\).
-
-  Substitute \(p=Xe^{-a}\), so \(n/p=Xe^{a}\). The prime number theorem in the
-  form \(\pi(x)=x/\log x+O(x/\log^{2}x)\) gives, uniformly for
-  \(0\le a\le W\) with \(W\) fixed,
-  \begin{equation}\label{eq:pnt-sub}
-    \begin{aligned}
-      \pi(p)-1&=\frac XM\bigl(e^{-a}+O_W(M^{-1})\bigr),\\
-      \pi(n/p)-\pi(p)+1&=\frac XM\bigl(2\sinh a+O_W(M^{-1})\bigr),
-    \end{aligned}
-  \end{equation}
-  and the number of primes near \(p\) per unit \(a\) is \(\approx Xe^{-a}/M\).
-  The summand times that density is \(\approx (X^{3}/M^{3})\,2e^{-2a}\sinh a\),
-  which decays like \(e^{-a}\): the sum is concentrated on \(a=O(1)\), that is,
-  on \(p\) and \(n/p\) both within a bounded factor of \(\sqrt n\).
-
-  Make this precise by splitting \(\sum_{p\le X}g(p)\), where
-  \(g(t)=(\pi(t)-1)(\pi(n/t)-\pi(t)+1)\), into three ranges. For
-  \(p\le n^{1/4}\) we have \(g(p)\ll n/\log n\) and there are
-  \(\ll n^{1/4}/\log n\) such primes, contributing
-  \(\ll n^{5/4}/\log^{2}n=o(n^{3/2}/\log^{3}n)\). For
-  \(n^{1/4}<p\le Xe^{-W}\) we have \(g(p)\le\pi(p)\pi(n/p)\ll n/\log^{2}n\),
-  and Chebyshev's bound gives \(\pi(Xe^{-W})\ll Xe^{-W}/\log n\), so this range
-  contributes at most \(c_0e^{-W}n^{3/2}/\log^{3}n\) with \(c_0\) absolute.
-
-  In the main range \(Xe^{-W}<p\le X\), cut \([0,W]\) into \(K\) equal pieces
-  \(a_i=iW/K\) and put \(t_i=Xe^{-a_i}\). The factor \(\pi(t)-1\) is
-  non-decreasing and \(\pi(n/t)-\pi(t)+1\) non-increasing in \(t\), so on each
-  piece \(g\) is trapped between the products of the one-sided extremes, and
-  \(\sum_{Xe^{-W}<p\le X}g(p)\) lies between
-  \(\sum_i\min g\cdot(\pi(t_i)-\pi(t_{i+1}))\) and the corresponding sum with
-  \(\max\). Every prime count occurring is evaluated at an argument
-  \(Xe^{\pm O(W)}\), so \eqref{eq:pnt-sub} applies to all of them with one
-  implied constant, and both bounds become
+  By Lemma \ref{lem:semiprime} it suffices to treat \(S_2\), because
   \[
+    \frac{n^{4/3}/\log^{2}n}{n^{3/2}/\log^{3}n}
+      =\frac{\log n}{n^{1/6}}\longrightarrow0 .
+  \]
+
+  \emph{Why the mass is where it is.} Under \(p=Xe^{-a}\) the two factors of
+  \(g\) are given by \eqref{eq:pnt-sub}, and the number of primes per unit
+  \(a\) near \(p\) is about \(Xe^{-a}/M\). The product of the three is
+  \[
+    \frac{X^{3}}{M^{3}}\cdot 2e^{-2a}\sinh a ,
+  \]
+  which decays like \(e^{-a}\) as \(a\to\infty\). So the sum is concentrated on
+  \(a=O(1)\): both \(p\) and \(n/p\) lie within a bounded factor of \(\sqrt n\).
+  Lemma \ref{lem:tail} is the rigorous form of that statement, and the rest of
+  the proof evaluates the main range.
+
+  \emph{The main range.} Fix \(W\ge1\) and \(K\ge1\), and assume \(n\) large
+  enough that \(M\ge2W\). Cut \([0,W]\) into \(K\) equal pieces
+  \(a_i=iW/K\) \((0\le i\le K)\) and put \(t_i=Xe^{-a_i}\), so that
+  \(X=t_0>t_1>\dots>t_K=Xe^{-W}\). On \([t_{i+1},t_i]\) the factor
+  \(\pi(t)-1\) is non-decreasing in \(t\) and \(\pi(n/t)-\pi(t)+1\) is
+  non-increasing, so
+  \begin{align*}
+    m_i&:=\bigl(\pi(t_{i+1})-1\bigr)\bigl(\pi(n/t_i)-\pi(t_i)+1\bigr),\\
+    M_i&:=\bigl(\pi(t_i)-1\bigr)\bigl(\pi(n/t_{i+1})-\pi(t_{i+1})+1\bigr)
+  \end{align*}
+  satisfy \(m_i\le g(p)\le M_i\) for every prime \(p\in(t_{i+1},t_i]\). Writing
+  \(N_i=\pi(t_i)-\pi(t_{i+1})\) for the number of such primes,
+  \begin{equation}\label{eq:sandwich}
+    \sum_{i=0}^{K-1}m_iN_i\ \le\ \sum_{Xe^{-W}<p\le X}g(p)\ \le\
+    \sum_{i=0}^{K-1}M_iN_i .
+  \end{equation}
+  Every prime count appearing in \eqref{eq:sandwich} is evaluated at an
+  argument of the form \(Xe^{\pm a}\) with \(0\le a\le W\), so Lemma
+  \ref{lem:pnt-unif} applies to all of them with the \emph{same} constant \(c(W)\);
+  there are \(O(K)\) of them. Substituting \eqref{eq:pnt-sub} and expanding,
+  both outer members of \eqref{eq:sandwich} equal
+  \begin{equation}\label{eq:riemann}
     \frac{X^{3}}{M^{3}}\sum_{i=0}^{K-1}
       2e^{-a_i}\sinh(a_i)\bigl(e^{-a_i}-e^{-a_{i+1}}\bigr)
-    +O_{W,K}\!\left(\frac{X^{3}}{M^{4}}\right)
-    +O_W\!\left(\frac{X^{3}}{M^{3}}\cdot\frac WK\right),
-  \]
-  the displayed sum being a Riemann--Stieltjes sum for
-  \(\int_0^W 2e^{-2a}\sinh a\,\mathrm da\). Letting \(n\to\infty\), then
-  \(K\to\infty\), then \(W\to\infty\), the three ranges combine to give
+    \;+\;R_1\;+\;R_2,
+  \end{equation}
+  where the two error terms are controlled separately:
+  \begin{itemize}
+    \item \(|R_1|\le c'(W,K)\,X^{3}/M^{4}\), collecting every cross term in
+      which at least one factor is an error term of \eqref{eq:pnt-sub}. There
+      are \(O(K)\) such terms, each of size \(O_W(X^{3}/M^{4})\), and \(K\) is
+      fixed before \(n\) grows.
+    \item \(|R_2|\le c''(W)\,\dfrac{X^{3}}{M^{3}}\cdot\dfrac WK\), from
+      replacing \(g\) by its one-sided extreme on each piece: the integrand
+      \(2e^{-2a}\sinh a\) has bounded derivative on \([0,W]\), so \(M_i-m_i\)
+      contributes \(O_W(W/K)\) in total.
+  \end{itemize}
+  The sum in \eqref{eq:riemann} is a Riemann--Stieltjes sum for
+  \(\int_0^W2e^{-2a}\sinh a\,\mathrm da\) with respect to
+  \(\mathrm d(-e^{-a})\), over a partition of mesh \(W/K\).
+
+  \emph{The three limits.} Let \(n\to\infty\) with \(W,K\) fixed: \(R_1/(X^3/M^3)\to0\).
+  Then let \(K\to\infty\): \(R_2/(X^3/M^3)\to0\) and the Riemann sum tends to
+  the integral. Finally let \(W\to\infty\): by Lemma \ref{lem:tail} the omitted
+  range contributes at most \(c_0e^{-W}\), which tends to \(0\), and the
+  integral converges. Combining,
   \[
-    \frac{M^{3}}{X^{3}}S_2(n)\longrightarrow
+    \frac{M^{3}}{X^{3}}\,S_2(n)\ \longrightarrow\
       \int_0^{\infty}2e^{-2a}\sinh a\,\mathrm da
-      =\int_0^{\infty}\bigl(e^{-a}-e^{-3a}\bigr)\mathrm da
+      =\int_0^{\infty}\bigl(e^{-a}-e^{-3a}\bigr)\,\mathrm da
       =1-\tfrac13=\tfrac23 .
   \]
-  Finally \(X/M\sim\pi(\sqrt n)\) and \(X^{3}/M^{3}=8n^{3/2}/\log^{3}n\).
+
+  \emph{Conversion.} By the prime number theorem \(X/M\sim\pi(\sqrt n)\), and
+  by \eqref{eq:XM}
+  \[
+    \frac{X^{3}}{M^{3}}=\frac{n^{3/2}}{(\tfrac12\log n)^{3}}
+      =8\,\frac{n^{3/2}}{\log^{3}n},
+  \]
+  so \(S_2(n)\sim\tfrac23\pi(\sqrt n)^{3}\sim\tfrac{16}{3}n^{3/2}/\log^{3}n\).
+  Lemma \ref{lem:semiprime} transfers this to \(S\), and Corollary
+  \ref{cor:total} to \(C_n\).
 \end{proof}
 
 \begin{remark}\label{rem:buchstab-trap}
@@ -758,12 +919,25 @@ and let \(S_2(n)\) be the part of the sum coming from \(x\) with \(\Om(x)=2\).
   still \(9.55\) at \(n=10^{7}\), against a limit of \(16/3=5.33\dots\); the
   discrepancy is almost all in the difference between \(\pi(\sqrt n)\) and
   \(2\sqrt n/\log n\), which is cubed here. Measured instead against
-  \(\tfrac23\pi(\sqrt n)^{3}\), the quotient \(S_2(n)/\tfrac23\pi(\sqrt n)^3\)
-  is \(1.0593\) at \(n=10^{6}\) and \(1.0853\) at \(10^{7}\), rises to a
-  maximum, and then falls through \(1.0492,1.0353,1.0313,1.0255,1.0204,1.0171\)
-  at \(n=10^{9},\dots,10^{14}\). A second-order factor \(1+6/\log n\) accounts
-  for the shape.
+  \(\tfrac23\pi(\sqrt n)^{3}\) the picture is much better behaved, but still
+  not monotone --- see Figure \ref{fig:ratio}. A second-order factor
+  \(1+6/\log n\) accounts for the shape.
 \end{remark}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{S2-ratio.pdf}
+  \caption{The quotient \(S_2(n)\big/\tfrac23\pi(\sqrt n)^{3}\) against \(n\),
+    on a logarithmic \(n\)-axis, for \(n=10^{4},\dots,10^{14}\). Theorem
+    \ref{thm:error} asserts that this tends to \(1\). It does, but only after
+    rising to a maximum of \(1.085\) at \(n=10^{7}\), and with a further slight
+    rise between \(10^{8}\) and \(10^{9}\); at \(n=10^{14}\) it is still
+    \(1.017\). The two smallest values, at \(10^{4}\) and \(10^{5}\), sit
+    within \(0.3\%\) of \(1\) by coincidence rather than for any reason, which
+    is a useful warning on its own. Values for \(n\le10^{9}\) are from a
+    least-prime-factor sieve, those beyond from an \(O(n^{3/4})\)
+    prime-counting recursion \cite{gitrepo}.}\label{fig:ratio}
+\end{figure}
 
 \begin{table}[ht]
   \centering
@@ -840,8 +1014,11 @@ multigraded subspace and hence spanned by the monomials in it. See
   Corollary \ref{cor:type} is not an independent third sighting of
   \(\lceil n/2\rceil\), and it would be misleading to present it as one.
   For an Artinian Golod quotient the denominator of \eqref{eq:PB} is the list
-  of Betti numbers, \(D_n(t)=1-\sum_{i\ge1}\beta^{S}_{i}t^{i+1}\); since
-  \(\operatorname{pd}_S\Gam_n=r\), its leading coefficient is
+  of Betti numbers,
+  \[
+    D_n(t)=1-\sum_{i\ge1}\beta^{S}_{i}\,t^{\,i+1};
+  \]
+  since \(\operatorname{pd}_S\Gam_n=r\), its leading coefficient is
   \(-\beta^{S}_{r}=-\operatorname{type}(\Gam_n)\), and dividing by the monic
   \((1+t)^{\,r-\ell_1}\) preserves it. So clause (6) of Conjecture 4.6
   \emph{is} the assertion that the type is \(\lceil n/2\rceil\), and the proof
@@ -1031,10 +1208,14 @@ arithmetic counting functions --- is another. So Johan's hope was not wrong so
 much as mis-aimed. The fruit is there; it is just not low-hanging, and it does
 not grow on the general-inequality branch of the tree.
 
+\begin{center}\small\(\ast\qquad\ast\qquad\ast\)\end{center}
+
 Just as Geheimrat Goethe had the diligent Friedrich Wilhelm Riemer to help him
 write \emph{Die Wahlverwandtschaften}, just as Grothendieck had Jean Dieudonné
-to help him complete EGA, I have Claude! What exactly that amounted to is set
-out in the disclosure section below.
+to help him complete EGA, I have \textbf{Claude}! What exactly that amounted to
+is set out in the disclosure section below.
+
+\begin{center}\small\(\ast\qquad\ast\qquad\ast\)\end{center}
 
 It is a pleasure to acknowledge the computer algebra systems without which
 none of this would exist. The computations behind \cite{Snellman2000} were
@@ -1069,10 +1250,11 @@ working with the author in interactive sessions: Theorem \ref{thm:main} and its
 proof; the reduction of Conjecture 4.6 to the order of vanishing of \(D_n\) at
 \(t=-1\) (Lemma \ref{lem:secondiff} and Proposition \ref{prop:order}); the
 asymptotic Theorem \ref{thm:asymp}; the identification of \(C_n\) with
-\seqnum{A182843}; Theorem \ref{thm:error} together with Lemma
-\ref{lem:semiprime} and the two cautions of Remark \ref{rem:buchstab-trap}; and
+\seqnum{A182843}; Theorem \ref{thm:error} together with Lemmas
+\ref{lem:semiprime}, \ref{lem:pnt-unif} and \ref{lem:tail}, and the two
+cautions of Remark \ref{rem:buchstab-trap}; and
 the contents of Section \ref{sec:socle}. Claude also located and verified the
-references, drew Figure \ref{fig:profile}, wrote the accompanying
+references, drew Figures \ref{fig:profile} and \ref{fig:ratio}, wrote the accompanying
 \textsf{SageMath} code and the Lean formalisation mentioned in Open Problem
 \ref{op:lean}, and drafted this manuscript, with the author directing the
 exposition throughout.

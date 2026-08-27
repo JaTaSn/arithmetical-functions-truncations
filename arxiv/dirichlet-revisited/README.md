@@ -6,9 +6,12 @@ Upload the contents of this directory (excluding this README).
   engine: two passes, 0 errors, 0 undefined references, 0 overfull boxes, re-verified 2026-08-27 after the figure was added. The only non-standard
   package is `orcidlink`, which arXiv has. The `ö` in the affiliation survives pdflatex, so no
   `fontspec`/xelatex declaration is needed.
-- `Cnv-profile.pdf` — Figure 1, the profile of `C_{n,v}`. **This file must be uploaded too**; it is
-  source, not a build product, and `.gitignore` carries an explicit exception saying so. Regenerate
-  it with `code/plot_Cnv_profile.sage` if the figure ever changes.
+- `Cnv-profile.pdf` — Figure 1, the profile of `C_{n,v}`; regenerate with
+  `code/plot_Cnv_profile.sage`.
+- `S2-ratio.pdf` — Figure 2, the convergence of `S_2(n)/((2/3)pi(sqrt n)^3)`; regenerate with
+  `code/plot_S2_ratio.sage`.
+  **Both figure files must be uploaded too**; they are source, not build products, and
+  `.gitignore` carries explicit exceptions saying so.
 - `anc/LEAN/` — the Lean 4 + Mathlib formalization of Conjecture 4.6, end to end.
 - `anc/code/` — the SageMath, Maple and Macaulay2 code reproducing every number in the note and in
   the 2000 paper.

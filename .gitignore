@@ -9,3 +9,4 @@ arxiv/**/*.pdf
 
 # ...but a figure is source, not a build product.
 !arxiv/**/Cnv-profile.pdf
+!arxiv/**/S2-ratio.pdf
