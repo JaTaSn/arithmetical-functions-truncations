@@ -3,9 +3,12 @@
 Upload the contents of this directory (excluding this README).
 
 - `truncations-revisited.tex` — the manuscript. **Builds clean with `pdflatex`**, arXiv's default
-  engine: two passes, 0 errors, 0 overfull boxes, verified 2026-08-25. The only non-standard
+  engine: two passes, 0 errors, 0 undefined references, 0 overfull boxes, re-verified 2026-08-27 after the figure was added. The only non-standard
   package is `orcidlink`, which arXiv has. The `ö` in the affiliation survives pdflatex, so no
   `fontspec`/xelatex declaration is needed.
+- `Cnv-profile.pdf` — Figure 1, the profile of `C_{n,v}`. **This file must be uploaded too**; it is
+  source, not a build product, and `.gitignore` carries an explicit exception saying so. Regenerate
+  it with `code/plot_Cnv_profile.sage` if the figure ever changes.
 - `anc/LEAN/` — the Lean 4 + Mathlib formalization of Conjecture 4.6, end to end.
 - `anc/code/` — the SageMath, Maple and Macaulay2 code reproducing every number in the note and in
   the 2000 paper.

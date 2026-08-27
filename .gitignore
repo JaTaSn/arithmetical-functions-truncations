@@ -6,3 +6,6 @@
 *.toc
 *.synctex.gz
 arxiv/**/*.pdf
+
+# ...but a figure is source, not a build product.
+!arxiv/**/Cnv-profile.pdf
