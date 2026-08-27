@@ -4,6 +4,12 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-08-27  Claude-Code (jts-pc) -- afterwords reworked: the concrete account of
+%     what Claude did is moved out of Acknowledgements into its own "Disclosure of AI
+%     assistance" section (the Goethe/Grothendieck line stays in Acknowledgements, per
+%     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
+%     transfer he hoped for has not materialised -- extremal results are slack here,
+%     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
 %   2026-08-27  Claude-Code (jts-pc) -- set-builders switched from | to : throughout, so
 %     that every remaining | in the document means "divides"; Theorem \ref{thm:error}
 %     (the exact order 16/3 * n^{3/2}/log^3 n of the error term) and Lemma
@@ -954,7 +960,7 @@ sieve theory, and the questions it raises are correspondingly analytic.
   treat the unitary case next.
 \end{openproblem}
 
-\begin{openproblem}
+\begin{openproblem}\label{op:lean}
   The elementary half of this note involves no homological algebra and is
   within reach of a proof assistant. Part of it has been formalised in Lean~4
   and Mathlib, and is available in \cite{gitrepo}: Corollary \ref{cor:split},
@@ -987,22 +993,48 @@ pointed out that the ideals \(I_n\) are monomial --- and that this ought,
 therefore, to be my cup of tea. It was, and the observation has now paid out
 twice.
 
+His hope at the time was specific, and it is worth recording because a quarter
+of a century has now furnished a partial answer to it. Monomial ideals carry a
+great deal of theory; the truncations \(\Gam_n\) are monomial and arithmetic at
+once; so, he reasoned, the algebraic machinery ought to run backwards and
+deliver number-theoretic conclusions for nothing. That is not what has happened.
+The traffic has gone almost entirely the other way. It is the algebra that has
+supplied the questions --- Conjecture 4.6, which is in the end the assertion
+that \(v\mapsto C_{n,v}\) is exactly linear beyond \(v=\ell_1(n)\); the error
+term in Theorem \ref{thm:asymp}, which is a Mertens-type sum --- and answering
+them as number theory is what has illuminated the algebra. Theorem
+\ref{thm:error} is the clearest case: a statement about the minimal free
+resolution of \(\Gam_n\), settled by an argument containing no algebra at all.
+
+There is, I think, a structural reason for the one-way traffic, and stating it
+is more useful than lamenting it. Most of what commutative algebra knows about
+a monomial ideal is \emph{extremal}: Macaulay's theorem, Kruskal--Katona, the
+Bigatti--Hulett--Pardue bound. Each of these constrains an arbitrary object with
+a given Hilbert function, and is therefore only as strong as the worst such
+object. But \(\Gam_n\) is nowhere near extremal, and the resulting bounds are
+correspondingly slack. Concretely: \(\{1,2,\dots,n\}\) is a multicomplex, so by
+Macaulay's theorem the sequence \(d\mapsto\#\{m\le n : \Om(m)=d\}\) --- the
+Landau counts --- must be an \(M\)-sequence, which yields growth bounds free of
+any analytic input. They are true and they are useless. At \(n=200\) there are
+\(46\) primes, and Macaulay permits as many as \(1081\) integers with
+\(\Om=2\); the true number is \(62\). No inequality of that kind is going to
+tell an analytic number theorist something he does not already know.
+
+Where the transfer does work is where the algebra is \emph{exact} rather than
+extremal. Eliahou--Kervaire gives the graded Betti numbers on the nose, and it
+is precisely that exactness which makes this note possible at all: the identity
+\(C_{n,v}=\Phi(n,p_v)\) is a statement about an invariant that the algebra
+computes rather than bounds. Section \ref{sec:socle} is a small instance of the
+same phenomenon, and \cite{SnellmanLaplacians} --- where Duval--Reiner
+integrality forces the Laplacian spectrum of \(\Gam_n\) to be a list of
+arithmetic counting functions --- is another. So Johan's hope was not wrong so
+much as mis-aimed. The fruit is there; it is just not low-hanging, and it does
+not grow on the general-inequality branch of the tree.
+
 Just as Geheimrat Goethe had the diligent Friedrich Wilhelm Riemer to help him
 write \emph{Die Wahlverwandtschaften}, just as Grothendieck had Jean Dieudonné
-to help him complete EGA, I have Claude!
-
-Concretely: the errata of Section \ref{sec:errata} were found by Claude
-(Anthropic) while re-reading \cite{Snellman2000} with the author, by
-recomputing every table in that paper along a route independent of the one used
-there. Theorem \ref{thm:main} and its proof, the reduction of Conjecture 4.6 to
-the order of vanishing of \(D_n\) at \(t=-1\) (Lemma \ref{lem:secondiff} and
-Proposition \ref{prop:order}), and the asymptotic Theorem \ref{thm:asymp} were
-likewise found by Claude, working with the author in an interactive session, as
-was the identification of \(C_n\) with \seqnum{A182843}. Claude also located
-and verified the references, and drafted this manuscript, with the author
-directing the exposition. The author has checked the results to the best of his
-ability, made final edits, and assumes full responsibility for any errors,
-mistakes or gaps that remain.
+to help him complete EGA, I have Claude! What exactly that amounted to is set
+out in the disclosure section below.
 
 It is a pleasure to acknowledge the computer algebra systems without which
 none of this would exist. The computations behind \cite{Snellman2000} were
@@ -1024,6 +1056,33 @@ in 1999 --- the minimal generators of \(I_n\) are enumerated as integers rather
 than counted by the formulas under test --- so that agreement between the two is
 evidence rather than tautology.
 
+\section*{Disclosure of AI assistance}
+
+This manuscript was produced with substantial assistance from a large language
+model, Claude (Anthropic), and the extent of it is set out here rather than
+left to be inferred.
+
+The errata of Section \ref{sec:errata} were found by Claude while re-reading
+\cite{Snellman2000} with the author, by recomputing every table in that paper
+along a route independent of the one used there. Found likewise by Claude,
+working with the author in interactive sessions: Theorem \ref{thm:main} and its
+proof; the reduction of Conjecture 4.6 to the order of vanishing of \(D_n\) at
+\(t=-1\) (Lemma \ref{lem:secondiff} and Proposition \ref{prop:order}); the
+asymptotic Theorem \ref{thm:asymp}; the identification of \(C_n\) with
+\seqnum{A182843}; Theorem \ref{thm:error} together with Lemma
+\ref{lem:semiprime} and the two cautions of Remark \ref{rem:buchstab-trap}; and
+the contents of Section \ref{sec:socle}. Claude also located and verified the
+references, drew Figure \ref{fig:profile}, wrote the accompanying
+\textsf{SageMath} code and the Lean formalisation mentioned in Open Problem
+\ref{op:lean}, and drafted this manuscript, with the author directing the
+exposition throughout.
+
+Every numerical claim in the note was checked along a route independent of the
+formula being tested, and the reference list has been checked against primary
+sources. The author has verified the results to the best of his ability, made
+the final edits, and assumes full responsibility for any errors, mistakes or
+gaps that remain.
+
 \section*{Funding}
 
 This research received no external funding. It was carried out as part of the
@@ -1033,8 +1092,8 @@ employment allocated to research.
 \section*{Conflicts of interest}
 
 The author declares no financial or non-financial conflicts of interest. The
-nature and extent of LLM assistance in producing this manuscript is disclosed
-in full in the Acknowledgements above.
+nature and extent of large-language-model assistance in producing this
+manuscript is disclosed in full in the section above.
 
 \begin{thebibliography}{99}
 
