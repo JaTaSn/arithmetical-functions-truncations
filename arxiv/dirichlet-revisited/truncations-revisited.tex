@@ -4,6 +4,11 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-08-27  Claude-Code (jts-pc) -- "composite" restored to the Mertens-type sum in
+%     the remark after Theorem \ref{thm:asymp}. The word was missing from the withdrawn
+%     open problem's own second display and was carried over when that content was folded
+%     into the remark; without it the sum picks up binom(\pi(n),2) from the primes, which
+%     changes the order from n^{3/2}/log^3 n to n^2/log^2 n. Verified numerically.
 %   2026-08-27  Claude-Code (jts-pc) -- r(n) -> \pi(n) throughout (quotations from
 %     [Sne00] keep its own notation); Iverson bracket in the A182843 remark replaced
 %     by a two-case display; Figure 1 (the C_{n,v} profile) added after the clause-(2)
@@ -624,7 +629,8 @@ contributes in the limit.
   according to \(\lpf x=p_j\) turns it into a Mertens-type sum
   \[
     C_n-\binom{\pi(n)+1}{2}
-      =\sum_{j\ge2}(j-1)\,\#\{\,x\le n\mid \lpf x=p_j\,\},
+      =\sum_{j\ge2}(j-1)\,\#\{\,x\le n\mid
+        x\text{ composite},\ \lpf x=p_j\,\},
   \]
   and Table \ref{tab:err} suggests its true order is about
   \(n^{3/2}/\log^{3}n\). Determining it exactly is a question of sieve theory
