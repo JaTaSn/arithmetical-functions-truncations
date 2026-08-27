@@ -3,8 +3,10 @@
 A Lean 4 + Mathlib formalization of the part of *Truncations revisited*'s proof of
 Snellman's Conjecture 4.6 that does not depend on homological algebra.
 
-Three files: `Conjecture46.lean` (the polynomial core), `Sieve.lean` (the arithmetic input,
-clause (2)), and `Chain.lean` (which joins them into one end-to-end statement).
+Four files: `Conjecture46.lean` (the polynomial core), `Sieve.lean` (the arithmetic input,
+clause (2)), `Chain.lean` (which joins them into one end-to-end statement), and `Split.lean`
+(Lemma 21 of the note, the exact splitting of `S₂` — added 2026-08-28, and the only file here
+that assumes nothing at all).
 
 **Status: complete, 0 `sorry`, standard axioms only** (`propext`, `Classical.choice`, `Quot.sound`
 — verified with `#print axioms`). Built 2026-08-25 against Mathlib `v4.33.0-rc1`.
@@ -121,5 +123,29 @@ They are degree computations, not deep, but fiddly in Lean, and not attempted he
 The file ends with the hypotheses instantiated at `n = 25` (`r = 9`, `μ = 7`, counts read off
 Figure 1 of the 2000 paper), discharged by `decide`. A theorem with contradictory hypotheses proves
 anything, so this matters.
+
+## `Split.lean` — Lemma 21, assuming nothing
+
+Added 2026-08-28, and the first piece of the note's *asymptotics* to be machine-checked. It proves
+
+    S₂(n) + Σ_{k<P} k² = T(n),      P = π(√n),  T(n) = Σ_k k·π(n/p_k)
+
+together with the closed form `Σ_{k<P} k² = (P−1)P(2P−1)/6`, which Mathlib does not have —
+`Finset.sum_range_id` covers the linear case and the Bernoulli machinery the general one, but
+neither is usable for `p = 2` over `ℕ`, so it is proved here by induction.
+
+Unlike the rest of this development it takes **nothing** on trust: no Poincaré–Betti reading, no
+`C_{n,v} = Φ(n,p_v)`, and — the point — no prime number theorem, which Mathlib does not have in
+any form. The whole content is that `p_j` is the `j`-th prime, so `π(p_j) = j` exactly, which is
+already available as `Chain.idx_nth`.
+
+The load-bearing lemma is `succ_le_piCount_div`: for `k < P`, `k + 1 ≤ π(n/p_k)`, because
+`p_k ≤ √n ≤ n/p_k`. That is what makes the subtraction in `S₂`'s summand exact rather than
+truncated, and it is the sort of thing that is invisible on paper and unavoidable in Lean.
+
+`S2` and `Tsum` are `noncomputable`, since `Nat.nth` is — the same obstruction that stops
+`Chain.lean` from `#guard`ing `cSeq` — so the identity is checked numerically outside Lean, by
+`code/sage/independent_check_op21.py`. Vacuity is not a concern regardless: the theorem has no
+hypotheses.
 
 Precedent for the layout: `projects/lattice-line-covers/LEAN/`.
