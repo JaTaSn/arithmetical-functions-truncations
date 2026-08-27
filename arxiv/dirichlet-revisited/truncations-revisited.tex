@@ -10,6 +10,18 @@
 %     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
 %     transfer he hoped for has not materialised -- extremal results are slack here,
 %     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
+%   2026-08-28  Claude-Code (jts-pc) -- fixes from a three-referee adversarial review, all
+%     independently re-verified first.  Thm \ref{thm:asymp}'s explicit inequality restricted
+%     to n >= 4: at n = 2,3 the bound n(pi(sqrt n)-1) is NEGATIVE and the statement false.
+%     Remark \ref{rem:hypotheses}: 0.69 -> 0.61 (0.69 is Prop \ref{prop:T}'s bound, i.e. the
+%     bound evaluated at sqrt n), and the unsupported "true deviation is of order 1/log n"
+%     withdrawn in favour of the actual numbers.  Remark \ref{rem:buchstab-trap}: the 8 - 8/3
+%     correction is now derived from Lemma \ref{lem:split} -- elementary, and in this paper --
+%     instead of from a two-term Phi estimate that the working notes record as quoted from
+%     memory and never checked against Tenenbaum; also the peak moved to 7e4, and "almost all"
+%     softened to two thirds.  Lemma \ref{lem:pnt-unif}: X >= M^2 dropped as a hypothesis
+%     (it is automatic) and justified where used; M+a bounded below, not above.  Thm
+%     \ref{thm:error} now cites 2A_1, which is what the lemma gives at W = 1.
 %   2026-08-27d Claude-Code (jts-pc) -- the exact-splitting identity, proved and used.
 %     Lemma \ref{lem:split}: since pi(p_j) = j, S_2 = T - (P-1)P(2P-1)/6 exactly, with
 %     T = sum (j-1) pi(n/p_j). One third of the asymptotics becomes an elementary sum
@@ -651,6 +663,7 @@ for each support of size \(1\) or \(2\). We show that essentially nothing else
 contributes in the limit.
 
 \begin{theorem}\label{thm:asymp}
+  For \(n\ge4\),
   \(\displaystyle 0\le C_n-\binom{\pi(n)+1}{2}\le n\bigl(\pi(\sqrt n)-1\bigr)
     =O\!\left(n^{3/2}/\log n\right)\), and consequently
   \[
@@ -794,7 +807,7 @@ Riemann sum is needed below --- only a count of the primes involved.
   Let \(A_0\) be an absolute constant for which
   \(|\pi(y)-y/\log y|\le A_0\,y/\log^{2}y\) \((y\ge2)\). There is an absolute
   constant \(A_1\) such that for every \(W\ge1\), every \(n\) with
-  \(M\ge2W\) and \(X\ge M^{2}\), and every real \(a\in[0,W]\),
+  \(M\ge2W\), and every real \(a\in[0,W]\),
   \begin{equation}\label{eq:pnt-sub}
     \begin{aligned}
       \pi\bigl(Xe^{-a}\bigr)
@@ -812,7 +825,10 @@ Riemann sum is needed below --- only a count of the primes involved.
 
 \begin{proof}
   For \(y=Xe^{\mp a}\) we have \(\log y=M\mp a\), and \(0\le a\le W\le M/2\)
-  gives \(\tfrac12M\le\log y\le\tfrac32M\).
+  gives \(\tfrac12M\le\log y\le\tfrac32M\); in particular \(y\ge\sqrt X\ge M\ge2\),
+  so the hypothesis on \(A_0\) applies. We also use \(X\ge M^{2}\) freely below,
+  which is automatic rather than an assumption: \(X=e^{M}\), and \(e^{M}/M^{2}\)
+  attains its minimum \(e^{2}/4>1\) at \(M=2\).
 
   \emph{First line.} By hypothesis on \(A_0\),
   \[
@@ -828,9 +844,10 @@ Riemann sum is needed below --- only a count of the primes involved.
   \]
   so the first line holds with \(A_1\ge2+4A_0\).
 
-  \emph{Second line.} The same computation with \(\log y=M+a\), using
-  \(M+a\le\tfrac32M\) and \(e^{a}\le e^{W}\), gives an error at most
-  \((W+A_0)e^{W}/M\) after division by \(X/M\).
+  \emph{Second line.} The same computation with \(\log y=M+a\), now using the
+  trivial \(M+a\ge M\) together with \(e^{a}\le e^{W}\), bounds the two error
+  terms by \(A_0e^{W}/M\) and \(We^{W}/M\), hence by \((W+A_0)e^{W}/M\) in
+  total, after division by \(X/M\).
 \end{proof}
 
 \begin{lemma}\label{lem:tail}
@@ -943,8 +960,8 @@ Riemann sum is needed below --- only a count of the primes involved.
 \begin{proof}
   By \eqref{eq:sqexact} it suffices to bound \(T(n)/P^{3}-1\), since the
   remaining terms \(1/(2P)-1/(6P^{2})\) are \(O(1/P)=O(\log n/\sqrt n)\), far
-  smaller than the claimed bound. By Lemma \ref{lem:pnt-unif} with \(a=0\),
-  \(P=\pi(X)=(X/M)(1+\theta A_1/M)\), so
+  smaller than the claimed bound. By Lemma \ref{lem:pnt-unif} with \(a=0\) and
+  \(W=1\), \(P=\pi(X)=(X/M)(1+2\theta A_1/M)\), so
   \[
     \frac{T(n)}{P^{3}}=\frac{M^{3}}{X^{3}}T(n)\cdot\Bigl(\frac{X}{MP}\Bigr)^{3}
       =\Bigl(1+O\bigl(\tfrac{\log M}{\sqrt M}\bigr)\Bigr)
@@ -971,9 +988,12 @@ Riemann sum is needed below --- only a count of the primes involved.
   remains has a summand constant to leading order.
 
   The rate is not sharp. It is limited by the truncation at \(a=W\), not by the
-  arithmetic input, and the true deviation is of order \(1/\log n\): at
-  \(n=10^{14}\) the left-hand side of \eqref{eq:explicit} is \(0.011\) against
-  a bound of \(0.69\). Sharpening it would mean treating the whole range
+  arithmetic input: at \(n=10^{14}\) the left-hand side of \eqref{eq:explicit}
+  is \(0.011\), against \(0.61\) for \(\log\log n/\sqrt{\log n}\). How much
+  better the truth is we do not claim --- multiplying the computed deviations by
+  \(\log n\) gives \(0.55,0.92,0.59,0.68,0.54,0.47,0.37\) at
+  \(n=10^{6},\dots,10^{14}\), which neither settles nor rules out a rate of
+  \(1/\log n\). Sharpening the theorem would mean treating the whole range
   \(0\le a\le M\) rather than discarding \(a>W\).
 
   The hypotheses can be weakened if one wants only the asymptotic and no rate.
@@ -998,20 +1018,29 @@ Riemann sum is needed below --- only a count of the primes involved.
   degenerates to the exact identity \(\Phi(x,y)=\pi(x)-\pi(y)+1\), valid for
   \(y\ge\sqrt x\). The one-term Buchstab estimate
   \(\Phi(x,y)\approx x\,\omega(u)/\log y\), fed into \eqref{eq:Sdef}, returns
-  \(8\) rather than \(16/3\): it is uniform only for \(u\ge2\)
-  \cite{Fan}, which excludes precisely the region carrying the mass, and there
-  the secondary term \(-y/\log y\) is of the same order and restores
-  \(8-8/3=16/3\).
+  \(8\) rather than \(16/3\); and it is uniform only for \(u\ge2\) \cite{Fan},
+  which excludes precisely the region carrying the mass. Lemma \ref{lem:split}
+  says exactly what goes missing. On \(1\le u\le2\) one has
+  \(\omega(u)=1/u\), so the one-term estimate amounts to replacing the second
+  factor of \(g\) by \(\pi(n/p)\) alone --- that is, to dropping the
+  \(-\pi(p)+1\). What is dropped is therefore
+  \(\sum_j(j-1)^{2}=(P-1)P(2P-1)/6\sim P^{3}/3\), which is
+  \(\tfrac83\,n^{3/2}/\log^{3}n\); restoring it gives \(8-\tfrac83=\tfrac{16}3\).
+  So the discrepancy is not a subtlety about \(\Phi\) at all, but the exact
+  square sum that Lemma \ref{lem:split} peels off.
 
   Second, the convergence is slow and not monotone, so a numerical check over
   too short a range is misleading. The raw quotient
-  \(S(n)\log^{3}n/n^{3/2}\) peaks near \(10.9\) around \(n=10^{5}\) and is
-  still \(9.55\) at \(n=10^{7}\), against a limit of \(16/3=5.33\dots\); the
-  discrepancy is almost all in the difference between \(\pi(\sqrt n)\) and
-  \(2\sqrt n/\log n\), which is cubed here. Measured instead against
-  \(\tfrac23\pi(\sqrt n)^{3}\) the picture is much better behaved, but still
-  not monotone --- see Figure \ref{fig:ratio}. A second-order factor
-  \(1+6/\log n\) accounts for the shape.
+  \(S(n)\log^{3}n/n^{3/2}\) peaks near \(10.9\) around \(n=7\cdot10^{4}\) and is
+  still \(9.55\) at \(n=10^{7}\), against a limit of \(16/3=5.33\dots\). Most of
+  that discrepancy --- about two thirds of it, on a logarithmic scale, over the
+  range tabulated --- is the difference between \(\pi(\sqrt n)\) and
+  \(2\sqrt n/\log n\), which is cubed here; the factor
+  \(\bigl(\pi(\sqrt n)\log n/2\sqrt n\bigr)^{3}\) is \(1+6/\log n\) to first
+  order, and is \(1.56\) at \(n=10^{6}\). Measured instead against
+  \(\tfrac23\pi(\sqrt n)^{3}\), which absorbs that factor entirely, the picture
+  is much better behaved --- though still not monotone, see Figure
+  \ref{fig:ratio}.
 \end{remark}
 
 \begin{figure}[ht]

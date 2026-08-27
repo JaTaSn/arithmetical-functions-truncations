@@ -47,6 +47,11 @@ fig.tight_layout(pad=0.3)
 fig.savefig(outfile)
 
 print("peak at 10^%d, ratio %.5f" % (ks[rs.index(max(rs))], max(rs)))
-print("monotone decreasing from 10^7 onwards:",
-      all(rs[i] > rs[i+1] for i in range(3, len(rs)-1)))
+# NOT "monotone from 10^7 onwards" -- it is not, and the caption says so: there is a
+# second, smaller rise between 10^8 and 10^9.  Report the rises explicitly instead, so the
+# diagnostic agrees with the figure rather than contradicting it.
+rises = [(ks[i], ks[i+1]) for i in range(len(rs)-1) if rs[i+1] > rs[i]]
+print("ratio rises across: " + ", ".join("10^%d->10^%d" % r for r in rises))
+print("monotone decreasing after the last rise:",
+      all(rs[i] > rs[i+1] for i in range(ks.index(rises[-1][1]), len(rs)-1)))
 print("wrote %s" % outfile)
