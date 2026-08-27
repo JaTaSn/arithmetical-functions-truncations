@@ -1,0 +1,168 @@
+==============================================================================
+Independent verification of socle(Gamma_n) and the Cohen-Macaulay type
+SageMath 10.9  (Singular back end)
+==============================================================================
+
+Ideal built from ALL monomials of weight in (n, n*p_r]; Singular
+interreduces.  Socle via the ideal quotient (I_n : m); last Betti number
+via Singular's minimal free resolution (mres).  Neither route uses the
+elementary characterisation 2*w(m) > n.
+
+------------------------------------------------------------------------------
+PART 1.  socle dimension, last Betti number, ceil(n/2)
+------------------------------------------------------------------------------
+   n   r  dim_K  socle ceil(n/2)  beta_r  pd_S  C_n,1    EK    Gor
+   1   0      1      1         1       1     -      0  None   True   <- degenerate: r=0, S=K, Gamma_1=K
+   2   1      2      1         1       1     1      1  True   True
+   3   2      3      2         2       2     2      2  True  False
+   4   2      4      2         2       2     2      2  True  False
+   5   3      5      3         3       3     3      3  True  False
+   6   3      6      3         3       3     3      3  True  False
+   7   4      7      4         4       4     4      4  True  False
+   8   4      8      4         4       4     4      4  True  False
+   9   4      9      5         5       5     4      5  True  False
+  10   4     10      5         5       5     4      5  True  False
+  11   5     11      6         6       6     5      6  True  False
+  12   5     12      6         6       6     5      6  True  False
+  13   6     13      7         7       7     6      7  True  False
+  14   6     14      7         7       7     6      7  True  False
+  15   6     15      8         8       8     6      8  True  False
+  16   6     16      8         8       8     6      8  True  False
+  17   7     17      9         9       9     7      9  True  False
+  18   7     18      9         9       9     7      9  True  False
+  19   8     19     10        10      10     8     10  True  False
+  20   8     20     10        10      10     8     10  True  False
+  21   8     21     11        11      11     8     11  True  False
+  22   8     22     11        11      11     8     11  True  False
+  23   9     23     12        12      12     9     12  True  False
+  24   9     24     12        12      12     9     12  True  False
+  25   9     25     13        13      13     9     13  True  False
+  26   9     26     13        13      13     9     13  True  False
+  27   9     27     14        14      14     9     14  True  False
+  28   9     28     14        14      14     9     14  True  False
+  29  10     29     15        15      15    10     15  True  False
+  30  10     30     15        15      15    10     15  True  False
+  40  12     40     20        20       -     -     20     -  False
+  50  15     50     25        25       -     -     25     -  False
+  60  17     60     30        30       -     -     30     -  False
+  70  19     70     35        35       -     -     35     -  False
+  80  22     80     40        40       -     -     40     -  False
+  90  24     90     45        45       -     -     45     -  False
+ 100  25    100     50        50       -     -     50     -  False
+ 110  29    110     55        55       -     -     55     -  False
+ 120  30    120     60        60       -     -     60     -  False
+
+All checks passed for n = 1 .. 120:  True
+  (free resolution, pd and Eliahou-Kervaire columns computed for
+   n <= 30; socle-by-ideal-quotient for all n <= 120.)
+
+------------------------------------------------------------------------------
+PART 2.  socle monomials are exactly the integers in (n/2, n]
+------------------------------------------------------------------------------
+  n=  2: socle monomials (as integers) = [2]   expected [2]
+  n=  3: socle monomials (as integers) = [2, 3]   expected [2, 3]
+  n=  4: socle monomials (as integers) = [3, 4]   expected [3, 4]
+  n=  5: socle monomials (as integers) = [3, 4, 5]   expected [3, 4, 5]
+  n=  6: socle monomials (as integers) = [4, 5, 6]   expected [4, 5, 6]
+  n=  7: socle monomials (as integers) = [4, 5, 6, 7]   expected [4, 5, 6, 7]
+  n=  8: socle monomials (as integers) = [5, 6, 7, 8]   expected [5, 6, 7, 8]
+  n=  9: socle monomials (as integers) = [5, 6, 7, 8, 9]   expected [5, 6, 7, 8, 9]
+  n= 10: socle monomials (as integers) = [6, 7, 8, 9, 10]   expected [6, 7, 8, 9, 10]
+  n= 11: socle monomials (as integers) = [6, 7, 8, 9, 10, 11]   expected [6, 7, 8, 9, 10, 11]
+  n= 12: socle monomials (as integers) = [7, 8, 9, 10, 11, 12]   expected [7, 8, 9, 10, 11, 12]
+  n= 13: socle monomials (as integers) = [7, 8, 9, 10, 11, 12, 13]   expected [7, 8, 9, 10, 11, 12, 13]
+  n= 14: socle monomials (as integers) = [8, 9, 10, 11, 12, 13, 14]   expected [8, 9, 10, 11, 12, 13, 14]
+  n= 15: socle monomials (as integers) = [8, 9, 10, 11, 12, 13, 14, 15]   expected [8, 9, 10, 11, 12, 13, 14, 15]
+  n= 16: socle monomials (as integers) = [9, 10, 11, 12, 13, 14, 15, 16]   expected [9, 10, 11, 12, 13, 14, 15, 16]
+  mismatches over n = 2 .. 120: none
+
+------------------------------------------------------------------------------
+PART 3.  the bijection  m <-> x_1*m  between socle monomials and
+         minimal generators of least index 1
+------------------------------------------------------------------------------
+  n=  2: 2*(socle weights)           = [4]
+         weights of G(I) with min=1  = [4]
+  n=  3: 2*(socle weights)           = [4, 6]
+         weights of G(I) with min=1  = [4, 6]
+  n=  4: 2*(socle weights)           = [6, 8]
+         weights of G(I) with min=1  = [6, 8]
+  n=  5: 2*(socle weights)           = [6, 8, 10]
+         weights of G(I) with min=1  = [6, 8, 10]
+  n=  6: 2*(socle weights)           = [8, 10, 12]
+         weights of G(I) with min=1  = [8, 10, 12]
+  n=  7: 2*(socle weights)           = [8, 10, 12, 14]
+         weights of G(I) with min=1  = [8, 10, 12, 14]
+  n=  8: 2*(socle weights)           = [10, 12, 14, 16]
+         weights of G(I) with min=1  = [10, 12, 14, 16]
+  n=  9: 2*(socle weights)           = [10, 12, 14, 16, 18]
+         weights of G(I) with min=1  = [10, 12, 14, 16, 18]
+  n= 10: 2*(socle weights)           = [12, 14, 16, 18, 20]
+         weights of G(I) with min=1  = [12, 14, 16, 18, 20]
+  n= 11: 2*(socle weights)           = [12, 14, 16, 18, 20, 22]
+         weights of G(I) with min=1  = [12, 14, 16, 18, 20, 22]
+  n= 12: 2*(socle weights)           = [14, 16, 18, 20, 22, 24]
+         weights of G(I) with min=1  = [14, 16, 18, 20, 22, 24]
+  mismatches over n = 2 .. 30: none
+
+------------------------------------------------------------------------------
+PART 4.  Gorenstein locus
+------------------------------------------------------------------------------
+  n=  1: type =   1   Gorenstein: True
+  n=  2: type =   1   Gorenstein: True
+  n=  3: type =   2   Gorenstein: False
+  n=  4: type =   2   Gorenstein: False
+  n=  5: type =   3   Gorenstein: False
+  n=  6: type =   3   Gorenstein: False
+  n=  7: type =   4   Gorenstein: False
+  n=  8: type =   4   Gorenstein: False
+  n=  9: type =   5   Gorenstein: False
+  n= 10: type =   5   Gorenstein: False
+  n= 11: type =   6   Gorenstein: False
+  n= 12: type =   6   Gorenstein: False
+
+  n=1: Gamma_1 = K (r=0). Trivially Gorenstein; degenerate, m = 0.
+  n=2: S = Multivariate Polynomial Ring in x over Rational Field, minbase(I_2) = [x^2]
+       so Gamma_2 = K[x]/(x^2), a hypersurface, hence a complete
+       intersection, hence Gorenstein.
+  n=3: minbase(I_3) = [x1^2, x0*x1, x0^2], so Gamma_3 = K[x,y]/(x,y)^2, type 2.
+
+  Cross-check independent of the socle count, via Avramov's remark
+  after 5.2.5 in *Infinite free resolutions* (a Golod Gorenstein local
+  ring is a hypersurface): Gamma_n is Golod for every n, so it is
+  Gorenstein only if mu(I_n) = C_n <= 1.
+    n=  2: mu(I_n) = C_n =   1   (hypersurface)
+    n=  3: mu(I_n) = C_n =   3
+    n=  4: mu(I_n) = C_n =   3
+    n=  5: mu(I_n) = C_n =   6
+    n=  6: mu(I_n) = C_n =   6
+    n=  7: mu(I_n) = C_n =  10
+    n=  8: mu(I_n) = C_n =  10
+    n=  9: mu(I_n) = C_n =  11
+    n= 10: mu(I_n) = C_n =  11
+    n= 11: mu(I_n) = C_n =  16
+    n= 12: mu(I_n) = C_n =  16
+    n= 13: mu(I_n) = C_n =  22
+    n= 14: mu(I_n) = C_n =  22
+    n= 15: mu(I_n) = C_n =  23
+
+------------------------------------------------------------------------------
+PART 5.  socle degrees (grading by Omega): Gamma_n is level only for n <= 3
+------------------------------------------------------------------------------
+  A graded Artinian algebra is level when its socle sits in one degree.
+  Socle degrees below are Omega(m) for m in the socle, from PART 2's
+  machine-computed socle, not from the (n/2, n] description.
+  n=  2: socle = [2], degrees = [1]   LEVEL
+  n=  3: socle = [2, 3], degrees = [1]   LEVEL
+  n=  4: socle = [3, 4], degrees = [1, 2]
+  n=  5: socle = [3, 4, 5], degrees = [1, 2]
+  n=  6: socle = [4, 5, 6], degrees = [1, 2]
+  n=  7: socle = [4, 5, 6, 7], degrees = [1, 2]
+  n=  8: socle = [5, 6, 7, 8], degrees = [1, 2, 3]
+  n=  9: socle = [5, 6, 7, 8, 9], degrees = [1, 2, 3]
+  n= 10: socle = [6, 7, 8, 9, 10], degrees = [1, 2, 3]
+  n= 11: socle = [6, 7, 8, 9, 10, 11], degrees = [1, 2, 3]
+  n= 12: socle = [7, 8, 9, 10, 11, 12], degrees = [1, 2, 3]
+  level for n in 2 .. 120:  [2, 3]
+
+==============================================================================
+done

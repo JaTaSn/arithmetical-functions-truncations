@@ -10,3 +10,8 @@ arxiv/**/*.pdf
 # ...but a figure is source, not a build product.
 !arxiv/**/Cnv-profile.pdf
 !arxiv/**/S2-ratio.pdf
+
+# NOTE: the four extension rules above are unanchored, so they apply repo-wide, not just to
+# LaTeX directories.  A run output named foo.log or foo.out anywhere in this repository is
+# silently dropped by `git add` -- which is why everything in runs/ is .txt.  If you ever add
+# a run output with another extension, check `git check-ignore -v <path>` first.

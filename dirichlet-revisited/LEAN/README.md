@@ -31,14 +31,29 @@ it was built and the two traps in doing so.
 
 ## What is assumed and what is proved
 
-The one thing taken on trust is **Corollary 4.4 of Snellman (2000)** — that
+Two things are taken on trust, and it is worth naming both.
+
+**First, Corollary 4.4 of Snellman (2000)** — that
 
     P^{Γ_n}_K(t) = (1+t)^r / D_n(t),   D_n(t) = 1 − t²·Σ_{j=1}^{r} (1+t)^{r−j} C_{n,j}
 
 which rests on the Eliahou–Kervaire resolution of a stable monomial ideal and on the Golod property
 of the quotient. Neither is in Mathlib, and neither is proved here. It enters **only as the
 definition of the polynomial `D`**; the homological reading of `D` is precisely what a reader must
-supply. Everything else is proved outright.
+supply.
+
+**Second, `C_{n,v} = Φ(n, p_v)`** — Theorem 4 of the new note. In Lean this is not a theorem but a
+*definition*: `cSeq n k := Phi n (Nat.nth Nat.Prime (piCount n - k - 1))` in `Chain.lean`. Nothing
+here defines `I_n`, or a minimal monomial generating set, so there is no independent `C_{n,v}` for
+the identity to be proved *against*. It is corroborated numerically instead, by the `#guard`s at
+the end of `Sieve.lean` checking `Φ(25,2)=13`, `Φ(25,3)=9`, `Φ(25,5)=7`, `Φ(25,7)=6` against
+Figure 1 of the 2000 paper — and those run at build time, so they fail the build if wrong.
+
+Unlike the first assumption, this one is *not* out of reach: Theorem 4 is elementary, and closing
+the gap is the obvious next increment. It is recorded here rather than left for a reader to
+discover, because nothing in the Lean text itself marks it as an assumption.
+
+Everything else is proved outright.
 
 ## The mathematical content
 
@@ -98,11 +113,8 @@ conjecture's definition is accounted for.
 `ell1` computes, so the exponent is checkable: `#guard piCount 25 - ell1 25 = 7`, matching the
 `code/sage/` recomputation, and `ℓ₁` jumps at `9, 25, 49` exactly as it should.
 
-Clauses **(3)** and **(6)**, on the degree and leading coefficient of `q`, remain unformalized —
-degree computations, not deep, but fiddly, and not attempted.
-
 Clauses **(3)** and **(6)**, on the degree and leading coefficient of `q`, are **not** formalized.
-They are degree computations, not deep, but fiddly in Lean and not attempted here.
+They are degree computations, not deep, but fiddly in Lean, and not attempted here.
 
 ## Non-vacuity
 

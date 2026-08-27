@@ -7,20 +7,22 @@ Upload the contents of this directory (excluding this README).
   package is `orcidlink`, which arXiv has. The `ö` in the affiliation survives pdflatex, so no
   `fontspec`/xelatex declaration is needed.
 - `Cnv-profile.pdf` — Figure 1, the profile of `C_{n,v}`; regenerate with
-  `code/plot_Cnv_profile.sage`.
+  `anc/code/sage/plot_Cnv_profile.sage`.
 - `S2-ratio.pdf` — Figure 2, the convergence of `S_2(n)/((2/3)pi(sqrt n)^3)`; regenerate with
-  `code/plot_S2_ratio.sage`.
+  `anc/code/sage/plot_S2_ratio.sage`.
   **Both figure files must be uploaded too**; they are source, not build products, and
   `.gitignore` carries explicit exceptions saying so.
 - `anc/LEAN/` — the Lean 4 + Mathlib formalization of Conjecture 4.6, end to end.
 - `anc/code/` — the SageMath, Maple and Macaulay2 code reproducing every number in the note and in
-  the 2000 paper.
+  the 2000 paper. Note that the *outputs* of those scripts are not shipped here: they live in
+  `../../dirichlet-revisited/runs/` and are part of the repository, not of the submission.
 
 ## Before submitting
 
-1. Re-read `../../dirichlet-revisited/README.md`'s open questions — at the time of writing the
-   manuscript still had unresolved items in the author's TODO (the venue question, and one
-   theorem number in Tenenbaum that could not be verified against the book).
+1. Two items were still open in the author's own notes when this bundle was assembled: the venue
+   question, and one theorem number in Tenenbaum that could not be verified against the book (the
+   `.tex` carries a `TODO(Jan)` comment at that citation). Neither blocks submission; both should
+   be looked at once more first.
 2. **arXiv's policy on LLM assistance** requires disclosure and places responsibility with the
    author for everything in the submission, including references. The manuscript's Acknowledgements
    disclose the assistance in full; the reference list has been checked against primary sources.

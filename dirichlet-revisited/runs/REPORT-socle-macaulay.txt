@@ -1,0 +1,14 @@
+    n    r  socle ceil(n/2)  C_n,1  Hilbert (by Omega)
+   10    4      5         5      5  [1, 4, 4, 1]
+   25    9     13        13     13  [1, 9, 9, 4, 2]
+   50   15     25        25     25  [1, 15, 17, 11, 4, 2]
+  100   25     50        50     50  [1, 25, 34, 22, 12, 4, 2]
+  200   46    100       100    100  [1, 46, 62, 48, 25, 12, 4, 2]
+
+Macaulay test: is (pi_d(n))_d an M-sequence?  H(d+1) <= H(d)^<d> ?
+  n=  10: True   (d+1, actual, Macaulay bound) = [(2, 4, 10), (3, 1, 5)]
+  n=  25: True   (d+1, actual, Macaulay bound) = [(2, 9, 45), (3, 4, 16), (4, 2, 5)]
+  n=  50: True   (d+1, actual, Macaulay bound) = [(2, 17, 120), (3, 11, 38), (4, 4, 16), (5, 2, 4)]
+  n= 100: True   (d+1, actual, Macaulay bound) = [(2, 34, 325), (3, 22, 105), (4, 12, 37), (5, 4, 15)]
+  n= 200: True   (d+1, actual, Macaulay bound) = [(2, 62, 1081), (3, 48, 248), (4, 25, 96), (5, 12, 36)]
+  n= 500: True   (d+1, actual, Macaulay bound) = [(2, 153, 4560), (3, 122, 969), (4, 70, 332), (5, 36, 126)]
