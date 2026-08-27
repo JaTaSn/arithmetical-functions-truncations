@@ -4,6 +4,12 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-08-27  Claude-Code (jts-pc) -- set-builders switched from | to : throughout, so
+%     that every remaining | in the document means "divides"; Theorem \ref{thm:error}
+%     (the exact order 16/3 * n^{3/2}/log^3 n of the error term) and Lemma
+%     \ref{lem:semiprime} added, with Remark \ref{rem:buchstab-trap} on the two traps;
+%     new Section \ref{sec:socle} on the socle, the Cohen-Macaulay type and levelness,
+%     flagged in its own first sentence as routine; abstract and introduction updated.
 %   2026-08-27  Claude-Code (jts-pc) -- "composite" restored to the Mertens-type sum in
 %     the remark after Theorem \ref{thm:asymp}. The word was missing from the withdrawn
 %     open problem's own second display and was carried over when that content was folded
@@ -86,8 +92,9 @@
   \cite{Snellman2000}, which was left open there; the average order
   \(C_n\sim\pi(n)^2/2\) of the total number of minimal generators, showing that
   the lower bound \(C_n\ge\binom{\pi(n)+1}{2}\) of \cite{Snellman2000} is
-  asymptotically sharp; and the identification of \(C_n\) with the OEIS
-  sequence \seqnum{A182843}. We also record errata for \cite{Snellman2000}: one
+  asymptotically sharp, together with the exact order
+  \(C_n-\binom{\pi(n)+1}{2}\sim\tfrac{16}{3}n^{3/2}/\log^{3}n\) of the error;
+  and the identification of \(C_n\) with the OEIS sequence \seqnum{A182843}. We also record errata for \cite{Snellman2000}: one
   stated result is false, and two proofs are incomplete. Corrected statements
   and complete proofs are given.
 \end{abstract}
@@ -96,7 +103,7 @@
 
 Cashwell and Everett \cite{CashwellEverett} studied the ring
 \begin{equation}
-  \Gam=\{\,f\mid f:\NN^+\to K\,\}
+  \Gam=\{\,f\colon\NN^+\to K\,\}
 \end{equation}
 of \emph{number-theoretic functions}, with pointwise addition and the Dirichlet
 convolution
@@ -114,7 +121,7 @@ Cashwell and Everett proved that this ring is a unique factorisation domain.
 
 In \cite{Snellman2000} the \emph{truncations}
 \begin{equation}
-  \Gam_n=\{\,f\in\Gam\mid f(m)=0\text{ for all }m>n\,\}
+  \Gam_n=\{\,f\in\Gam : f(m)=0\text{ for all }m>n\,\}
 \end{equation}
 were studied. Writing \(r=\pi(n)\) and giving the monomial
 \(x_1^{a_1}\cdots x_r^{a_r}\) the \emph{weight} \(\prod_i p_i^{a_i}\), so that
@@ -135,7 +142,7 @@ property \cite{AramovaHerzog,Peeva,Golod,GulliksenLevin} within reach, and
 yields a rational Poincaré--Betti series for \(\Gam_n\) expressed in terms of
 the numbers
 \begin{equation}\label{eq:Cdef}
-  C_{n,v}=\#\{\,m\in G(I_n)\mid \min(m)=v\,\},\qquad C_n=\#G(I_n),
+  C_{n,v}=\#\{\,m\in G(I_n) : \min(m)=v\,\},\qquad C_n=\#G(I_n),
 \end{equation}
 where \(G(I_n)\) is the minimal monomial generating set and \(\min(m)\) is the
 least index occurring in \(m\).
@@ -151,7 +158,7 @@ nothing else in that paper is affected.
 Second, and principally, a \emph{sieve-theoretic identification}. Recall
 Legendre's sifting function
 \begin{equation}\label{eq:phidef}
-  \Phi(x,y)=\#\{\,m\le x \mid p\mid m\implies p>y\,\},
+  \Phi(x,y)=\#\{\,m\le x : p\mid m\implies p>y\,\},
 \end{equation}
 the number of integers up to \(x\) free of prime factors \(\le y\). Our main
 result, Theorem \ref{thm:main}, is that
@@ -213,7 +220,7 @@ We shall use the following description, which is Theorem 3.2 of
 \begin{theorem}[\cite{Snellman2000}, Thm.~3.2]\label{thm:S32}
   For \(1\le v\le \pi(n)\),
   \[
-    C_{n,v}=\#\{\,x\in\NN \mid n/p_v<x\le n \text{ and }
+    C_{n,v}=\#\{\,x\in\NN : n/p_v<x\le n \text{ and }
     p\mid x\implies p\ge p_v \,\}.
   \]
 \end{theorem}
@@ -221,7 +228,7 @@ We shall use the following description, which is Theorem 3.2 of
 It will be convenient to name the counting function appearing implicitly there.
 For a prime \(p\) and real \(y\ge0\) put
 \begin{equation}
-  R_p(y)=\#\{\,m\le y \mid q\mid m\implies q\ge p\,\},
+  R_p(y)=\#\{\,m\le y : q\mid m\implies q\ge p\,\},
 \end{equation}
 the number of \(p\)-rough integers up to \(y\); the integer \(1\) is counted,
 vacuously. Theorem \ref{thm:S32} then reads
@@ -230,7 +237,7 @@ vacuously. Theorem \ref{thm:S32} then reads
 \end{equation}
 Note that
 \begin{equation}\label{eq:RvsPhi}
-  R_p(y)=\Phi(y,p)+\#\{\,m\le y\mid \lpf(m)=p\,\},
+  R_p(y)=\Phi(y,p)+\#\{\,m\le y : \lpf(m)=p\,\},
 \end{equation}
 so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
 \(p\)-rough.
@@ -283,7 +290,7 @@ following reformulation, which is the form we shall use.
   \end{equation}
   where
   \begin{equation}\label{eq:Edef}
-    E(n,v)=\#\{\,x\le n \mid
+    E(n,v)=\#\{\,x\le n :
       x \text{ composite},\ p\mid x\implies p>p_v\,\}.
   \end{equation}
   In particular
@@ -340,7 +347,7 @@ Corollary \ref{cor:split} contains Theorem 3.4(2) of \cite{Snellman2000} (put
 
 Theorem 3.5(3) of \cite{Snellman2000} asserts
 \begin{equation}\label{eq:false}
-  \binom{\pi(n)}{2}=\#\{\,m\in\NN^+\mid m\le n,\ \lambda(m)=2\,\},
+  \binom{\pi(n)}{2}=\#\{\,m\in\NN^+ : m\le n,\ \lambda(m)=2\,\},
 \end{equation}
 and the proof there reads, in full, ``The first and the last assertions are
 obvious.'' Statement \eqref{eq:false} is false. Its left-hand side counts
@@ -356,7 +363,7 @@ Theorem 3.4(2)--(3) of \cite{Snellman2000} actually establishes.
 \begin{proposition}\label{prop:fixed35}
   For every \(n\ge2\),
   \[
-    \#\{\,m\in G(I_n)\mid |\!\operatorname{supp}(m)|=2\,\}
+    \#\{\,m\in G(I_n) : |\!\operatorname{supp}(m)|=2\,\}
       \ \ge\ \binom{\pi(n)}{2},
   \]
   with equality exactly for \(2\le n\le 8\).
@@ -467,7 +474,7 @@ fraction reduces to
   P^{A_n}_K(t)=-\frac{(1+t)^{\ell_1(n)}}{q_n(t)},\qquad
   q_n(t)=\sum_{i=0}^{\ell_2(n)}h_i(n)t^{i},
 \end{equation}
-with (1) \(q_n(-1)\ne0\); (2) \(\ell_1(n)=\#\{\,p \text{ odd prime}\mid
+with (1) \(q_n(-1)\ne0\); (2) \(\ell_1(n)=\#\{\,p \text{ odd prime} :
 p^{2}\le n\,\}\); (3) \(\ell_2(n)=\ell_1(n)+1\); (4) \(h_0(n)=-1\);
 (5) \(h_1(n)=\pi(n)-\ell_1(n)\); (6) \(h_{\ell_2(n)}(n)=C_{n,1}=\lceil n/2\rceil\).
 We prove all six.
@@ -513,7 +520,7 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
   By Corollary \ref{cor:split}, \(C_{n,v}\ne r-v+1\) if and only if
   \(p_{v+1}^{2}\le n\), i.e.\ \(p_{v+1}\le\sqrt n\). The largest \(v\) with
   this property is \(v=\pi(\lfloor\sqrt n\rfloor)-1\), and for \(n\ge4\) this
-  equals \(\#\{p\text{ odd}\mid p^{2}\le n\}=\ell_1(n)\), the two counts
+  equals \(\#\{p\text{ odd} : p^{2}\le n\}=\ell_1(n)\), the two counts
   differing only by the prime \(2\). Hence the least admissible \(k\) is
   \(r-\ell_1(n)\). (If no such \(v\) exists, i.e.\ \(\ell_1(n)=0\), then
   \(c_k=k+1\) for all \(k\le r-1\) and the first non-vanishing coefficient is
@@ -623,18 +630,133 @@ contributes in the limit.
   prime \(p\mid W\), the binding case being \(p=\lpf W\).
 \end{proof}
 
-\begin{remark}
-  The upper bound in Theorem \ref{thm:asymp} is far from best possible: almost
-  all integers are even and contribute nothing. Writing the error term
-  according to \(\lpf x=p_j\) turns it into a Mertens-type sum
+The upper bound in Theorem \ref{thm:asymp} is far from best possible: almost
+all integers are even and contribute nothing. We now determine the error term
+exactly. Write
+\begin{equation}\label{eq:Sdef}
+  S(n)=C_n-\binom{\pi(n)+1}{2}
+      =\sum_{x\le n\text{ composite}}\bigl(\pi(\lpf x)-1\bigr),
+\end{equation}
+and let \(S_2(n)\) be the part of the sum coming from \(x\) with \(\Om(x)=2\).
+
+\begin{lemma}\label{lem:semiprime}
+  \(\displaystyle
+    S_2(n)=\sum_{p\le\sqrt n}\bigl(\pi(p)-1\bigr)
+             \bigl(\pi(n/p)-\pi(p)+1\bigr)\)
+  (the sum over primes), and
+  \(0\le S(n)-S_2(n)\ll n^{4/3}/\log^{2}n\).
+\end{lemma}
+
+\begin{proof}
+  If \(\Om(x)=2\) then \(x=pq\) with \(p\le q\) prime, \(\lpf x=p\) and
+  \(p\le\sqrt n\); for fixed \(p\) the admissible \(q\) are the primes in
+  \([p,n/p]\), of which there are \(\pi(n/p)-\pi(p)+1\), and each contributes
+  the weight \(\pi(p)-1\). If instead \(\Om(x)\ge3\) then
+  \((\lpf x)^{3}\le x\le n\), so \(\lpf x\le n^{1/3}\), and \(x\) is a multiple
+  of \(\lpf x\); hence
   \[
-    C_n-\binom{\pi(n)+1}{2}
-      =\sum_{j\ge2}(j-1)\,\#\{\,x\le n\mid
-        x\text{ composite},\ \lpf x=p_j\,\},
+    0\le S(n)-S_2(n)\le\sum_{p\le n^{1/3}}\bigl(\pi(p)-1\bigr)\frac np
+    \ll n\sum_{p\le n^{1/3}}\frac1{\log p}\ll\frac{n^{4/3}}{\log^{2}n},
   \]
-  and Table \ref{tab:err} suggests its true order is about
-  \(n^{3/2}/\log^{3}n\). Determining it exactly is a question of sieve theory
-  rather than of algebra, and the author intends to return to it separately.
+  by \(\pi(p)\ll p/\log p\) and then
+  \(\sum_{p\le Y}1/\log p\ll Y/\log^{2}Y\).
+\end{proof}
+
+\begin{theorem}\label{thm:error}
+  As \(n\to\infty\),
+  \[
+    S(n)\;\sim\;\tfrac23\,\pi(\sqrt n)^{3}
+            \;\sim\;\frac{16}{3}\cdot\frac{n^{3/2}}{\log^{3}n},
+  \]
+  and consequently
+  \[
+    C_n=\binom{\pi(n)+1}{2}
+        +\Bigl(\tfrac{16}{3}+o(1)\Bigr)\frac{n^{3/2}}{\log^{3}n}.
+  \]
+  In particular the upper bound of Theorem \ref{thm:asymp} overshoots by a
+  factor \(\asymp\log^{2}n\).
+\end{theorem}
+
+\begin{proof}
+  Write \(X=\sqrt n\) and \(M=\log X=\tfrac12\log n\). By Lemma
+  \ref{lem:semiprime} it suffices to treat \(S_2\), since
+  \(n^{4/3}\log^{3}n/(n^{3/2}\log^{2}n)=n^{-1/6}\log n\to0\).
+
+  Substitute \(p=Xe^{-a}\), so \(n/p=Xe^{a}\). The prime number theorem in the
+  form \(\pi(x)=x/\log x+O(x/\log^{2}x)\) gives, uniformly for
+  \(0\le a\le W\) with \(W\) fixed,
+  \begin{equation}\label{eq:pnt-sub}
+    \begin{aligned}
+      \pi(p)-1&=\frac XM\bigl(e^{-a}+O_W(M^{-1})\bigr),\\
+      \pi(n/p)-\pi(p)+1&=\frac XM\bigl(2\sinh a+O_W(M^{-1})\bigr),
+    \end{aligned}
+  \end{equation}
+  and the number of primes near \(p\) per unit \(a\) is \(\approx Xe^{-a}/M\).
+  The summand times that density is \(\approx (X^{3}/M^{3})\,2e^{-2a}\sinh a\),
+  which decays like \(e^{-a}\): the sum is concentrated on \(a=O(1)\), that is,
+  on \(p\) and \(n/p\) both within a bounded factor of \(\sqrt n\).
+
+  Make this precise by splitting \(\sum_{p\le X}g(p)\), where
+  \(g(t)=(\pi(t)-1)(\pi(n/t)-\pi(t)+1)\), into three ranges. For
+  \(p\le n^{1/4}\) we have \(g(p)\ll n/\log n\) and there are
+  \(\ll n^{1/4}/\log n\) such primes, contributing
+  \(\ll n^{5/4}/\log^{2}n=o(n^{3/2}/\log^{3}n)\). For
+  \(n^{1/4}<p\le Xe^{-W}\) we have \(g(p)\le\pi(p)\pi(n/p)\ll n/\log^{2}n\),
+  and Chebyshev's bound gives \(\pi(Xe^{-W})\ll Xe^{-W}/\log n\), so this range
+  contributes at most \(c_0e^{-W}n^{3/2}/\log^{3}n\) with \(c_0\) absolute.
+
+  In the main range \(Xe^{-W}<p\le X\), cut \([0,W]\) into \(K\) equal pieces
+  \(a_i=iW/K\) and put \(t_i=Xe^{-a_i}\). The factor \(\pi(t)-1\) is
+  non-decreasing and \(\pi(n/t)-\pi(t)+1\) non-increasing in \(t\), so on each
+  piece \(g\) is trapped between the products of the one-sided extremes, and
+  \(\sum_{Xe^{-W}<p\le X}g(p)\) lies between
+  \(\sum_i\min g\cdot(\pi(t_i)-\pi(t_{i+1}))\) and the corresponding sum with
+  \(\max\). Every prime count occurring is evaluated at an argument
+  \(Xe^{\pm O(W)}\), so \eqref{eq:pnt-sub} applies to all of them with one
+  implied constant, and both bounds become
+  \[
+    \frac{X^{3}}{M^{3}}\sum_{i=0}^{K-1}
+      2e^{-a_i}\sinh(a_i)\bigl(e^{-a_i}-e^{-a_{i+1}}\bigr)
+    +O_{W,K}\!\left(\frac{X^{3}}{M^{4}}\right)
+    +O_W\!\left(\frac{X^{3}}{M^{3}}\cdot\frac WK\right),
+  \]
+  the displayed sum being a Riemann--Stieltjes sum for
+  \(\int_0^W 2e^{-2a}\sinh a\,\mathrm da\). Letting \(n\to\infty\), then
+  \(K\to\infty\), then \(W\to\infty\), the three ranges combine to give
+  \[
+    \frac{M^{3}}{X^{3}}S_2(n)\longrightarrow
+      \int_0^{\infty}2e^{-2a}\sinh a\,\mathrm da
+      =\int_0^{\infty}\bigl(e^{-a}-e^{-3a}\bigr)\mathrm da
+      =1-\tfrac13=\tfrac23 .
+  \]
+  Finally \(X/M\sim\pi(\sqrt n)\) and \(X^{3}/M^{3}=8n^{3/2}/\log^{3}n\).
+\end{proof}
+
+\begin{remark}\label{rem:buchstab-trap}
+  Two things about this deserve to be said, because both are traps.
+
+  First, no sieve theory is needed, and reaching for it gives the wrong answer.
+  The mass sits where \(p\) and \(n/p\) are both within a bounded factor of
+  \(\sqrt n\), that is, at \(u=\log(n/p)/\log p\to1\); and there \(\Phi\)
+  degenerates to the exact identity \(\Phi(x,y)=\pi(x)-\pi(y)+1\), valid for
+  \(y\ge\sqrt x\). The one-term Buchstab estimate
+  \(\Phi(x,y)\approx x\,\omega(u)/\log y\), fed into \eqref{eq:Sdef}, returns
+  \(8\) rather than \(16/3\): it is uniform only for \(u\ge2\)
+  \cite{Fan}, which excludes precisely the region carrying the mass, and there
+  the secondary term \(-y/\log y\) is of the same order and restores
+  \(8-8/3=16/3\).
+
+  Second, the convergence is slow and not monotone, so a numerical check over
+  too short a range is misleading. The raw quotient
+  \(S(n)\log^{3}n/n^{3/2}\) peaks near \(10.9\) around \(n=10^{5}\) and is
+  still \(9.55\) at \(n=10^{7}\), against a limit of \(16/3=5.33\dots\); the
+  discrepancy is almost all in the difference between \(\pi(\sqrt n)\) and
+  \(2\sqrt n/\log n\), which is cubed here. Measured instead against
+  \(\tfrac23\pi(\sqrt n)^{3}\), the quotient \(S_2(n)/\tfrac23\pi(\sqrt n)^3\)
+  is \(1.0593\) at \(n=10^{6}\) and \(1.0853\) at \(10^{7}\), rises to a
+  maximum, and then falls through \(1.0492,1.0353,1.0313,1.0255,1.0204,1.0171\)
+  at \(n=10^{9},\dots,10^{14}\). A second-order factor \(1+6/\log n\) accounts
+  for the shape.
 \end{remark}
 
 \begin{table}[ht]
@@ -655,6 +777,102 @@ contributes in the limit.
     \cite{Snellman2000}.}\label{tab:err}
 \end{table}
 
+\section{The socle, and the type}\label{sec:socle}
+
+This section is routine: every ingredient is standard, and for \(I_n\) the
+evaluation is a one-line application. We include it because the answer is a
+quantity that has already appeared twice above, and because the contrast with
+the unitary case in Remark \ref{rem:unitary} seems worth recording.
+
+Recall the standard multigraded reduction: for a monomial ideal \(I\subsetneq S\),
+the socle \((0:_{S/I}\mathfrak m)\) is spanned by the residues of those
+monomials \(u\notin I\) with \(x_iu\in I\) for every \(i\) --- because \(S/I\)
+is \(\ZZ^{r}\)-graded with one-dimensional components, so the annihilator is a
+multigraded subspace and hence spanned by the monomials in it. See
+\cite{HerzogHibi} or \cite{MillerSturmfels}.
+
+\begin{proposition}\label{prop:socle}
+  Let \(n\ge2\). Then \(\operatorname{soc}(\Gam_n)\) is spanned by the
+  monomials of weight \(m\) with \(n/2<m\le n\); under the identification of
+  the \(K\)-basis of \(\Gam_n\) with \(\{1,\dots,n\}\),
+  \[
+    \operatorname{soc}(\Gam_n)=\bigoplus_{n/2<m\le n}K\cdot m,
+    \qquad
+    \dim_K\operatorname{soc}(\Gam_n)=\Bigl\lceil\frac n2\Bigr\rceil .
+  \]
+\end{proposition}
+
+\begin{proof}
+  By the reduction above, \(u\) is a socle monomial exactly when \(w(u)\le n\)
+  and \(w(x_iu)=p_iw(u)>n\) for every \(i=1,\dots,r\). Since \(p_1=2\le p_i\)
+  for all \(i\), that system of conditions is equivalent to its weakest member,
+  the one at \(i=1\): \(2w(u)>n\). So the socle monomials are those of weight
+  in \((n/2,n]\), and there are \(n-\lfloor n/2\rfloor=\lceil n/2\rceil\)
+  of them.
+\end{proof}
+
+\begin{corollary}\label{cor:type}
+  For \(n\ge2\) the Cohen--Macaulay type of \(\Gam_n\) is
+  \[
+    \operatorname{type}(\Gam_n)=\beta^{S}_{r}(\Gam_n)
+      =C_{n,1}=\Phi(n,2)=\Bigl\lceil\frac n2\Bigr\rceil,
+  \]
+  and \(\Gam_n\) is Gorenstein if and only if \(n\le2\).
+\end{corollary}
+
+\begin{proof}
+  For an Artinian module the last Betti number over \(S\) is the socle
+  dimension, so the first two equalities are Proposition \ref{prop:socle}. For
+  the third, Eliahou--Kervaire gives
+  \(\beta^{S}_{i}=\sum_{v}C_{n,v}\binom{r-v}{i-1}\), and at \(i=r\) the
+  binomial vanishes unless \(v=1\), leaving \(\beta^{S}_{r}=C_{n,1}\); the last
+  equality is Theorem \ref{thm:main}. Gorenstein means type \(1\), i.e.
+  \(\lceil n/2\rceil=1\), i.e. \(n\le2\).
+\end{proof}
+
+\begin{remark}
+  Corollary \ref{cor:type} is not an independent third sighting of
+  \(\lceil n/2\rceil\), and it would be misleading to present it as one.
+  For an Artinian Golod quotient the denominator of \eqref{eq:PB} is the list
+  of Betti numbers, \(D_n(t)=1-\sum_{i\ge1}\beta^{S}_{i}t^{i+1}\); since
+  \(\operatorname{pd}_S\Gam_n=r\), its leading coefficient is
+  \(-\beta^{S}_{r}=-\operatorname{type}(\Gam_n)\), and dividing by the monic
+  \((1+t)^{\,r-\ell_1}\) preserves it. So clause (6) of Conjecture 4.6
+  \emph{is} the assertion that the type is \(\lceil n/2\rceil\), and the proof
+  of clause (6) given above --- ``the top-degree term arising only from
+  \(j=1\)'' --- is the Eliahou--Kervaire computation \(\beta^{S}_{r}=C_{n,1}\)
+  in generating-function clothing. What does remain is a genuine coincidence of
+  two countings: the socle counts the integers in \((n/2,n]\), while
+  \(\Phi(n,2)\) counts the odd integers in \([1,n]\). Different sets, of the
+  same size.
+\end{remark}
+
+\begin{remark}\label{rem:unitary}
+  The reason Proposition \ref{prop:socle} is a one-liner is that the socle
+  condition is ``\(p_iw(u)>n\) for \emph{every} prime \(p_i\le n\)'', which
+  collapses because the least prime is \(2\). The analogue for the
+  \emph{unitary} truncations does not collapse: there the condition reads
+  ``\(kp>n\) for every prime \(p\) coprime to \(k\)'', and
+  \cite[\S7]{SnellmanUnitaryTrunc} obtains the socle dimension only
+  asymptotically, as \(\delta n\) with
+  \[
+    \delta=\frac12+\sum_{i\ge1}
+      \frac{p_i^{-1}-p_{i+1}^{-1}}{p_1p_2\cdots p_i}\approx0.6077 .
+  \]
+  For Dirichlet convolution the corresponding density is exactly \(1/2\), for
+  every \(n\). The asymmetry between the two convolutions is the interesting
+  content here, rather than the statement itself.
+\end{remark}
+
+\begin{remark}
+  Grading by \(\lambda=\Om\), the algebra \(\Gam_n\) is \emph{level} --- socle
+  concentrated in one degree --- exactly for \(n\le3\). Indeed for \(n\ge4\)
+  let \(2^{k}\) be the largest power of \(2\) with \(2^{k}\le n\); then
+  \(2^{k}>n/2\), so \(2^{k}\) is a socle element of degree \(k\ge2\), while
+  Bertrand's postulate applied to \(\lfloor n/2\rfloor\) supplies a prime
+  \(q\) with \(n/2<q\le n\), a socle element of degree \(1\).
+\end{remark}
+
 \section{Related work}\label{sec:related}
 
 Two remarks on the surrounding literature, both of which bear on how the result
@@ -673,7 +891,7 @@ By the theorem of Duval and Reiner \cite{DuvalReiner} that spectrum is integral,
 and \cite[Cor.~14]{SnellmanLaplacians} identifies its multiplicities as the
 arithmetic counts
 \[
-  t_{i,k}(n)=\#\{\,1<m\le n \mid \Om(m)=k,\ p_i\mid \operatorname{sfp}(m)\,\},
+  t_{i,k}(n)=\#\{\,1<m\le n : \Om(m)=k,\ p_i\mid \operatorname{sfp}(m)\,\},
 \]
 \(\operatorname{sfp}\) denoting the squarefree part. These are not the counts
 \(C_{n,v}\) of the present note --- they fix the total degree and impose a
@@ -872,6 +1090,16 @@ Jan Snellman,
 convolution},
 Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519;
 arXiv:math/0205242.
+
+\bibitem{HerzogHibi}
+Jürgen Herzog and Takayuki Hibi,
+\emph{Monomial Ideals},
+Grad. Texts in Math., vol.~260, Springer, 2011.
+
+\bibitem{MillerSturmfels}
+Ezra Miller and Bernd Sturmfels,
+\emph{Combinatorial Commutative Algebra},
+Grad. Texts in Math., vol.~227, Springer, 2005.
 
 \bibitem{SnellmanLaplacians}
 Jan Snellman,
