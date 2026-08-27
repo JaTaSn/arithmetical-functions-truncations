@@ -191,4 +191,17 @@ the odd primes, `9, 25, 49, …`, as it must. -/
 #guard ell1 48 = 2
 #guard ell1 49 = 3
 
+/-! ### The axiom check, made reproducible
+
+The README claims this development rests on nothing beyond Lean's three standard axioms. A bare
+`#print axioms` would only *print* that, and would go on printing happily if it ever stopped being
+true. Wrapped in `#guard_msgs`, the claim is checked at build time and a change breaks the build,
+which is the only version of the claim worth making. -/
+
+/--
+info: 'DirichletTruncations.Conjecture46' depends on axioms: [propext, Classical.choice, Quot.sound]
+-/
+#guard_msgs in
+#print axioms Conjecture46
+
 end DirichletTruncations
