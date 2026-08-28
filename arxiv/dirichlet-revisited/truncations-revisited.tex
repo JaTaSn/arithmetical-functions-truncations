@@ -10,6 +10,21 @@
 %     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
 %     transfer he hoped for has not materialised -- extremal results are slack here,
 %     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
+%   2026-08-28c Claude-Code (jts-pc) -- fixes from a fable adversarial review of Sections 5
+%     and 7, which had never had one.  BIBLIOGRAPHIC, and the serious one: a single entry
+%     conflated TWO papers -- arXiv:math/0205242 "general truncations" and math/0208183
+%     "the [n]-truncation" -- under a title matching neither, and \cite[\S7]{...} for the
+%     socle density pointed at the one WITHOUT a section 7.  Split into two entries with
+%     their true titles; the section-7 citation now points at math/0208183.  Note both arXiv
+%     records claim the same journal/volume/pages, which PUBLISHED-ARTICLES.md flags as
+%     unresolved -- JAN TO CONFIRM whether these are one published paper or two.  Also:
+%     Thm \ref{thm:conj} now says n >= 2, being false at n = 1 where deg q_1 = 0 != 1;
+%     Prop \ref{prop:order}'s main branch now requires n >= 9, since for 4 <= n <= 8 no
+%     admissible v has the property and the two branches contradicted each other there;
+%     "equivalent to its weakest member" in Prop \ref{prop:socle} was backwards, a
+%     conjunction reduces to its STRONGEST member; and the unitary-comparison remark said
+%     the Dirichlet socle density is "exactly 1/2 for every n", false for odd n, where it
+%     is 1/2 + 1/(2n).
 %   2026-08-28b Claude-Code (jts-pc) -- Jan's revisions round 3.  Abstract now says K is a
 %     field containing Q.  Remarks 27 and 28 merged into a single Remark with an enumerated
 %     list of five comments (they were two remarks on one proof, an artefact of iterating).
@@ -588,16 +603,20 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
     \iff p_{v+1}^{2}\le n
     \iff p_{v+1}\le\sqrt n .
   \]
-  The largest \(v\) with this property is
+  Suppose first that some admissible \(v\) has this property; since
+  \(p_2^{2}=9\), that requires \(n\ge9\). The largest such \(v\) is then
   \[
     v=\pi\bigl(\lfloor\sqrt n\rfloor\bigr)-1
      =\#\{\,p\text{ odd} : p^{2}\le n\,\}=\ell_1(n)
-     \qquad(n\ge4),
+     \qquad(n\ge9),
   \]
   the two counts differing only by the prime \(2\). Hence the least admissible
-  \(k\) is \(r-\ell_1(n)\).
+  \(k\) is \(r-\ell_1(n)\). (The identity between the two counts in fact holds
+  for every \(n\ge4\); what needs \(n\ge9\) is that the set of such \(v\) is
+  non-empty.)
 
-  If no such \(v\) exists, i.e.\ \(\ell_1(n)=0\), then \(c_k=k+1\) for all
+  If no such \(v\) exists --- equivalently \(\ell_1(n)=0\), equivalently
+  \(n\le8\) --- then \(c_k=k+1\) for all
   \(k\le r-1\), and the first non-vanishing coefficient is that of \(u^{r}\),
   namely
   \[
@@ -607,9 +626,10 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
 \end{proof}
 
 \begin{theorem}\label{thm:conj}
-  Conjecture 4.6 of \cite{Snellman2000} holds: with \(\ell_1(n)\) and
-  \(\ell_2(n)\) as above, \eqref{eq:conj} holds together with clauses
-  (1)--(6).
+  Let \(n\ge2\). Conjecture 4.6 of \cite{Snellman2000} holds: with
+  \(\ell_1(n)\) and \(\ell_2(n)\) as above, \eqref{eq:conj} holds together with
+  clauses (1)--(6). (At \(n=1\) the statement degenerates: \(r=0\), \(D_1=1\),
+  and clause (3) fails, \(\deg q_1=0\ne1=\ell_2(1)\).)
 \end{theorem}
 
 \begin{proof}
@@ -1121,8 +1141,8 @@ multigraded subspace and hence spanned by the monomials in it. See
 \begin{proof}
   By the reduction above, \(u\) is a socle monomial exactly when \(w(u)\le n\)
   and \(w(x_iu)=p_iw(u)>n\) for every \(i=1,\dots,r\). Since \(p_1=2\le p_i\)
-  for all \(i\), that system of conditions is equivalent to its weakest member,
-  the one at \(i=1\): \(2w(u)>n\). So the socle monomials are those of weight
+  for all \(i\), the condition at \(i=1\) implies all the others, so the system
+  reduces to that single binding constraint: \(2w(u)>n\). So the socle monomials are those of weight
   in \((n/2,n]\), and there are \(n-\lfloor n/2\rfloor=\lceil n/2\rceil\)
   of them.
 \end{proof}
@@ -1172,14 +1192,15 @@ multigraded subspace and hence spanned by the monomials in it. See
   collapses because the least prime is \(2\). The analogue for the
   \emph{unitary} truncations does not collapse: there the condition reads
   ``\(kp>n\) for every prime \(p\) coprime to \(k\)'', and
-  \cite[\S7]{SnellmanUnitaryTrunc} obtains the socle dimension only
+  \cite[\S7]{SnellmanUnitaryN} obtains the socle dimension only
   asymptotically, as \(\delta n\) with
   \[
     \delta=\frac12+\sum_{i\ge1}
       \frac{p_i^{-1}-p_{i+1}^{-1}}{p_1p_2\cdots p_i}\approx0.6077 .
   \]
-  For Dirichlet convolution the corresponding density is exactly \(1/2\), for
-  every \(n\). The asymmetry between the two convolutions is the interesting
+  For Dirichlet convolution nothing of the sort is needed: the socle is
+  exactly the integers in \((n/2,n]\), for every \(n\), so its density is
+  \(1/2\) in the limit and \(1/2+O(1/n)\) at every finite stage. The asymmetry between the two convolutions is the interesting
   content here, rather than the statement itself.
 \end{remark}
 
@@ -1268,7 +1289,8 @@ sieve theory, and the questions it raises are correspondingly analytic.
   unitary, ternary, and general greedy convolutions: which truncation ideals are
   stable, and does an analogue of Theorem \ref{thm:main} hold? For the unitary
   case the truncations were treated by Stanley--Reisner methods in
-  \cite{SnellmanUnitaryTrunc}, and it is not clear that a sifting function
+  \cite{SnellmanUnitaryGeneral,SnellmanUnitaryN}, and it is not clear that a
+  sifting function
   appears there at all. This is work in progress by the author, who intends to
   treat the unitary case next.
 \end{openproblem}
@@ -1405,7 +1427,7 @@ carried out in \textsf{Maple}: the generator counts of its Figures 1 and 2,
 and --- assembled from those counts through the formulas of its Corollaries 4.2
 and 4.4 --- the Poincaré--Betti series of its Figure 3. In the companion papers
 on unitary convolution the division of labour was quite different. For
-\cite{SnellmanUnitaryTrunc}, \textsf{Maple} was used to \emph{generate}
+\cite{SnellmanUnitaryGeneral,SnellmanUnitaryN}, \textsf{Maple} was used to \emph{generate}
 \textsf{Macaulay2} \cite{Macaulay2} input --- procedures emitting ring and
 ideal declarations line by line --- and \textsf{Macaulay2} then computed the
 free resolutions, Betti numbers and Poincaré--Betti series. The homology of the
@@ -1507,12 +1529,19 @@ Jan Snellman,
 \emph{Truncations of the ring of number-theoretic functions},
 Homology Homotopy Appl. \textbf{2} (2000), 17--27; arXiv:math/9904143.
 
-\bibitem{SnellmanUnitaryTrunc}
+\bibitem{SnellmanUnitaryGeneral}
 Jan Snellman,
-\emph{Truncations of the ring of arithmetical functions with unitary
-convolution},
+\emph{The ring of arithmetical functions with unitary convolution: general
+truncations},
 Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519;
 arXiv:math/0205242.
+
+\bibitem{SnellmanUnitaryN}
+Jan Snellman,
+\emph{The ring of arithmetical functions with unitary convolution: the
+\([n]\)-truncation},
+Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519;
+arXiv:math/0208183.
 
 \bibitem{HerzogHibi}
 Jürgen Herzog and Takayuki Hibi,

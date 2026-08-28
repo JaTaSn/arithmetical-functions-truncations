@@ -175,22 +175,47 @@ standard" in the 0-Borel-fixed form, "see \cite[Thm.~6.16(6)]{McCulloughPeeva}".
 The locator is correct, the joint attribution is there, and the `(x₁,…,x_n)²` hypothesis — which
 Remark 1 of the manuscript exists to verify — is stated in the source.
 
-### 8. Snellman, unitary truncations — `\cite{SnellmanUnitaryTrunc}`
+### 8. Snellman, unitary truncations — `\cite{SnellmanUnitaryGeneral}`, `\cite{SnellmanUnitaryN}`
 
-**Citation:** Jan Snellman, *Truncations of the ring of arithmetical functions with unitary
-convolution*, Int. J. Math. Game Theory Algebra **13** (2003), no. 6, 485–519; arXiv:math/0205242.
+**This entry was wrong in the first version of this certificate, and the manuscript was wrong with
+it.** An adversarial review on 2026-08-28 caught it. Recorded here rather than silently corrected,
+because it is precisely the failure mode this document exists to detect.
 
-**Used at** lines 1262 and 1399. The quantitative use is line 1262, Remark 32: the unitary socle
-dimension is known "only asymptotically, as δn with δ = ½ + Σ … ≈ 0.6077".
+There are **two** papers, not one:
 
-**Primary source: available** — `literature/snellman-2003-unitary-truncations-b.pdf`.
+- **`SnellmanUnitaryGeneral`** — *The ring of arithmetical functions with unitary convolution:
+  general truncations*, arXiv:math/0205242.
+- **`SnellmanUnitaryN`** — *The ring of arithmetical functions with unitary convolution: the
+  [n]-truncation*, arXiv:math/0208183.
 
-**Quotation**, §7.1, Theorem 7.2:
+The manuscript had a single bibliography entry, under a title matching neither
+("Truncations of the ring of arithmetical functions with unitary convolution"), carrying the arXiv
+id of the **first** — and cited it as `\cite[\S7]{...}` for the socle density. But math/0205242
+has only five sections and does not contain the string `0.607`; the §7 material is in
+**math/0208183**. A reader following the arXiv link to check "§7" would have found a paper without
+one. Now split into two entries, each with its true title and id, and the §7 citation points at
+math/0208183.
+
+**Primary sources: both available** — `literature/snellman-2003-unitary-truncations-a.pdf`
+(= math/0205242) and `literature/snellman-2003-unitary-truncations-b.pdf` (= math/0208183),
+verified by their arXiv stamps and title pages.
+
+**Quotation** from math/0208183, §7.1, Theorem 7.2 — the claim actually cited:
 
 > Theorem 7.2. Let dim_C Socle(A_[n]) denote the vector space dimension of the socle of A_[n]. Then
 > … **≈ 0.60771435951661818**
 
-The manuscript's `0.6077` is the leading digits of the source's own figure.
+and Lemma 7.1, which is the condition the manuscript quotes:
+
+> Socle(A[n]) is spanned as a C-vector space by the set { e_k : 1 < k ≤ n, **kp > n for all p ∈ P
+> such that gcd(k, p) = 1** }
+
+**One question left for the author.** Both arXiv records claim the *same* journal, volume, issue
+and page range — Int. J. Math. Game Theory Algebra **13** (2003), no. 6, 485–519. The workspace's
+own `preprints-publications/PUBLISHED-ARTICLES.md` flags this twice as unresolved, noting that ORCID
+lists only *one* matching published work. So it is possible these are two preprints that became one
+published paper. The manuscript currently gives both entries that same journal line, following
+arXiv. **Jan should confirm before submission**; he is the author and can settle it at once.
 
 ### 9. Snellman, Laplacians — `\cite{SnellmanLaplacians}`
 
@@ -285,7 +310,7 @@ place.
 |---|---|---|
 | Fan | yes | yes — the `u ≥ 2` uniformity |
 | McCullough–Peeva | yes | yes — a numbered locator, verified |
-| Snellman (unitary) | yes | yes — the 0.6077 figure |
+| Snellman, unitary ×2 | yes | yes — the 0.6077 figure. **Was mis-cited; corrected 2026-08-28** |
 | Snellman (Laplacians) | yes | yes — Corollary 14 |
 | Goswami–Kleyn–Porrill | yes | no — related work |
 | Herzog–Reiner–Welker | yes | no — an alternative route, noted |
@@ -298,3 +323,10 @@ place.
 Nothing whose primary source is unavailable carries a proof. The two places where a specific
 numbered claim is made about a source — McCullough–Peeva Theorem 6.16(6), and the 0.6077 socle
 density — both have the source to hand and both check out verbatim.
+
+**One correction has already been made to this document**, on the day after it was written: entry 8
+conflated two distinct papers, and the manuscript's `\cite[\S7]{...}` pointed at the one without a
+§7. That is exactly the class of error this certificate is for, and it was found by an adversarial
+review rather than by writing the certificate — which is worth knowing about the limits of the
+method. Writing a certificate proves the sources exist; it does not, on its own, prove they are the
+sources being cited.
