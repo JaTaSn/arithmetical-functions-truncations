@@ -12,7 +12,10 @@ Upload the contents of this directory (excluding this README).
   `anc/code/sage/plot_S2_ratio.sage`.
   **Both figure files must be uploaded too**; they are source, not build products, and
   `.gitignore` carries explicit exceptions saying so.
-- `anc/LEAN/` — the Lean 4 + Mathlib formalization of Conjecture 4.6, end to end.
+- `abstract.txt` — the abstract as plain text, for pasting into arXiv's submission form: no
+  LaTeX, no `\cite`, no hyperlinks, the one display written out in ASCII. Keep it in step with the
+  `.tex` abstract by hand; nothing checks that they agree.
+- `anc/LEAN/` — the Lean 4 + Mathlib formalization of Conjecture 4.6 and of Lemma 21, end to end.
 - `anc/code/` — the SageMath, Maple and Macaulay2 code reproducing every number in the note and in
   the 2000 paper. Note that the *outputs* of those scripts are not shipped here: they live in
   `../../dirichlet-revisited/runs/` and are part of the repository, not of the submission.

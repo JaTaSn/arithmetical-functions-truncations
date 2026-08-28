@@ -10,6 +10,15 @@
 %     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
 %     transfer he hoped for has not materialised -- extremal results are slack here,
 %     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
+%   2026-08-28b Claude-Code (jts-pc) -- Jan's revisions round 3.  Abstract now says K is a
+%     field containing Q.  Remarks 27 and 28 merged into a single Remark with an enumerated
+%     list of five comments (they were two remarks on one proof, an artefact of iterating).
+%     Omega defined explicitly in Section 2, with a warning that the omega appearing later
+%     is Buchstab's function and not the count of distinct prime factors.  New
+%     \section*{Notation} before the Acknowledgements, and the d |-> ... sequence in the
+%     Acknowledgements is now displayed, with the em-dashes removed.  The Tenenbaum TODO is
+%     resolved to a NOTE: Fan gives the locator as Theorem III.6.4, but that is secondary
+%     corroboration, so still no theorem number is printed.
 %   2026-08-28  Claude-Code (jts-pc) -- fixes from a three-referee adversarial review, all
 %     independently re-verified first.  Thm \ref{thm:asymp}'s explicit inequality restricted
 %     to n >= 4: at n = 2,3 the bound n(pi(sqrt n)-1) is NEGATIVE and the statement false.
@@ -115,9 +124,9 @@
 \end{center}
 
 \begin{abstract}
-  Let \(\Gam\) be the ring of all functions \(\NN^+\to K\) under Dirichlet
-  convolution, and let \(\Gam_n\) be its truncation to functions supported on
-  \([1,n]\). In \cite{Snellman2000} it was shown that \(\Gam_n\) is a
+  Let \(K\) be a field containing \(\QQ\), let \(\Gam\) be the ring of all
+  functions \(\NN^+\to K\) under Dirichlet convolution, and let \(\Gam_n\) be
+  its truncation to functions supported on \([1,n]\). In \cite{Snellman2000} it was shown that \(\Gam_n\) is a
   polynomial ring modulo a monomial ideal \(I_n\) which is stable after
   reversing the order of the variables, and the Poincaré--Betti series of
   \(\Gam_n\) was computed in terms of the numbers \(C_{n,v}\) of minimal
@@ -251,8 +260,14 @@ alongside the sieve-theoretic literature, where \(\pi\) is universal. Quotations
 from \cite{Snellman2000} below keep its own notation.)
 For a monomial \(m=x_1^{a_1}\cdots x_r^{a_r}\) we write \(\min(m)\) and
 \(\max(m)\) for the least and greatest \(i\) with \(a_i>0\), and
-\(|m|=\sum_i a_i\). We write \(\lambda=\Om\) for the number of prime factors
-counted with multiplicity, as in \cite{Snellman2000}.
+\(|m|=\sum_i a_i\). For an integer \(m>1\), \(\Om(m)\) denotes the number of
+prime factors of \(m\) counted with multiplicity, so that
+\(\Om(p_1^{a_1}\cdots p_r^{a_r})=a_1+\dots+a_r\), with \(\Om(1)=0\); following
+\cite{Snellman2000} we also write \(\lambda\) for \(\Om\). The companion
+function counting prime factors \emph{without} multiplicity, usually written
+\(\omega\), is not used in this note --- the symbol \(\omega\) appears here only
+once, in Remark \ref{rem:hypotheses}, and there it denotes Buchstab's function,
+an unrelated object.
 
 We shall use the following description, which is Theorem 3.2 of
 \cite{Snellman2000}.
@@ -979,68 +994,70 @@ Riemann sum is needed below --- only a count of the primes involved.
 \end{proof}
 
 \begin{remark}\label{rem:hypotheses}
-  Three comments on the proof.
+  Five comments on the proof, the first two of which are traps.
 
-  It uses no Riemann sums, no partition of the range, and no interchange of
-  limits: \(W\) is a explicit function of \(n\), and \eqref{eq:explicit} is a
-  single estimate. That is a consequence of Lemma \ref{lem:split}, which
-  removes the \(\tfrac13\) exactly, together with the observation that what
-  remains has a summand constant to leading order.
+  \begin{enumerate}
+    \item \emph{No sieve theory is needed, and reaching for it gives the wrong
+      answer.} The mass sits where \(p\) and \(n/p\) are both within a bounded
+      factor of \(\sqrt n\), that is, at \(u=\log(n/p)/\log p\to1\); and there
+      \(\Phi\) degenerates to the exact identity \(\Phi(x,y)=\pi(x)-\pi(y)+1\),
+      valid for \(y\ge\sqrt x\). The one-term Buchstab estimate
+      \(\Phi(x,y)\approx x\,\omega(u)/\log y\), with \(\omega\) Buchstab's
+      function, fed into \eqref{eq:Sdef}, returns \(8\) rather than \(16/3\);
+      and it is uniform only for \(u\ge2\) \cite{Fan}, which excludes precisely
+      the region carrying the mass. Lemma \ref{lem:split} says exactly what goes
+      missing. On \(1\le u\le2\) one has \(\omega(u)=1/u\), so the one-term
+      estimate amounts to replacing the second factor of \(g\) by \(\pi(n/p)\)
+      alone, that is, to dropping the \(-\pi(p)+1\). What is dropped is
+      therefore \(\sum_j(j-1)^{2}=(P-1)P(2P-1)/6\sim P^{3}/3\), which is
+      \(\tfrac83\,n^{3/2}/\log^{3}n\); restoring it gives
+      \(8-\tfrac83=\tfrac{16}3\). So the discrepancy is not a subtlety about
+      \(\Phi\) at all, but the exact square sum that Lemma \ref{lem:split}
+      peels off.
 
-  The rate is not sharp. It is limited by the truncation at \(a=W\), not by the
-  arithmetic input: at \(n=10^{14}\) the left-hand side of \eqref{eq:explicit}
-  is \(0.011\), against \(0.61\) for \(\log\log n/\sqrt{\log n}\). How much
-  better the truth is we do not claim --- multiplying the computed deviations by
-  \(\log n\) gives \(0.55,0.92,0.59,0.68,0.54,0.47,0.37\) at
-  \(n=10^{6},\dots,10^{14}\), which neither settles nor rules out a rate of
-  \(1/\log n\). Sharpening the theorem would mean treating the whole range
-  \(0\le a\le M\) rather than discarding \(a>W\).
+    \item \emph{The convergence is slow and not monotone}, so a numerical check
+      over too short a range is misleading. The raw quotient
+      \(S(n)\log^{3}n/n^{3/2}\) peaks near \(10.9\) around \(n=7\cdot10^{4}\)
+      and is still \(9.55\) at \(n=10^{7}\), against a limit of
+      \(16/3=5.33\dots\). Most of that discrepancy, about two thirds of it on a
+      logarithmic scale over the range tabulated, is the difference between
+      \(\pi(\sqrt n)\) and \(2\sqrt n/\log n\), which is cubed here; the factor
+      \(\bigl(\pi(\sqrt n)\log n/2\sqrt n\bigr)^{3}\) is \(1+6/\log n\) to first
+      order, and is \(1.56\) at \(n=10^{6}\). Measured instead against
+      \(\tfrac23\pi(\sqrt n)^{3}\), which absorbs that factor entirely, the
+      picture is much better behaved, though still not monotone: see Figure
+      \ref{fig:ratio}.
 
-  The hypotheses can be weakened if one wants only the asymptotic and no rate.
-  Lemma \ref{lem:pnt-unif} was stated with the prime number theorem in the
-  sharp form \(\pi(y)=y/\log y+O(y/\log^{2}y)\) because that is what produces
-  an explicit error. The bare prime number theorem \(\pi(y)\sim y/\log y\)
-  already suffices for \(S(n)\sim\tfrac23\pi(\sqrt n)^{3}\): for \(a\) in a
-  \emph{fixed} range \([0,W]\) the arguments \(Xe^{\pm a}\) tend to infinity
-  with \(n\), so \eqref{eq:pnt-sub} holds with the error terms replaced by an
-  unspecified \(\varepsilon_W(n)\to0\), uniformly in \(a\), and every later
-  step uses only that the relative errors vanish. This matters to anyone
-  wishing to formalise the argument in a proof assistant, since it removes the
-  need for a prime number theorem \emph{with} an error term.
-\end{remark}
+    \item \emph{The proof uses no Riemann sums, no partition of the range, and
+      no interchange of limits}: \(W\) is an explicit function of \(n\), and
+      \eqref{eq:explicit} is a single estimate. That is a consequence of Lemma
+      \ref{lem:split}, which removes the \(\tfrac13\) exactly, together with the
+      observation that what remains has a summand constant to leading order.
 
-\begin{remark}\label{rem:buchstab-trap}
-  Two things about this deserve to be said, because both are traps.
+    \item \emph{The rate is not sharp.} It is limited by the truncation at
+      \(a=W\), not by the arithmetic input: at \(n=10^{14}\) the left-hand side
+      of \eqref{eq:explicit} is \(0.011\), against \(0.61\) for
+      \(\log\log n/\sqrt{\log n}\). How much better the truth is we do not
+      claim; multiplying the computed deviations by \(\log n\) gives
+      \(0.55,0.92,0.59,0.68,0.54,0.47,0.37\) at \(n=10^{6},\dots,10^{14}\),
+      which neither settles nor rules out a rate of \(1/\log n\). Sharpening the
+      theorem would mean treating the whole range \(0\le a\le M\) rather than
+      discarding \(a>W\).
 
-  First, no sieve theory is needed, and reaching for it gives the wrong answer.
-  The mass sits where \(p\) and \(n/p\) are both within a bounded factor of
-  \(\sqrt n\), that is, at \(u=\log(n/p)/\log p\to1\); and there \(\Phi\)
-  degenerates to the exact identity \(\Phi(x,y)=\pi(x)-\pi(y)+1\), valid for
-  \(y\ge\sqrt x\). The one-term Buchstab estimate
-  \(\Phi(x,y)\approx x\,\omega(u)/\log y\), fed into \eqref{eq:Sdef}, returns
-  \(8\) rather than \(16/3\); and it is uniform only for \(u\ge2\) \cite{Fan},
-  which excludes precisely the region carrying the mass. Lemma \ref{lem:split}
-  says exactly what goes missing. On \(1\le u\le2\) one has
-  \(\omega(u)=1/u\), so the one-term estimate amounts to replacing the second
-  factor of \(g\) by \(\pi(n/p)\) alone --- that is, to dropping the
-  \(-\pi(p)+1\). What is dropped is therefore
-  \(\sum_j(j-1)^{2}=(P-1)P(2P-1)/6\sim P^{3}/3\), which is
-  \(\tfrac83\,n^{3/2}/\log^{3}n\); restoring it gives \(8-\tfrac83=\tfrac{16}3\).
-  So the discrepancy is not a subtlety about \(\Phi\) at all, but the exact
-  square sum that Lemma \ref{lem:split} peels off.
-
-  Second, the convergence is slow and not monotone, so a numerical check over
-  too short a range is misleading. The raw quotient
-  \(S(n)\log^{3}n/n^{3/2}\) peaks near \(10.9\) around \(n=7\cdot10^{4}\) and is
-  still \(9.55\) at \(n=10^{7}\), against a limit of \(16/3=5.33\dots\). Most of
-  that discrepancy --- about two thirds of it, on a logarithmic scale, over the
-  range tabulated --- is the difference between \(\pi(\sqrt n)\) and
-  \(2\sqrt n/\log n\), which is cubed here; the factor
-  \(\bigl(\pi(\sqrt n)\log n/2\sqrt n\bigr)^{3}\) is \(1+6/\log n\) to first
-  order, and is \(1.56\) at \(n=10^{6}\). Measured instead against
-  \(\tfrac23\pi(\sqrt n)^{3}\), which absorbs that factor entirely, the picture
-  is much better behaved --- though still not monotone, see Figure
-  \ref{fig:ratio}.
+    \item \emph{The hypotheses can be weakened} if one wants only the asymptotic
+      and no rate. Lemma \ref{lem:pnt-unif} was stated with the prime number
+      theorem in the sharp form \(\pi(y)=y/\log y+O(y/\log^{2}y)\) because that
+      is what produces an explicit error. The bare prime number theorem
+      \(\pi(y)\sim y/\log y\) already suffices for
+      \(S(n)\sim\tfrac23\pi(\sqrt n)^{3}\): for \(a\) in a \emph{fixed} range
+      \([0,W]\) the arguments \(Xe^{\pm a}\) tend to infinity with \(n\), so
+      \eqref{eq:pnt-sub} holds with the error terms replaced by an unspecified
+      \(\varepsilon_W(n)\to0\), uniformly in \(a\); one then lets \(W\to\infty\)
+      afterwards, the tail of Lemma \ref{lem:tail} being \(O(e^{-W})\). This
+      matters to anyone wishing to formalise the argument in a proof assistant,
+      since it removes the need for a prime number theorem \emph{with} an error
+      term.
+  \end{enumerate}
 \end{remark}
 
 \begin{figure}[ht]
@@ -1280,6 +1297,49 @@ Finally, three integer sequences arising here deserve to be in the OEIS.
 sequence \(C_{n,2}\) and the triangle \(C_{n,v}\) appear not to be present at
 all.
 
+\section*{Notation}
+
+Collected for reference; equation numbers point at the defining display.
+
+\begingroup\small
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+  \toprule
+  \multicolumn{2}{@{}l}{\emph{Arithmetical}}\\
+  \(p_1=2<p_2<\cdots\)      & the primes \\
+  \(\pi(x)\)                & the number of primes \(\le x\) \\
+  \(\Om(m)\), also \(\lambda\) & number of prime factors of \(m\), with multiplicity \\
+  \(\lpf(m)\)               & least prime factor of \(m>1\) \\
+  \(\operatorname{sfp}(m)\) & squarefree part of \(m\) \\
+  \(\Phi(x,y)\)             & Legendre's sifting function, \eqref{eq:phidef} \\
+  \(R_p(y)\)                & number of \(p\)-rough integers \(\le y\) \\
+  \(\omega(u)\)             & Buchstab's function; used only in Remark \ref{rem:hypotheses} \\
+  \addlinespace
+  \multicolumn{2}{@{}l}{\emph{Of this note and of \cite{Snellman2000}}}\\
+  \(\Gam\), \(\Gam_n\)      & the ring of number-theoretic functions, and its truncation \\
+  \(S\), \(I_n\)            & \(K[x_1,\dots,x_r]\) with \(r=\pi(n)\), and the truncation ideal \\
+  \(w(m)\)                  & weight of a monomial, \(\prod_ip_i^{a_i}\) \\
+  \(G(I_n)\)                & the minimal monomial generating set \\
+  \(\min(m)\), \(\max(m)\)  & least and greatest index occurring in \(m\) \\
+  \(C_{n,v}\), \(C_n\)      & generator counts by least support, and their total, \eqref{eq:Cdef} \\
+  \(E(n,v)\)                & composite \(p_v\)-rough integers \(\le n\), \eqref{eq:Edef} \\
+  \(D_n\), \(q_n\)          & denominators of the Poincaré--Betti series, \eqref{eq:PB} \\
+  \(\ell_1\), \(\ell_2\)    & the exponents of Conjecture 4.6 \\
+  \(S(n)\), \(S_2(n)\)      & the error term \eqref{eq:Sdef}, and its \(\Om=2\) part \\
+  \(T(n)\), \(P\)           & Lemma \ref{lem:split}; \(P=\pi(\sqrt n)\) \\
+  \(X\), \(M\)              & \(\sqrt n\) and \(\log\sqrt n\), \eqref{eq:XM} \\
+  \(\operatorname{soc}\)    & socle, Section \ref{sec:socle} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+
+Two collisions with standard usage are worth flagging. Here \(\omega\) is
+Buchstab's function, not the number of \emph{distinct} prime factors, which this
+note never uses. And \(T(n)\) is the sum of Lemma \ref{lem:split}; the
+accompanying computational report \cite{gitrepo} uses the same letter for an
+unrelated quantity in its \(\Om\ge3\) table.
+
 \section*{Acknowledgements}
 
 The whole subject of this note, and of \cite{Snellman2000} before it, is owed
@@ -1309,8 +1369,11 @@ Bigatti--Hulett--Pardue bound. Each of these constrains an arbitrary object with
 a given Hilbert function, and is therefore only as strong as the worst such
 object. But \(\Gam_n\) is nowhere near extremal, and the resulting bounds are
 correspondingly slack. Concretely: \(\{1,2,\dots,n\}\) is a multicomplex, so by
-Macaulay's theorem the sequence \(d\mapsto\#\{m\le n : \Om(m)=d\}\) --- the
-Landau counts --- must be an \(M\)-sequence, which yields growth bounds free of
+Macaulay's theorem the sequence
+\[
+  d\ \longmapsto\ \#\{\,m\le n : \Om(m)=d\,\},
+\]
+the Landau counts, must be an \(M\)-sequence, which yields growth bounds free of
 any analytic input. They are true and they are useless. At \(n=200\) there are
 \(46\) primes, and Macaulay permits as many as \(1081\) integers with
 \(\Om=2\); the true number is \(62\). No inequality of that kind is going to
@@ -1371,7 +1434,7 @@ proof; the reduction of Conjecture 4.6 to the order of vanishing of \(D_n\) at
 asymptotic Theorem \ref{thm:asymp}; the identification of \(C_n\) with
 \seqnum{A182843}; Theorem \ref{thm:error} together with Lemmas
 \ref{lem:semiprime}, \ref{lem:pnt-unif} and \ref{lem:tail}, and the two
-cautions of Remark \ref{rem:buchstab-trap}; and
+cautions now folded into Remark \ref{rem:hypotheses}; and
 the contents of Section \ref{sec:socle}. Claude also located and verified the
 references, drew Figures \ref{fig:profile} and \ref{fig:ratio}, wrote the accompanying
 \textsf{SageMath} code and the Lean formalisation mentioned in Open Problem
@@ -1531,11 +1594,14 @@ arXiv:2608.15955.
 Gérald Tenenbaum,
 \emph{Introduction to Analytic and Probabilistic Number Theory},
 3rd ed., Grad. Stud. Math. \textbf{163}, Amer. Math. Soc., 2015.
-% TODO(Jan): Ch. III.6 is "Integers free of small prime factors"; the citing
-% literature points at Theorem III.6.7 for the uniform Phi(x,y) statement, but
-% that number could NOT be verified against the book (AMS 403s, and we do not
-% download commercial texts). Check against a physical or LiU-subscription copy
-% before adding a theorem number anywhere.
+% NOTE (2026-08-28): Ch. III.6 is "Integers free of small prime factors".  While
+% preparing references/CERTIFICATE.md, Fan (arXiv:2306.03347) was found to give the
+% locator directly -- its eq. (1.3) is followed by "uniformly for 2 <= y <= sqrt x
+% (see [13, Theorem III.6.4])", [13] being this book, and it cites [13, Cor. III.6.5]
+% for omega(u) = e^{-gamma} + O(u^{-u/2}).  So the number is III.6.4, not the III.6.7
+% an earlier note guessed.  That is SECONDARY corroboration from a paper citing the
+% book, not verification against the book, so no theorem number is given here.  Check
+% a physical or LiU-subscription copy before adding one.
 
 \bibitem{OEIS}
 The On-Line Encyclopedia of Integer Sequences, published electronically at
