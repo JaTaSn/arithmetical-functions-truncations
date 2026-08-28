@@ -5,7 +5,7 @@
 # Purpose: the paper's numbers came from `article/code/getsols.maple` in 1999.
 # This is a from-scratch reimplementation along a *different* route (direct
 # enumeration of minimal monomial generators as integers), so that agreement is
-# evidence and disagreement is a finding.  Feeds artefacts/errata-*.md.
+# evidence and disagreement is a finding.  Feeds working-notes/errata-*.md.
 #
 # Changelog (reverse chronological):
 #   2026-08-25  Claude-Code-6d5c5b66 (jts-pc) -- initial version.
