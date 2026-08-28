@@ -10,6 +10,21 @@
 %     Jan); the Johan Andersson paragraph expanded with why the algebra->number-theory
 %     transfer he hoped for has not materialised -- extremal results are slack here,
 %     exact ones (Eliahou-Kervaire, Duval-Reiner) are what actually carry.
+%   2026-08-28d Claude-Code (jts-pc) -- fixes from a fable adversarial review of Sections
+%     2-4, which had never had one.  Theorem 4 itself withstood the attack; the findings are
+%     around it.  Prop \ref{prop:fixed35}'s "the equality range is a finite check" dismissed
+%     an INFINITE claim (strictness for every n >= 9) as finite -- now proved, by counting
+%     the generators supported on {1,2} exactly: there are floor(log_3 n) of them, so two or
+%     more precisely when n >= 9 (checked n = 3..599).  The sentence "the two cases are one
+%     formula, since lpf n = n for n prime" was FALSE and was a fossil of the Iverson bracket
+%     removed on 08-27: substituting lpf n = n into the composite branch gives pi(n) - 1, not
+%     pi(n).  E(n,v) was glossed as "composite p_v-rough", but p-rough here means all factors
+%     >= p, whereas eq:Edef needs > p_v.  The claim that omega "appears here only once" was
+%     false (it appears again in Related work).  The direct argument after Prop
+%     \ref{prop:fixed345} is valid only for v > 1.  Bertrand quoted as "(y,2y) for every
+%     y >= 1" is false at y = 1.  Prop \ref{prop:fixed345} restricted to v <= pi(n), matching
+%     Theorem \ref{thm:main}'s own range.  And the P of Theorem \ref{thm:main}'s proof
+%     renamed q, P being pi(sqrt n) from eq:XM onwards.
 %   2026-08-28c Claude-Code (jts-pc) -- fixes from a fable adversarial review of Sections 5
 %     and 7, which had never had one.  BIBLIOGRAPHIC, and the serious one: a single entry
 %     conflated TWO papers -- arXiv:math/0205242 "general truncations" and math/0208183
@@ -280,9 +295,9 @@ prime factors of \(m\) counted with multiplicity, so that
 \(\Om(p_1^{a_1}\cdots p_r^{a_r})=a_1+\dots+a_r\), with \(\Om(1)=0\); following
 \cite{Snellman2000} we also write \(\lambda\) for \(\Om\). The companion
 function counting prime factors \emph{without} multiplicity, usually written
-\(\omega\), is not used in this note --- the symbol \(\omega\) appears here only
-once, in Remark \ref{rem:hypotheses}, and there it denotes Buchstab's function,
-an unrelated object.
+\(\omega\), is not used in this note. Where the symbol \(\omega\) does appear
+--- in Remark \ref{rem:hypotheses} and in Section \ref{sec:related} --- it
+always denotes Buchstab's function, an unrelated object.
 
 We shall use the following description, which is Theorem 3.2 of
 \cite{Snellman2000}.
@@ -323,20 +338,20 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
 \end{theorem}
 
 \begin{proof}
-  Write \(P=p_v\). Every \(P\)-rough integer \(m\) factors uniquely as
-  \(m=P^{a}m'\) with \(a\ge0\) and \(m'\) free of prime factors \(\le P\);
-  conversely every such pair \((a,m')\) gives a \(P\)-rough integer. Counting
+  Write \(q=p_v\). Every \(q\)-rough integer \(m\) factors uniquely as
+  \(m=q^{a}m'\) with \(a\ge0\) and \(m'\) free of prime factors \(\le q\);
+  conversely every such pair \((a,m')\) gives a \(q\)-rough integer. Counting
   those with \(m\le y\) according to \(a\) gives
   \begin{equation}\label{eq:Rsum}
-    R_P(y)=\sum_{a\ge0}\Phi\!\left(y/P^{a},\,P\right),
+    R_P(y)=\sum_{a\ge0}\Phi\!\left(y/q^{a},\,q\right),
   \end{equation}
-  a finite sum, since the terms vanish once \(P^{a}>y\). Substituting
+  a finite sum, since the terms vanish once \(q^{a}>y\). Substituting
   \eqref{eq:Rsum} into \eqref{eq:CasR}, the two sums telescope:
   \begin{align*}
-    C_{n,v}&=R_P(n)-R_P(n/P)\\
-           &=\sum_{a\ge0}\Phi\!\left(\frac{n}{P^{a}},P\right)
-            -\sum_{a\ge0}\Phi\!\left(\frac{n}{P^{a+1}},P\right)\\
-           &=\Phi(n,P).\qedhere
+    C_{n,v}&=R_P(n)-R_P(n/q)\\
+           &=\sum_{a\ge0}\Phi\!\left(\frac{n}{q^{a}},q\right)
+            -\sum_{a\ge0}\Phi\!\left(\frac{n}{q^{a+1}},q\right)\\
+           &=\Phi(n,q).\qedhere
   \end{align*}
 \end{proof}
 
@@ -407,10 +422,13 @@ Corollary \ref{cor:split} contains Theorem 3.4(2) of \cite{Snellman2000} (put
     \end{cases}
   \]
   recorded empirically by Costello for the OEIS sequence \seqnum{A182843}; see
-  Section \ref{sec:asymptotics}. The two cases are one formula, since
-  \(\lpf n=n\) for \(n\) prime: the passage from \(n-1\) to \(n\) adds
-  \(\pi(n)\) to \(\binom{\pi(n)+1}{2}\) when \(n\) is prime, and adds
-  \(\pi(\lpf n)-1\) to the sum over composites otherwise.
+  Section \ref{sec:asymptotics}. The two cases have different sources: when
+  \(n\) is prime the whole increment comes from \(\binom{\pi(n)+1}{2}\), which
+  grows by \(\pi(n)\), and the sum over composites is unchanged; when \(n\) is
+  composite the binomial is unchanged and the sum gains the single term
+  \(\pi(\lpf n)-1\). They can be written as one expression,
+  \([\,n\text{ prime}\,]+\bigl(\pi(\lpf n)-1\bigr)\) with an Iverson bracket,
+  because \(\lpf n=n\) for \(n\) prime.
 \end{remark}
 
 \section{Errata for \texorpdfstring{\cite{Snellman2000}}{[Sne00]}}\label{sec:errata}
@@ -452,8 +470,24 @@ Theorem 3.4(2)--(3) of \cite{Snellman2000} actually establishes.
   Now \(x_i^{\,b-1}\notin I_n\) because \(p_i^{\,b-1}\le n\), so \(m\) is not a
   power of \(x_i\); and \(x_j\notin I_n\) because \(p_j\le n\), so \(m\) is not
   a power of \(x_j\). Hence \(\operatorname{supp}(m)=\{i,j\}\). Distinct pairs
-  give distinct generators, whence the inequality. The equality range is a
-  finite check.
+  give distinct generators, whence the inequality.
+
+  For the equality range, count the generators supported on \(\{1,2\}\)
+  exactly. Let \(b^{*}=\max\{\,b\ge1 : 3^{b}\le n\,\}\), and for
+  \(1\le b\le b^{*}\) put \(a(b)=\min\{\,a\ge1 : 2^{a}3^{b}>n\,\}\). Then
+  \(x_1^{a(b)}x_2^{b}\) is a minimal generator: its weight exceeds \(n\) by
+  definition; \(2^{a(b)-1}3^{b}\le n\) by minimality of \(a(b)\) when
+  \(a(b)\ge2\), and because \(3^{b}\le n\) when \(a(b)=1\); and
+  \[
+    2^{a(b)}3^{\,b-1}=\tfrac13\cdot2^{a(b)}3^{b}
+      \le\tfrac13\cdot2\cdot2^{a(b)-1}3^{b}\le\tfrac23n\le n .
+  \]
+  Conversely every generator supported on \(\{1,2\}\) arises this way, since
+  \(2^{a-1}3^{b}\le n\) forces \(b\le b^{*}\), and \(a\) is then determined.
+  So there are exactly \(b^{*}\) of them.
+
+  Hence the inequality is strict as soon as \(b^{*}\ge2\), that is, as soon as
+  \(n\ge9\); and for \(2\le n\le8\) equality is a finite check.
 \end{proof}
 
 \subsection{Two incomplete proofs}
@@ -474,8 +508,9 @@ immediate, and effective.
 \begin{proof}
   Put \(u=1+\pi(n)-v\). By Corollary \ref{cor:split}, \(C_{n,u}=v\) if and only
   if \(p_{u+1}^{2}>n\), where \(p_{u+1}=p_{\pi(n)-v+2}\). By Bertrand's postulate
-  there is a prime in \((y,2y)\) for every \(y\ge1\); applied repeatedly this
-  gives \(p_{\pi(n)-j+1}>n/2^{\,j}\) for \(j\ge1\), so
+  there is a prime in \((y,2y)\) for every \(y>1\); applied repeatedly this
+  gives \(p_{\pi(n)-j+1}>n/2^{\,j}\) for \(j\ge1\), while for \(j=0\) the same
+  inequality reads \(p_{\pi(n)+1}>n\), true by definition of \(\pi\). So
   \(p_{\pi(n)-v+2}>n/2^{\,v-1}\) and hence \(p_{u+1}^{2}>n^{2}/4^{\,v-1}\), which
   exceeds \(n\) as soon as \(n>4^{\,v-1}\).
 \end{proof}
@@ -488,7 +523,8 @@ is not addressed. The statement is nonetheless true, and with Theorem
 \ref{thm:main} the whole matter is a triviality.
 
 \begin{proposition}\label{prop:fixed345}
-  If \(n\ge4\) is even then \(C_{n,v}=C_{n-1,v}\) for all \(v\ge1\).
+  If \(n\ge4\) is even then \(C_{n,v}=C_{n-1,v}\) for \(1\le v\le\pi(n)\); for
+  \(v>\pi(n)\) both sides vanish.
 \end{proposition}
 
 \begin{proof}
@@ -500,10 +536,15 @@ is not addressed. The statement is nonetheless true, and with Theorem
 
 \begin{remark}
   For completeness we note that the argument omitted in \cite{Snellman2000} can
-  also be supplied directly: an integer lying in \(((n-1)/p_v,\,n/p_v]\) is
-  unique if it exists, since that interval has length \(1/p_v<1\), and it must
-  satisfy \(p_vx=n\); as \(n\) is even and \(p_v\) odd for \(v>1\), such an
-  \(x\) is even and so is excluded by the condition on prime factors.
+  also be supplied directly, \emph{for \(v>1\)}: an integer lying in
+  \(((n-1)/p_v,\,n/p_v]\) is unique if it exists, since that interval has length
+  \(1/p_v<1\), and it must satisfy \(p_vx=n\); as \(n\) is even and \(p_v\) odd
+  for \(v>1\), such an \(x\) is even and so is excluded by the condition on
+  prime factors. At \(v=1\) this fails: the roughness condition is then vacuous,
+  and the two sets of Theorem \ref{thm:S32} genuinely differ, neither containing
+  the other, their cardinalities agreeing only after a compensating gain at the
+  top end. That case is \cite{Snellman2000}'s own item (6),
+  \(C_{n,1}=\lceil n/2\rceil\), and needs no repair.
 \end{remark}
 
 \subsection{Smaller items}
@@ -673,7 +714,8 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
   the range \(v>\ell_1(n)\), and departs from linearity at \(v=\ell_1(n)\).
   Corollary \ref{cor:split} makes both halves of that assertion visible at
   once, because it measures the departure from linearity by \(E(n,v)\), a count
-  of composite rough numbers which is positive exactly when
+  of composites all of whose prime factors exceed \(p_v\), which is positive
+  exactly when
   \(p_{v+1}^{2}\le n\). Figure \ref{fig:profile} shows the effect.
 \end{remark}
 
@@ -682,8 +724,8 @@ single quantity: the order of vanishing of \(D_n\) at \(t=-1\).
   \includegraphics[width=\linewidth]{Cnv-profile.pdf}
   \caption{The profile \(v\mapsto C_{n,v}=\Phi(n,p_v)\) for \(n=200\), against
     the line \(\pi(n)-v+1\) of Corollary \ref{cor:split}. The vertical distance
-    between them is \(E(n,v)\), the number of composite \(p_v\)-rough integers
-    \(\le n\); here \(\pi(n)=46\) and \(\ell_1(n)=5\), and the two coincide
+    between them is \(E(n,v)\), the number of composites \(\le n\) all of whose
+    prime factors exceed \(p_v\); here \(\pi(n)=46\) and \(\ell_1(n)=5\), and the two coincide
     for every \(v>5\). That the profile is exactly linear of slope \(-1\)
     beyond \(v=\ell_1(n)\), and only there, is what Proposition
     \ref{prop:order} extracts as the order of vanishing of \(D_n\) at
@@ -1335,7 +1377,7 @@ Collected for reference; equation numbers point at the defining display.
   \(\operatorname{sfp}(m)\) & squarefree part of \(m\) \\
   \(\Phi(x,y)\)             & Legendre's sifting function, \eqref{eq:phidef} \\
   \(R_p(y)\)                & number of \(p\)-rough integers \(\le y\) \\
-  \(\omega(u)\)             & Buchstab's function; used only in Remark \ref{rem:hypotheses} \\
+  \(\omega(u)\)             & Buchstab's function, \emph{not} the count of distinct prime factors \\
   \addlinespace
   \multicolumn{2}{@{}l}{\emph{Of this note and of \cite{Snellman2000}}}\\
   \(\Gam\), \(\Gam_n\)      & the ring of number-theoretic functions, and its truncation \\
@@ -1343,8 +1385,9 @@ Collected for reference; equation numbers point at the defining display.
   \(w(m)\)                  & weight of a monomial, \(\prod_ip_i^{a_i}\) \\
   \(G(I_n)\)                & the minimal monomial generating set \\
   \(\min(m)\), \(\max(m)\)  & least and greatest index occurring in \(m\) \\
+  \(\operatorname{supp}(m)\) & the set of indices occurring in \(m\) \\
   \(C_{n,v}\), \(C_n\)      & generator counts by least support, and their total, \eqref{eq:Cdef} \\
-  \(E(n,v)\)                & composite \(p_v\)-rough integers \(\le n\), \eqref{eq:Edef} \\
+  \(E(n,v)\)                & composites \(\le n\) with every prime factor \(>p_v\), \eqref{eq:Edef} \\
   \(D_n\), \(q_n\)          & denominators of the Poincaré--Betti series, \eqref{eq:PB} \\
   \(\ell_1\), \(\ell_2\)    & the exponents of Conjecture 4.6 \\
   \(S(n)\), \(S_2(n)\)      & the error term \eqref{eq:Sdef}, and its \(\Om=2\) part \\
@@ -1356,11 +1399,15 @@ Collected for reference; equation numbers point at the defining display.
 \end{center}
 \endgroup
 
-Two collisions with standard usage are worth flagging. Here \(\omega\) is
+Four collisions are worth flagging. Against standard usage: \(\omega\) here is
 Buchstab's function, not the number of \emph{distinct} prime factors, which this
-note never uses. And \(T(n)\) is the sum of Lemma \ref{lem:split}; the
-accompanying computational report \cite{gitrepo} uses the same letter for an
-unrelated quantity in its \(\Om\ge3\) table.
+note never uses. Against the accompanying computational report \cite{gitrepo}:
+\(T(n)\) is the sum of Lemma \ref{lem:split}, while that report uses the same
+letter for an unrelated quantity in its \(\Om\ge3\) table. And two internal ones,
+both harmless but worth naming: \(S\) is the polynomial ring while \(S(n)\) is
+the error term \eqref{eq:Sdef}, and \(q\) is a generic prime in Sections
+\ref{sec:main}--\ref{sec:errata} while \(q_n\) is a polynomial in Section
+\ref{sec:conjecture}.
 
 \section*{Acknowledgements}
 
