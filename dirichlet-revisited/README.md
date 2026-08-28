@@ -45,6 +45,7 @@ code/sage/        the 2026 recomputation -- SageMath + Python
 code/maple/       the original 1999 Maple code, as it was
 code/macaulay2/   an independent check of Section 4 via genuine free resolutions
 runs/             raw output of all of the above
+references/       certificate of existence for the references new to this note
 LEAN/             Lean 4 + Mathlib formalization -- see LEAN/README.md
 ```
 
@@ -145,6 +146,12 @@ generator counts and assembles the Poincaré–Betti series (`PBI`, `PBKK`, and 
 DirichletTruncations`. The end-to-end statement is `Conjecture46` in
 `LEAN/DirichletTruncations/Chain.lean`: 667 lines over three files, 0 `sorry`, and `#print axioms`
 gives `propext`, `Classical.choice`, `Quot.sound` and nothing else.
+
+**References.** [`references/CERTIFICATE.md`](references/CERTIFICATE.md) records, for each of the
+fifteen references new to this note, what the manuscript uses it for, whether a primary source is
+in the working corpus, and a verbatim quotation where it is. Nine have one; six do not, and say so.
+Nothing whose source is unavailable carries a proof. The 2000 paper's own six references are not
+re-certified.
 
 ## The arXiv bundle
 
