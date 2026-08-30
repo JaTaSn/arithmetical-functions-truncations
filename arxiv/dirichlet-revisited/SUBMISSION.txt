@@ -52,15 +52,18 @@ are incomplete. Corrected statements and complete proofs are given.
 --------------------------------------------------------------------------------
 4. COMMENTS
 --------------------------------------------------------------------------------
-23 pages, 2 figures. Ancillary material: a Lean 4 / Mathlib formalization of the
-central splitting lemma, and the Sage, Macaulay2 and Maple scripts reproducing
-every numerical claim.
+23 pages, 2 figures. Written with substantial assistance from a large language
+model (Claude, Anthropic); Section "Disclosure of AI assistance" sets out what it
+did. The author has verified the results and takes full responsibility for them.
+Ancillary material: a Lean 4 / Mathlib formalization of the central splitting
+lemma, and the Sage, Macaulay2 and Maple scripts reproducing every numerical
+claim.
 
-  [If you want the AI-assistance disclosure visible on the abstract page rather
-  than only in the paper's own "Disclosure of AI assistance" section, append:
-  "Written with AI assistance; see the disclosure section." That is not required
-  by arXiv's policy, which asks for disclosure in the manuscript -- it is a
-  judgement call about visibility.]
+  Wording follows the manuscript's own disclosure section rather than paraphrasing
+  it, so the abstract page and the paper cannot drift apart. The responsibility
+  sentence is the part arXiv's policy actually turns on -- the disclosure is only
+  half of what it asks for; the author standing behind the content is the other
+  half.
 
 --------------------------------------------------------------------------------
 5. REPORT NUMBER

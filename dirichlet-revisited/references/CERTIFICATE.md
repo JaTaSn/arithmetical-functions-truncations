@@ -232,14 +232,24 @@ What is true, from three independent places:
 3. **The published paper merges them.** Its zbMATH review summary gives the general-\(V\) case
    first, then says "In the second part, we study the case \(V=[n]\)".
 
-The manuscript's two entries now each carry the correct journal line, identified as the first and
-second part of that single article.
+**Settled 2026-08-30 by the author: cite the preprints only.** Jan checked his office and has
+reprints of his IJMGTA **2000** paper (Gröbner bases in infinitely many variables) and his **2002**
+one (factorisation in topological monoids) — both on unrelated topics — but **not** of the 2003
+paper. So which preprint became which part of the merged article cannot be checked against a copy,
+and would remain an inference from a zbMATH review's paragraph order.
 
-**One inference still needs the author's word.** That *general truncations* is the first part and
-*the [n]-truncation* the second is read off the review's structure, not from the published paper
-itself. It is very likely right — the review's two paragraphs reproduce the two preprints' abstracts
-in that order — but Jan wrote it and can confirm in a second. If it is the other way round, swap
-"first" and "second" in the two `\bibitem`s; nothing else depends on it.
+The entries therefore give **arXiv identifiers and nothing else**. That is not merely the cautious
+choice, it is the better one on two counts:
+
+- The preprints are freely accessible; the published article is in a Nova Science journal that
+  neither zbMATH nor arXiv links a copy of, and which the author himself cannot lay hands on.
+- The manuscript cites **§7 of math/0208183** by section number. A merged article would not preserve
+  the preprints' section numbering, so a citation to the published version would have been *less*
+  precise — and reproducing exactly the defect this entry was created to fix, where a section
+  reference pointed into a document that had no such section.
+
+Labels are `[Sne02a]`/`[Sne02b]`, by arXiv deposit year, matching every other preprint in the list.
+The zbMATH finding is kept as a comment in the `.tex` beside the entries, so it is not lost.
 
 ### 9. Snellman, Laplacians — `\cite{SnellmanLaplacians}`
 
