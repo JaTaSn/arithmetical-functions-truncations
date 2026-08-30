@@ -192,7 +192,32 @@ repository, which would be an odd mismatch for the same text.
 ================================================================================
 WHAT TO UPLOAD
 ================================================================================
-Upload the contents of this directory, NOT the directory itself:
+A ready-made bundle is built at the repository root:
+
+    truncations-revisited-arxiv-20260830.tar.gz     (112 KB, 30 entries)
+
+Verified by extracting it into an empty directory and compiling there: it builds
+standalone under xelatex, 23 pages, and its typeset output is byte-identical to
+the repository's own build. Files sit at the TOP LEVEL of the archive, which is
+what arXiv expects -- a bundle with everything inside a subdirectory is a common
+way to get a confusing build failure.
+
+To regenerate after any change (the list comes from git, so build products cannot
+leak in by construction):
+
+    D=arxiv/dirichlet-revisited
+    git ls-files "$D" | sed "s|^$D/||" \
+      | grep -vE '^(README\.md|abstract\.txt|SUBMISSION\.txt)$' > /tmp/l.txt
+    tar -czf truncations-revisited-arxiv-$(date +%Y%m%d).tar.gz -C "$D" -T /tmp/l.txt
+
+The tarball itself is gitignored -- it is reproducible from the tracked sources.
+To record which commit was actually submitted, tag it:
+
+    git tag -a arxiv-submission-2026-08-30 -m "Submitted to arXiv"
+
+which is what was done for LiTH-MAT-R-2026/02 in the lattice-line-covers repo.
+
+Contents, for reference:
 
     truncations-revisited.tex     the source; arXiv compiles it
     Cnv-profile.pdf               figure 1

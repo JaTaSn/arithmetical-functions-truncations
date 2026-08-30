@@ -18,3 +18,8 @@ arxiv/**/*.pdf
 
 # AUCTeX per-directory parse cache -- editor state, not source.
 .auctex-auto/
+
+# The arXiv upload bundle is reproducible from the tracked sources -- see the
+# regeneration command in arxiv/dirichlet-revisited/SUBMISSION.txt -- so it is not
+# tracked. Use a git tag to record which commit was actually submitted.
+*-arxiv-*.tar.gz
