@@ -52,18 +52,41 @@ are incomplete. Corrected statements and complete proofs are given.
 --------------------------------------------------------------------------------
 4. COMMENTS
 --------------------------------------------------------------------------------
-23 pages, 2 figures. Written with substantial assistance from a large language
-model (Claude, Anthropic); Section "Disclosure of AI assistance" sets out what it
-did. The author has verified the results and takes full responsibility for them.
-Ancillary material: a Lean 4 / Mathlib formalization of the central splitting
-lemma, and the Sage, Macaulay2 and Maple scripts reproducing every numerical
-claim.
+The Comments field has a length limit, and it has to hold every future "v2: ...",
+"v3: ..." revision note as well -- Jan has hit the ceiling before, on a fourth
+revision. So four versions below, shortest usable first. Character counts are
+exact.
 
-  Wording follows the manuscript's own disclosure section rather than paraphrasing
-  it, so the abstract page and the paper cannot drift apart. The responsibility
-  sentence is the part arXiv's policy actually turns on -- the disclosure is only
-  half of what it asks for; the author standing behind the content is the other
-  half.
+>>> USE THIS ONE (206 chars) <<<
+
+23 pages, 2 figures. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
+
+--- shorter, if headroom is tight (146 chars) ---
+
+23 pages, 2 figures. Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
+
+--- shortest defensible (113 chars) ---
+
+23 pages, 2 figures. AI-assisted (Claude, Anthropic); see disclosure section. Author responsible for all content.
+
+--- the long form, for reference only (403 chars) ---
+
+23 pages, 2 figures. Written with substantial assistance from a large language model (Claude, Anthropic); Section "Disclosure of AI assistance" sets out what it did. The author has verified the results and takes full responsibility for them. Ancillary material: a Lean 4 / Mathlib formalization of the central splitting lemma, and the Sage, Macaulay2 and Maple scripts reproducing every numerical claim.
+
+  WHAT WAS CUT, AND WHY IT WAS THE RIGHT HALF. The long form spent 197 of its 403
+  characters describing the ancillary material -- which arXiv already lists on the
+  abstract page under its own "Ancillary files" heading, with the actual filenames.
+  It was duplicating something the page renders anyway. Cutting it halves the field
+  and loses nothing a reader can see.
+
+  WHAT MUST NOT BE CUT: the model's name and vendor, and the responsibility
+  sentence. Disclosure is only half of what arXiv's policy asks for; the author
+  standing behind the content is the other half, and it is the half that matters if
+  a reference is ever challenged. The 113-char version is the floor -- below that
+  the responsibility clause starts turning into a shrug.
+
+  Wording tracks the manuscript's own disclosure section rather than paraphrasing
+  it, so the abstract page and the paper cannot drift apart across revisions.
 
 --------------------------------------------------------------------------------
 5. REPORT NUMBER
