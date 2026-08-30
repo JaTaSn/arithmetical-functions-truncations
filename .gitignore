@@ -15,3 +15,6 @@ arxiv/**/*.pdf
 # LaTeX directories.  A run output named foo.log or foo.out anywhere in this repository is
 # silently dropped by `git add` -- which is why everything in runs/ is .txt.  If you ever add
 # a run output with another extension, check `git check-ignore -v <path>` first.
+
+# AUCTeX per-directory parse cache -- editor state, not source.
+.auctex-auto/
