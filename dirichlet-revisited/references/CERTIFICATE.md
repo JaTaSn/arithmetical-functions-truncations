@@ -210,12 +210,36 @@ and Lemma 7.1, which is the condition the manuscript quotes:
 > Socle(A[n]) is spanned as a C-vector space by the set { e_k : 1 < k ≤ n, **kp > n for all p ∈ P
 > such that gcd(k, p) = 1** }
 
-**One question left for the author.** Both arXiv records claim the *same* journal, volume, issue
-and page range — Int. J. Math. Game Theory Algebra **13** (2003), no. 6, 485–519. The workspace's
-own `preprints-publications/PUBLISHED-ARTICLES.md` flags this twice as unresolved, noting that ORCID
-lists only *one* matching published work. So it is possible these are two preprints that became one
-published paper. The manuscript currently gives both entries that same journal line, following
-arXiv. **Jan should confirm before submission**; he is the author and can settle it at once.
+**RESOLVED 2026-08-30 — and the premise of the question was itself false.**
+
+The earlier text here said "both arXiv records claim the same journal, volume, issue and page
+range". They do not. **arXiv sets no journal-ref on either record** — checked directly against
+`arxiv.org/abs/math/0205242` and `arxiv.org/abs/math/0208183`, where the field is absent on both.
+The page range had been asserted, attributed to arXiv, and then propagated into the manuscript and
+into `PUBLISHED-ARTICLES.md`, with no source that actually said it. That is the failure mode this
+document exists to catch, one level up: not a misquoted theorem, but a *provenance* claim nobody
+re-checked.
+
+What is true, from three independent places:
+
+1. **They are two distinct preprints.** The deposited PDFs carry different arXiv stamps and dates
+   (`math/0205242v1`, 23 May 2002; `math/0208183v1`, 23 Aug 2002), different titles, different
+   abstracts.
+2. **There is exactly one published article.** zbMATH has a single item, **Zbl 1165.11301**,
+   *Truncations of the ring of arithmetical functions with unitary convolution*, Int. J. Math. Game
+   Theory Algebra **13** (2003), no. 6, 485–519 — a title matching neither preprint — linking only
+   `math/0205242`. This also explains the ORCID observation that prompted the original doubt.
+3. **The published paper merges them.** Its zbMATH review summary gives the general-\(V\) case
+   first, then says "In the second part, we study the case \(V=[n]\)".
+
+The manuscript's two entries now each carry the correct journal line, identified as the first and
+second part of that single article.
+
+**One inference still needs the author's word.** That *general truncations* is the first part and
+*the [n]-truncation* the second is read off the review's structure, not from the published paper
+itself. It is very likely right — the review's two paragraphs reproduce the two preprints' abstracts
+in that order — but Jan wrote it and can confirm in a second. If it is the other way round, swap
+"first" and "second" in the two `\bibitem`s; nothing else depends on it.
 
 ### 9. Snellman, Laplacians — `\cite{SnellmanLaplacians}`
 

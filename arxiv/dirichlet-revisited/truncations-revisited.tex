@@ -4,6 +4,23 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-08-30  Claude-Code (jts-pc) -- pre-submission pass.  CITATION STYLE: numeric labels
+%     replaced by alphabetical abbreviated ones ([Sne00], [AH96], ...), Jan's request -- a
+%     manuscript this dense in numbered theorems, equations and conjectures made numeric citations
+%     hard to tell apart from cross-references.  Entries are now sorted by label, as alpha style
+%     requires.  BIBLIOGRAPHIC, and the serious one: the two 2003 unitary-convolution entries each
+%     carried "Int. J. Math. Game Theory Algebra 13 (2003), no. 6, 485-519", which cannot be right
+%     for two distinct papers, and the 08-28c note attributed that page range to arXiv's metadata.
+%     arXiv sets NO journal-ref on either record.  The deposited PDFs confirm the preprints are
+%     genuinely distinct (different ids, 2002-05-23 vs 2002-08-23, different titles and abstracts);
+%     zbMATH has exactly ONE published item, Zbl 1165.11301, linking only arXiv:math/0205242, whose
+%     review treats the general case first and V = [n] "in the second part".  So: two preprints,
+%     one published article, and the entries now say which part each became.  JAN TO CONFIRM the
+%     first-part/second-part attribution, which is inferred from that review's structure.  Also:
+%     the gitrepo entry pointed at ai-workspace, which is PRIVATE and unreachable to any reader --
+%     Jan changed the URL to the public arithmetical-functions-truncations, but the path
+%     "projects/dirichlet-truncations/" exists only in the private repo; corrected to
+%     "dirichlet-revisited/".  And the OEIS entry, previously never cited, is now cited once.
 %   2026-08-27  Claude-Code (jts-pc) -- afterwords reworked: the concrete account of
 %     what Claude did is moved out of Acknowledgements into its own "Disclosure of AI
 %     assistance" section (the Goethe/Grothendieck line stays in Acknowledgements, per
@@ -139,6 +156,14 @@
 \author{Jan Snellman \orcidlink{0009-0002-6676-5068}}
 \address{Matematiska Institutionen, Linköpings Universitet, 581 83 Linköping, Sweden}
 \email{jan.snellman@liu.se}
+% Added 2026-08-30 for the arXiv/report submission.  Primary 13D02 rather than 11N25:
+% the object studied is a minimal free resolution, and the sieve function is what its
+% invariants turn out to equal -- the result is about the resolution, stated in the
+% language of the sieve, not a contribution to sieve theory.
+\subjclass[2020]{Primary 13D02; Secondary 11A25, 11N25, 13D40, 13F55}
+\keywords{Ring of arithmetical functions, Dirichlet convolution, stable monomial ideal,
+  minimal free resolution, Poincaré--Betti series, Legendre's sifting function, rough
+  numbers, Buchstab's function}
 % amsart re-prints \address/\email as a standalone block at the very end via
 % \AtEndDocument; suppressed here in favour of showing it once under the title,
 % matching the house style set in lattice_line_covers_preprint.tex.
@@ -1356,7 +1381,7 @@ sieve theory, and the questions it raises are correspondingly analytic.
   graded Betti numbers or Golod rings.
 \end{openproblem}
 
-Finally, three integer sequences arising here deserve to be in the OEIS.
+Finally, three integer sequences arising here deserve to be in the OEIS \cite{OEIS}.
 \(C_n\) is \seqnum{A182843}, whose entry records none of the above; the
 sequence \(C_{n,2}\) and the triangle \(C_{n,v}\) appear not to be present at
 all.
@@ -1528,145 +1553,165 @@ The author declares no financial or non-financial conflicts of interest. The
 nature and extent of large-language-model assistance in producing this
 manuscript is disclosed in full in the section above.
 
-\begin{thebibliography}{99}
+\begin{thebibliography}{Sne03a}
 
-\bibitem{AramovaHerzog}
+\bibitem[AH96]{AramovaHerzog}
 Annetta Aramova and Jürgen Herzog,
 \emph{Koszul cycles and Eliahou--Kervaire type resolutions},
 J. Algebra \textbf{181} (1996), no.~2, 347--370.
 
-\bibitem{CashwellEverett}
+\bibitem[Buc37]{Buchstab}
+A.~A. Buchstab,
+\emph{Asymptotic estimates of a general number-theoretic function},
+Mat. Sb. \textbf{44} (1937), 1239--1246. (Russian.)
+
+\bibitem[CE59]{CashwellEverett}
 E.~D. Cashwell and C.~J. Everett,
 \emph{The ring of number-theoretic functions},
 Pacific J. Math. \textbf{9} (1959), 975--985.
 
-\bibitem{EliahouKervaire}
+\bibitem[dB50]{deBruijn}
+N.~G. de Bruijn,
+\emph{On the number of uncancelled elements in the sieve of Eratosthenes},
+Indag. Math. \textbf{12} (1950), 247--256.
+
+\bibitem[DHSW]{SimplicialHomology}
+Jean-Guillaume Dumas, Frank Heckenbach, B.~David Saunders and Volkmar Welker,
+\emph{Simplicial Homology}, a \textsf{GAP} package.
+
+\bibitem[DR02]{DuvalReiner}
+Art M. Duval and Victor Reiner,
+\emph{Shifted simplicial complexes are Laplacian integral},
+Trans. Amer. Math. Soc. \textbf{354} (2002), no.~11, 4313--4344.
+
+\bibitem[EK90]{EliahouKervaire}
 Shalom Eliahou and Michel Kervaire,
 \emph{Minimal resolutions of some monomial ideals},
 J. Algebra \textbf{129} (1990), no.~1, 1--25.
 
-\bibitem{GAP}
+\bibitem[Fan23]{Fan}
+Steve Fan,
+\emph{Numerically explicit estimates for the distribution of rough numbers},
+arXiv:2306.03347.
+
+\bibitem[GAP]{GAP}
 The GAP Group,
 \emph{GAP --- Groups, Algorithms, and Programming},
 \url{https://www.gap-system.org}.
 
-\bibitem{Golod}
-E.~S. Golod,
-\emph{On the homology of some local rings},
-Soviet Math. Dokl. \textbf{3} (1962), 745--749.
+\bibitem[GKP24]{GoswamiKleynPorrill}
+Amit Goswami, Steven Kleyn and Lauren Porrill,
+\emph{On structures of the ring of arithmetical functions: prime ideals and
+beyond}, arXiv:2410.10824.
 
-\bibitem{GulliksenLevin}
+\bibitem[GL69]{GulliksenLevin}
 Tor H. Gulliksen and Gerson Levin,
 \emph{Homology of local rings},
 Queen's Papers in Pure and Applied Mathematics, vol.~20, Queen's University,
 Kingston, Ont., 1969.
 
-\bibitem{Peeva}
-Irena Peeva,
-\emph{0-Borel fixed ideals},
-J. Algebra \textbf{184} (1996), no.~3, 945--984.
+\bibitem[Gol62]{Golod}
+E.~S. Golod,
+\emph{On the homology of some local rings},
+Soviet Math. Dokl. \textbf{3} (1962), 745--749.
 
-\bibitem{Sage}
-The Sage Developers,
-\emph{SageMath, the Sage Mathematics Software System},
-\url{https://www.sagemath.org}.
-
-\bibitem{Snellman2000}
-Jan Snellman,
-\emph{Truncations of the ring of number-theoretic functions},
-Homology Homotopy Appl. \textbf{2} (2000), 17--27; arXiv:math/9904143.
-
-\bibitem{SnellmanUnitaryGeneral}
-Jan Snellman,
-\emph{The ring of arithmetical functions with unitary convolution: general
-truncations},
-Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519;
-arXiv:math/0205242.
-
-\bibitem{SnellmanUnitaryN}
-Jan Snellman,
-\emph{The ring of arithmetical functions with unitary convolution: the
-\([n]\)-truncation},
-Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519;
-arXiv:math/0208183.
-
-\bibitem{HerzogHibi}
-Jürgen Herzog and Takayuki Hibi,
-\emph{Monomial Ideals},
-Grad. Texts in Math., vol.~260, Springer, 2011.
-
-\bibitem{MillerSturmfels}
-Ezra Miller and Bernd Sturmfels,
-\emph{Combinatorial Commutative Algebra},
-Grad. Texts in Math., vol.~227, Springer, 2005.
-
-\bibitem{SnellmanLaplacians}
-Jan Snellman,
-\emph{Laplacians on shifted multicomplexes},
-arXiv:math/0606104.
-
-\bibitem{DuvalReiner}
-Art M. Duval and Victor Reiner,
-\emph{Shifted simplicial complexes are Laplacian integral},
-Trans. Amer. Math. Soc. \textbf{354} (2002), no.~11, 4313--4344.
-
-\bibitem{Buchstab}
-A.~A. Buchstab,
-\emph{Asymptotic estimates of a general number-theoretic function},
-Mat. Sb. \textbf{44} (1937), 1239--1246. (Russian.)
-
-\bibitem{deBruijn}
-N.~G. de Bruijn,
-\emph{On the number of uncancelled elements in the sieve of Eratosthenes},
-Indag. Math. \textbf{12} (1950), 247--256.
-
-\bibitem{SimplicialHomology}
-Jean-Guillaume Dumas, Frank Heckenbach, B.~David Saunders and Volkmar Welker,
-\emph{Simplicial Homology}, a \textsf{GAP} package.
-
-\bibitem{Fan}
-Steve Fan,
-\emph{Numerically explicit estimates for the distribution of rough numbers},
-arXiv:2306.03347.
-
-\bibitem{Gorodetsky}
+\bibitem[Gor24]{Gorodetsky}
 Ofir Gorodetsky,
 \emph{The variance of integers without small prime factors in short intervals},
 Math. Z. \textbf{308} (2024), no.~4, Paper No.~59; arXiv:2111.00853.
 
-\bibitem{GoswamiKleynPorrill}
-Amit Goswami, Steven Kleyn and Lauren Porrill,
-\emph{On structures of the ring of arithmetical functions: prime ideals and
-beyond}, arXiv:2410.10824.
-
-\bibitem{HerzogReinerWelker}
-Jürgen Herzog, Victor Reiner and Volkmar Welker,
-\emph{Componentwise linear ideals and Golod rings},
-Michigan Math. J. \textbf{46} (1999), no.~2, 211--223.
-
-\bibitem{Holt}
-Fred B. Holt,
-\emph{On the counts of \(p\)-rough numbers},
-arXiv:2308.07570.
-
-\bibitem{Macaulay2}
+\bibitem[GS]{Macaulay2}
 Daniel R. Grayson and Michael E. Stillman,
 \emph{Macaulay2, a software system for research in algebraic geometry},
 \url{https://macaulay2.com}.
 
-\bibitem{McCulloughPeeva}
+\bibitem[HH11]{HerzogHibi}
+Jürgen Herzog and Takayuki Hibi,
+\emph{Monomial Ideals},
+Grad. Texts in Math., vol.~260, Springer, 2011.
+
+\bibitem[Hol23]{Holt}
+Fred B. Holt,
+\emph{On the counts of \(p\)-rough numbers},
+arXiv:2308.07570.
+
+\bibitem[HRW99]{HerzogReinerWelker}
+Jürgen Herzog, Victor Reiner and Volkmar Welker,
+\emph{Componentwise linear ideals and Golod rings},
+Michigan Math. J. \textbf{46} (1999), no.~2, 211--223.
+
+\bibitem[Miy26]{Miyashita}
+Sora Miyashita,
+\emph{Canonical traces of Artinian truncations of Stanley--Reisner rings},
+arXiv:2608.15955.
+
+\bibitem[MP15]{McCulloughPeeva}
 Jason McCullough and Irena Peeva,
 \emph{Infinite graded free resolutions},
 in: Commutative Algebra and Noncommutative Algebraic Geometry, Vol.~I,
 Math. Sci. Res. Inst. Publ. \textbf{67}, Cambridge Univ. Press, 2015,
 pp.~215--257.
 
-\bibitem{Miyashita}
-Sora Miyashita,
-\emph{Canonical traces of Artinian truncations of Stanley--Reisner rings},
-arXiv:2608.15955.
+\bibitem[MS05]{MillerSturmfels}
+Ezra Miller and Bernd Sturmfels,
+\emph{Combinatorial Commutative Algebra},
+Grad. Texts in Math., vol.~227, Springer, 2005.
 
-\bibitem{Tenenbaum}
+\bibitem[OEIS]{OEIS}
+The On-Line Encyclopedia of Integer Sequences, published electronically at
+\url{https://oeis.org}, sequence \seqnum{A182843}.
+
+\bibitem[Pee96]{Peeva}
+Irena Peeva,
+\emph{0-Borel fixed ideals},
+J. Algebra \textbf{184} (1996), no.~3, 945--984.
+
+\bibitem[Rep]{gitrepo}
+Supporting code, raw computational output and the Lean formalization,
+\texttt{dirichlet-revisited/} in the repository
+\url{https://gitlab.liu.se/jansn19/arithmetical-functions-truncations}.
+
+\bibitem[Sage]{Sage}
+The Sage Developers,
+\emph{SageMath, the Sage Mathematics Software System},
+\url{https://www.sagemath.org}.
+
+\bibitem[Sne00]{Snellman2000}
+Jan Snellman,
+\emph{Truncations of the ring of number-theoretic functions},
+Homology Homotopy Appl. \textbf{2} (2000), 17--27; arXiv:math/9904143.
+
+% NOTE (2026-08-30): the two entries below are two distinct arXiv preprints -- different
+% identifiers, different submission dates (2002-05-23 and 2002-08-23), different titles and
+% abstracts, verified against the deposited PDFs -- that were published together as a SINGLE
+% article.  An earlier version of this bibliography gave each of them the journal reference
+% "Int. J. Math. Game Theory Algebra 13 (2003), no. 6, 485-519", which cannot be right for two
+% separate papers, and attributed that claim to arXiv's metadata.  arXiv sets no journal-ref on
+% either record.  zbMATH has exactly one published item (Zbl 1165.11301), whose review summary
+% treats the general-V case first and the V = [n] case "in the second part", and which links only
+% arXiv:math/0205242.  Hence the "first part"/"second part" wording below.
+\bibitem[Sne03a]{SnellmanUnitaryGeneral}
+Jan Snellman,
+\emph{The ring of arithmetical functions with unitary convolution: general
+truncations},
+arXiv:math/0205242; published as the first part of
+\emph{Truncations of the ring of arithmetical functions with unitary convolution},
+Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519; Zbl 1165.11301.
+
+\bibitem[Sne03b]{SnellmanUnitaryN}
+Jan Snellman,
+\emph{The ring of arithmetical functions with unitary convolution: the
+\([n]\)-truncation},
+arXiv:math/0208183; published as the second part of
+\emph{Truncations of the ring of arithmetical functions with unitary convolution},
+Int. J. Math. Game Theory Algebra \textbf{13} (2003), no.~6, 485--519; Zbl 1165.11301.
+
+\bibitem[Sne06]{SnellmanLaplacians}
+Jan Snellman,
+\emph{Laplacians on shifted multicomplexes},
+arXiv:math/0606104.
+
+\bibitem[Ten15]{Tenenbaum}
 Gérald Tenenbaum,
 \emph{Introduction to Analytic and Probabilistic Number Theory},
 3rd ed., Grad. Stud. Math. \textbf{163}, Amer. Math. Soc., 2015.
@@ -1678,15 +1723,6 @@ Gérald Tenenbaum,
 % an earlier note guessed.  That is SECONDARY corroboration from a paper citing the
 % book, not verification against the book, so no theorem number is given here.  Check
 % a physical or LiU-subscription copy before adding one.
-
-\bibitem{OEIS}
-The On-Line Encyclopedia of Integer Sequences, published electronically at
-\url{https://oeis.org}, sequence \seqnum{A182843}.
-
-\bibitem{gitrepo}
-Supporting code, raw computational output and working notes,
-\texttt{projects/dirichlet-truncations/} in the repository
-\url{https://gitlab.liu.se/jansn19/ai-workspace}.
 
 \end{thebibliography}
 

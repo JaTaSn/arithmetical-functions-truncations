@@ -1,0 +1,187 @@
+================================================================================
+SUBMISSION METADATA -- Truncations of the ring of number-theoretic functions,
+revisited
+================================================================================
+Prepared 2026-08-30.  Each block below corresponds to one field of the arXiv
+submission form and is meant to be copied verbatim.  ASCII only, deliberately:
+arXiv's metadata fields are plain text and do not render TeX, so accented
+characters and math markup are spelled out rather than escaped.
+
+Everything here is derived from the manuscript as it stands at
+truncations-revisited.tex; if the manuscript changes, re-check the page count in
+COMMENTS and the abstract below.
+
+--------------------------------------------------------------------------------
+1. TITLE
+--------------------------------------------------------------------------------
+Truncations of the ring of number-theoretic functions, revisited
+
+--------------------------------------------------------------------------------
+2. AUTHORS
+--------------------------------------------------------------------------------
+Jan Snellman
+
+(ORCID 0009-0002-6676-5068 -- attach via the arXiv account's ORCID link, not by
+typing it into the author field.)
+
+--------------------------------------------------------------------------------
+3. ABSTRACT
+--------------------------------------------------------------------------------
+Let K be a field containing Q, let Gamma be the ring of all functions from the
+positive integers to K under Dirichlet convolution, and let Gamma_n be its
+truncation to functions supported on [1,n]. In [Snellman, Homology Homotopy
+Appl. 2 (2000), 17-27; arXiv:math/9904143] it was shown that Gamma_n is a
+polynomial ring modulo a monomial ideal I_n which is stable after reversing the
+order of the variables, and the Poincare-Betti series of Gamma_n was computed in
+terms of the numbers C_{n,v} of minimal generators of I_n of least support v.
+
+We prove that C_{n,v} = Phi(n,p_v), Legendre's sifting function: the number of
+integers in [1,n] free of prime factors <= p_v. This identifies an invariant of a
+minimal free resolution with a classical object of sieve theory. As consequences
+we obtain: a proof of Conjecture 4.6 of the 2000 paper, which was left open
+there; the average order C_n ~ pi(n)^2/2 of the total number of minimal
+generators, showing that the lower bound C_n >= binom(pi(n)+1,2) of that paper is
+asymptotically sharp, together with the exact order
+
+    C_n - binom(pi(n)+1,2) ~ (16/3) n^{3/2} / (log n)^3
+
+of the error; and the identification of C_n with the OEIS sequence A182843. We
+also record errata for the 2000 paper: one stated result is false, and two proofs
+are incomplete. Corrected statements and complete proofs are given.
+
+--------------------------------------------------------------------------------
+4. COMMENTS
+--------------------------------------------------------------------------------
+23 pages, 2 figures. Ancillary material: a Lean 4 / Mathlib formalization of the
+central splitting lemma, and the Sage, Macaulay2 and Maple scripts reproducing
+every numerical claim.
+
+  [If you want the AI-assistance disclosure visible on the abstract page rather
+  than only in the paper's own "Disclosure of AI assistance" section, append:
+  "Written with AI assistance; see the disclosure section." That is not required
+  by arXiv's policy, which asks for disclosure in the manuscript -- it is a
+  judgement call about visibility.]
+
+--------------------------------------------------------------------------------
+5. REPORT NUMBER
+--------------------------------------------------------------------------------
+LiTH-MAT-R-2026/03
+
+--------------------------------------------------------------------------------
+6. JOURNAL REFERENCE
+--------------------------------------------------------------------------------
+(leave empty)
+
+--------------------------------------------------------------------------------
+7. DOI
+--------------------------------------------------------------------------------
+(leave empty at submission)
+
+Once the LiU report is registered, the report acquires its own DOI. The 2026/02
+report in this series has https://doi.org/10.3384/LiTH-MAT-R-2026-02, so this one
+will very likely be
+
+    https://doi.org/10.3384/LiTH-MAT-R-2026-03
+
+but that is a guess from a single example -- do not enter it until the Electronic
+Press office confirms the real one. It belongs in the DOI field only if it is the
+DOI *of this same work*, which it is; add it as a metadata update afterwards.
+
+--------------------------------------------------------------------------------
+8. MSC CLASSIFICATION
+--------------------------------------------------------------------------------
+Primary 13D02; Secondary 11A25, 11N25, 13D40, 13F55
+
+  13D02  Syzygies, resolutions, complexes and commutative rings
+  11A25  Arithmetic functions; related numbers; inversion formulas
+  11N25  Distribution of integers with specified multiplicative constraints
+  13D40  Hilbert-Samuel and Hilbert-Kunz functions; Poincare series
+  13F55  Face and Stanley-Reisner rings; simplicial complexes
+
+NOTE ON THE SCHEME: this is MSC **2020**, the current revision. MSC 2000 was
+superseded in 2010 and again in 2020; the AMS and zbMATH both index under 2020,
+and amsart's \subjclass takes the year as an argument, so a 2000-scheme code
+would be both flagged and wrong. The same codes are now in the manuscript itself
+as \subjclass[2020]{...}.
+
+Primary 13D02 rather than 11N25 is a deliberate choice: the object studied is a
+minimal free resolution, and the sieve function is what its invariants turn out
+to equal. The paper is about the resolution, stated in the language of the sieve,
+not a contribution to sieve theory. If you disagree, swapping 13D02 and 11N25 is
+defensible and costs one edit in two places.
+
+--------------------------------------------------------------------------------
+9. ACM CLASSIFICATION
+--------------------------------------------------------------------------------
+(leave empty)
+
+--------------------------------------------------------------------------------
+10. CATEGORIES
+--------------------------------------------------------------------------------
+Primary:    math.AC  (Commutative Algebra)
+Cross-list: math.NT  (Number Theory)
+
+Both the 2000 paper (math/9904143) and the 2003 unitary papers (math/0205242,
+math/0208183) were deposited in math.AC, so this keeps the series together. The
+main theorem is genuinely two-sided, which is what the cross-list is for.
+
+--------------------------------------------------------------------------------
+11. LICENCE
+--------------------------------------------------------------------------------
+Recommended: CC BY 4.0
+
+The repository already carries LICENSE-CC-BY-4.0 for the prose alongside Apache
+2.0 for the code, so this matches what is already published. arXiv's default
+("arXiv.org perpetual, non-exclusive license") is more restrictive than the
+repository, which would be an odd mismatch for the same text.
+
+================================================================================
+WHAT TO UPLOAD
+================================================================================
+Upload the contents of this directory, NOT the directory itself:
+
+    truncations-revisited.tex     the source; arXiv compiles it
+    Cnv-profile.pdf               figure 1
+    S2-ratio.pdf                  figure 2
+    anc/                          ancillary; carried along, not compiled
+
+Do NOT upload: truncations-revisited.pdf, .aux, .log, .out, .synctex.gz. arXiv
+builds its own PDF, and a stale one in the bundle is how you submit the wrong
+version. These are gitignored, so a `git archive` of the directory is already
+clean -- but a plain zip of the working directory is not, because the build
+products are sitting there locally. Also exclude README.md, abstract.txt and this
+file: they are repository bookkeeping, not part of the paper.
+
+Engine: the manuscript declares xelatex (two passes). arXiv's default is pdflatex,
+so if the build fails there, add a file named `00README.XXX` containing
+
+    engine xelatex
+
+or check whether the document compiles under pdflatex unchanged -- it uses only
+amsart, amsthm/amsmath/amssymb, hyperref, orcidlink, graphicx and booktabs, none
+of which require XeTeX, but the UTF-8 author names (Jurgen, Gerald, Poincare)
+will need inputenc under pdflatex.
+
+================================================================================
+THE LiU REPORT (LiTH-MAT-R-2026/03)
+================================================================================
+Series: MAI's report series LiTH-MAT-R. Number assigned: LiTH-MAT-R-2026/03.
+
+Based on how LiTH-MAT-R-2026/02 was produced (see
+ai-workspace/blog/posts/publishing-a-liu-report-and-a-zenodo-deposit.md):
+
+- The cover page -- "Department of Mathematics", the title in caps, the author,
+  the series number and the DOI -- is NOT typeset in the .tex. It was generated
+  by the series coordinator and prepended. So send the manuscript as it is; do
+  not add a cover yourself.
+- The publishing agreement asks how the work was reviewed. For 2026/02 the honest
+  answer was Lean formalization plus adversarial review rather than anonymous
+  refereeing. The same is true here, and more so: this manuscript has been through
+  several adversarial review rounds that found real errors, and carries its own
+  "Disclosure of AI assistance" section.
+- Supporting material goes to Zenodo, not DiVA -- that was the Electronic Press
+  office's own answer last time. Resource type "Software", not "Dataset", and
+  remove Zenodo's default CC-BY if you attach a different licence.
+- arXiv and the report can both exist; link them once both have identifiers.
+
+================================================================================
