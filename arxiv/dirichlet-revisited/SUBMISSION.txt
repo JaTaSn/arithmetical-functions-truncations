@@ -27,29 +27,57 @@ typing it into the author field.)
 --------------------------------------------------------------------------------
 3. ABSTRACT
 --------------------------------------------------------------------------------
-Let K be a field containing Q, let Gamma be the ring of all functions from the
-positive integers to K under Dirichlet convolution, and let Gamma_n be its
-truncation to functions supported on [1,n]. In [Snellman, Homology Homotopy
-Appl. 2 (2000), 17-27; arXiv:math/9904143] it was shown that Gamma_n is a
-polynomial ring modulo a monomial ideal I_n which is stable after reversing the
-order of the variables, and the Poincare-Betti series of Gamma_n was computed in
-terms of the numbers C_{n,v} of minimal generators of I_n of least support v.
+Paste the block between the rulers. It is 1427 characters, against arXiv's limit
+of 1920. Kept in sync with arxiv/dirichlet-revisited/abstract.txt.
 
-We prove that C_{n,v} = Phi(n,p_v), Legendre's sifting function: the number of
-integers in [1,n] free of prime factors <= p_v. This identifies an invariant of a
-minimal free resolution with a classical object of sieve theory. As consequences
-we obtain: a proof of Conjecture 4.6 of the 2000 paper, which was left open
-there; the average order C_n ~ pi(n)^2/2 of the total number of minimal
-generators, showing that the lower bound C_n >= binom(pi(n)+1,2) of that paper is
-asymptotically sharp, together with the exact order
+DELIMITERS: $...$, NOT \(...\). This is the one place in the workspace where the
+house convention is wrong. arXiv's abstract pages load MathJax with an explicit
+override -- verified 2026-08-30 by reading their own configuration at
+arxiv.org/static/browse/0.3.4/js/mathjaxToggle.min.js:
 
-    C_n - binom(pi(n)+1,2) ~ (16/3) n^{3/2} / (log n)^3
+    tex2jax: { inlineMath: [['$','$']], processEscapes: true, ... }
 
-of the error; and the identification of C_n with the OEIS sequence A182843. We
+Replacing the inline delimiter list REMOVES MathJax's default \(...\), so a
+\(x\) in an abstract renders as the literal characters backslash-paren-x. Only
+displayMath was left at its default, so \[...\] probably still works -- but
+"probably" is not a good bet on a field you cannot preview, hence $...$ throughout,
+including the displayed line, which is indented so arXiv keeps it on its own line.
+
+NO BARE ~ FOR "IS ASYMPTOTIC TO". Inside math, ~ is a non-breaking space, so the
+relation would simply vanish and the formula would read as two expressions with a
+gap. Write \sim. (arXiv separately asks that ~ be omitted from abstracts as a
+TeX-ism, which is about its use as a tie -- a different problem with the same
+character.)
+
+Every macro below is in AMSmath/AMSsymbols, which arXiv's MathJax loads; checked
+by compiling them.
+
+--------------------------------------------------------------------------------
+Let $K$ be a field containing $\mathbb{Q}$, let $\Gamma$ be the ring of all
+functions from the positive integers to $K$ under Dirichlet convolution, and let
+$\Gamma_n$ be its truncation to functions supported on $[1,n]$. In [Snellman,
+Homology Homotopy Appl. 2 (2000), 17-27; arXiv:math/9904143] it was shown that
+$\Gamma_n$ is a polynomial ring modulo a monomial ideal $I_n$ which is stable
+after reversing the order of the variables, and the Poincare-Betti series of
+$\Gamma_n$ was computed in terms of the numbers $C_{n,v}$ of minimal generators
+of $I_n$ of least support $v$.
+
+We prove that $C_{n,v} = \Phi(n,p_v)$, Legendre's sifting function: the number of
+integers in $[1,n]$ free of prime factors $\le p_v$. This identifies an invariant
+of a minimal free resolution with a classical object of sieve theory. As
+consequences we obtain: a proof of Conjecture 4.6 of the 2000 paper, which was
+left open there; the average order $C_n \sim \pi(n)^2/2$ of the total number of
+minimal generators, showing that the lower bound $C_n \ge \binom{\pi(n)+1}{2}$ of
+that paper is asymptotically sharp, together with the exact order
+
+    $C_n - \binom{\pi(n)+1}{2} \sim \frac{16}{3} n^{3/2} / \log^3 n$
+
+of the error; and the identification of $C_n$ with the OEIS sequence A182843. We
 also record errata for the 2000 paper: one stated result is false, and two proofs
 are incomplete. Corrected statements and complete proofs are given.
 
 --------------------------------------------------------------------------------
+
 4. COMMENTS
 --------------------------------------------------------------------------------
 The Comments field has a length limit, and it has to hold every future "v2: ...",
