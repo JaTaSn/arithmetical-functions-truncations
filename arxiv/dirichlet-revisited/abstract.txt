@@ -4,22 +4,22 @@ Jan Snellman
 
 Let K be a field containing Q, let Gamma be the ring of all functions from the
 positive integers to K under Dirichlet convolution, and let Gamma_n be its
-truncation to functions supported on [1,n]. In [Snellman, Homology Homotopy
+truncation to functions supported on \([1,n]\). In [Snellman, Homology Homotopy
 Appl. 2 (2000), 17-27; arXiv:math/9904143] it was shown that Gamma_n is a
-polynomial ring modulo a monomial ideal I_n which is stable after reversing the
-order of the variables, and the Poincare-Betti series of Gamma_n was computed in
-terms of the numbers C_{n,v} of minimal generators of I_n of least support v.
+polynomial ring modulo a monomial ideal \(I_n\) which is stable after reversing the
+order of the variables, and the Poincare-Betti series of \(\Gamma_n\) was computed in
+terms of the numbers \(C_{n,v}\) of minimal generators of \(I_n\) of least support \(v\).
 
-We prove that C_{n,v} = Phi(n,p_v), Legendre's sifting function: the number of
-integers in [1,n] free of prime factors <= p_v. This identifies an invariant of a
+We prove that \(C_{n,v} = Phi(n,p_v)\), Legendre's sifting function: the number of
+integers in \([1,n]\) free of prime factors \(\le p_v\). This identifies an invariant of a
 minimal free resolution with a classical object of sieve theory. As consequences
 we obtain: a proof of Conjecture 4.6 of the 2000 paper, which was left open
-there; the average order C_n ~ pi(n)^2/2 of the total number of minimal
-generators, showing that the lower bound C_n >= binom(pi(n)+1,2) of that paper is
+there; the average order \(C_n \sim pi(n)^2/2\) of the total number of minimal
+generators, showing that the lower bound \(C_n >= binom(pi(n)+1,2)\) of that paper is
 asymptotically sharp, together with the exact order
 
-    C_n - binom(pi(n)+1,2) ~ (16/3) n^{3/2} / (log n)^3
+    \[C_n - binom(pi(n)+1,2) ~ (16/3) n^{3/2} / (log n)^3\]
 
-of the error; and the identification of C_n with the OEIS sequence A182843. We
+of the error; and the identification of \(C_n\) with the OEIS sequence A182843. We
 also record errata for the 2000 paper: one stated result is false, and two proofs
 are incomplete. Corrected statements and complete proofs are given.
