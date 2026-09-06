@@ -35,7 +35,7 @@ back to the repository.
 
 | Directory | Status |
 |---|---|
-| **[`dirichlet-revisited/`](dirichlet-revisited/)** | **Complete.** Revisits *Truncations of the ring of number-theoretic functions*, Homology Homotopy Appl. **2** (2000) 17–27, arXiv:math/9904143. |
+| **[`dirichlet-revisited/`](dirichlet-revisited/)** | **Complete.** Revisits *Truncations of the ring of number-theoretic functions*, Homology Homotopy Appl. **2** (2000) 17–27, arXiv:math/9904143. The new note: [arXiv:2608.29555](https://arxiv.org/abs/2608.29555). |
 | [`unitary-revisited/`](unitary-revisited/) | Planned — the unitary-convolution truncations. |
 | [`ternary/`](ternary/) | Speculative — the ternary convolution, where no truncation analysis exists yet. |
 | [`arxiv/`](arxiv/) | Submission bundles, one subdirectory per note. |

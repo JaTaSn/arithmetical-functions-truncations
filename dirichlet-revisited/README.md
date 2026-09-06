@@ -8,6 +8,8 @@ revisited*, a follow-up to
 > Jan Snellman, *Truncations of the ring of number-theoretic functions*,
 > Homology, Homotopy and Applications **2** (2000), 17–27; arXiv:math/9904143.
 
+**This note is published:** [arXiv:2608.29555](https://arxiv.org/abs/2608.29555).
+
 Everything needed to reproduce every numerical claim in **both** papers is here, together with a
 Lean 4 formalization of the central algebraic step of the new one.
 
