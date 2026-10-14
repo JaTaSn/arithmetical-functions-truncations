@@ -22,5 +22,6 @@ that paper is asymptotically sharp, together with the exact order
     $C_n - \binom{\pi(n)+1}{2} \sim \frac{16}{3} n^{3/2} / \log^3 n$
 
 of the error; and the identification of $C_n$ with the OEIS sequence A182843. We
-also record errata for the 2000 paper: one stated result is false, and two proofs
-are incomplete. Corrected statements and complete proofs are given.
+also record errata for the 2000 paper: one stated result is false, one worked
+example is miscomputed, and two proofs are incomplete. Corrected statements and
+complete proofs are given.

@@ -1,4 +1,54 @@
 ================================================================================
+v2 REPLACEMENT -- prepared 2026-10-14 (Claude-Code, jts-office)
+================================================================================
+This is a REPLACEMENT of arXiv:2608.29555 (v1, 2026-08-30), not a new submission:
+use "Replace" on the article in the arXiv user page. Per Jan's own finding
+(2026-10-13), replacements do not count against the 2-new-submissions-per-month
+limit; they have their own allowance of one per week.
+
+WHAT CHANGED SINCE v1 (the whole of it):
+  * New Section 4.2 "A miscomputed example": Example 4.5 of the 2000 paper prints
+    the graded P^S_I(t,u) with (1+t) where its own Corollary 4.2 has (1+tu). The
+    example's final answer is right; only the intermediate display is wrong.
+  * The abstract and the Introduction now list that erratum.
+  Nothing else: built from tag arxiv-submission-2026-08-30 plus those edits.
+
+VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
+three passes exit 0, 23 pages, no undefined references, no overfull boxes (the
+same two harmless underfull warnings as v1). Section 4.2's mathematics checked
+independently in Sage/Singular: the graded Betti table of I_5, and that the 2000
+paper's printed P^{S/I}_K(t,u) -- equal to the n = 5 row of its Figure 3 --
+follows from the corrected series via the graded Golod formula and NOT from the
+miscomputed one.
+
+FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
+
+  ABSTRACT -- changed: paste the current abstract.txt body (1461 chars). The only
+  edit is "one worked example is miscomputed" in the errata sentence.
+
+  COMMENTS -- USE THIS ONE (273 chars):
+
+23 pages, 2 figures. v2: adds Section 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
+
+    shorter, if the field complains (211 chars):
+
+23 pages, 2 figures. v2: adds Sect. 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
+
+  DOI -- NEW, fill in now: 10.3384/LiTH-MAT-R-2026-03
+    The LiTH report has appeared (report date 2026-09-01; DiVA urn:nbn:se:liu:
+    diva-227208). Checked 2026-10-14 that the DOI resolves to that DiVA record.
+    It is the DOI of this same work, which is what the field is for.
+    NOTE: the report is v1's text; it does not contain Section 4.2.
+
+  REPORT NUMBER -- unchanged: LiTH-MAT-R-2026/03
+
+UPLOAD: the bundle truncations-revisited-arxiv-20261014.tar.gz at the repo root,
+built with the regeneration command further down.
+
+AFTER POSTING: tag the commit, as v1 was tagged:
+    git tag -a arxiv-submission-v2-YYYY-MM-DD -m "Replacement v2 submitted to arXiv"
+
+================================================================================
 SUBMISSION METADATA -- Truncations of the ring of number-theoretic functions,
 revisited
 ================================================================================
