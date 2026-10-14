@@ -10,12 +10,24 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * New Section 4.2 "A miscomputed example": Example 4.5 of the 2000 paper prints
     the graded P^S_I(t,u) with (1+t) where its own Corollary 4.2 has (1+tu). The
     example's final answer is right; only the intermediate display is wrong.
-  * The abstract and the Introduction now list that erratum.
-  Nothing else: built from tag arxiv-submission-2026-08-30 plus those edits.
+  * New Theorem 4' (Section 3), at Jan's request: the graded refinement of the main
+    theorem, for the counts C_{n,v,d} by least support AND degree, with proof --
+    the same telescoping with Omega carried in a variable u. Plus an unnumbered
+    remark showing that fixing Omega alone fails (first at n = 4). It answers
+    v1's Open problem 34 as posed; that problem now asks for the size of C_{n,v,d}.
+    New ancillary script anc/code/sage/verify_graded_phi.sage checks it for every
+    n <= 200 and against every cell of the 2000 paper's Figure 2.
+  * EVERY THEOREM NUMBER OF v1 IS KEPT. Theorem 4' sits outside the shared counter
+    on purpose: the ancillary Lean and Sage files, and readers of v1, cite numbers.
+    Checked by comparing the theorem heads of the v1 and v2 PDFs.
+  * The abstract (two clauses) and the Introduction list the erratum; the abstract
+    also mentions the graded refinement. Notation and the AI disclosure updated.
+  * A typo fixed: the main theorem's proof wrote R_P for R_q.
+  Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
-three passes exit 0, 23 pages, no undefined references, no overfull boxes (the
-same two harmless underfull warnings as v1). Section 4.2's mathematics checked
+three passes exit 0, 24 pages (v1: 23), no undefined references, no overfull
+boxes. Section 4.2's mathematics checked
 independently in Sage/Singular: the graded Betti table of I_5, and that the 2000
 paper's printed P^{S/I}_K(t,u) -- equal to the n = 5 row of its Figure 3 --
 follows from the corrected series via the graded Golod formula and NOT from the
@@ -23,16 +35,17 @@ miscomputed one.
 
 FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
 
-  ABSTRACT -- changed: paste the current abstract.txt body (1461 chars). The only
-  edit is "one worked example is miscomputed" in the errata sentence.
+  ABSTRACT -- changed: paste the current abstract.txt body (1564 chars, limit
+  1920). Two edits: the graded refinement after the sieve sentence, and "one worked
+  example is miscomputed" in the errata sentence.
 
-  COMMENTS -- USE THIS ONE (273 chars):
+  COMMENTS -- USE THIS ONE (332 chars):
 
-23 pages, 2 figures. v2: adds Section 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
+24 pages, 2 figures. v2: adds Theorem 4', the graded refinement of the main theorem, and Section 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
 
-    shorter, if the field complains (211 chars):
+    shorter, if the field complains (236 chars):
 
-23 pages, 2 figures. v2: adds Sect. 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
+24 pages, 2 figures. v2: adds Thm 4' (graded refinement) and Sect. 4.2 (erratum to Ex. 4.5 of the 2000 paper). Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
 
   DOI -- NEW, fill in now: 10.3384/LiTH-MAT-R-2026-03
     The LiTH report has appeared (report date 2026-09-01; DiVA urn:nbn:se:liu:

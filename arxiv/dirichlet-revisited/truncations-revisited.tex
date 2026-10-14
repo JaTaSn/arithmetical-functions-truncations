@@ -4,6 +4,16 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-14  Claude-Code (jts-office) -- v2, at Jan's request: the graded counts
+%     C_{n,v,d}, a candidate formula in his Stockholm talk and an open problem here, are
+%     now Theorem 4' WITH PROOF (the main theorem's telescoping, with Omega carried in a
+%     variable u), plus an unnumbered remark on why fixing Omega alone fails (first at
+%     n = 4).  Numbered "4'", and remark and displays left unnumbered, DELIBERATELY: v2
+%     keeps every theorem number of v1, which the ancillary Lean/Sage files cite.  Checked: every n <= 200 and v against generators enumerated
+%     directly, and every cell of Figure 2 of [Sne00] -- code/verify_graded_phi.sage.
+%     The open problem on C_{n,v,d} rewritten to ask for their size; Notation, and the AI
+%     disclosure, updated.  Also fixed R_P -> R_q in the proof of the main theorem
+%     (the prime there is called q; R_P was a typo inherited from v1).
 %   2026-10-14  Claude-Code (jts-office) -- v2: the abstract and the Introduction now list
 %     the miscomputed example among the errata; both still said "one stated result is
 %     false, and two proofs are incomplete", which Section 4.2 had made out of date.
@@ -181,6 +191,7 @@
 \newtheorem{example}[definition]{Example}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
+\newtheorem*{remark*}{Remark}
 \newtheorem{openproblem}[definition]{Open problem}
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}
@@ -188,6 +199,10 @@
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{corollary}[definition]{Corollary}
 \newtheorem{conjecture}[definition]{Conjecture}
+% Theorem 4' (the graded refinement, added in v2) sits outside the shared counter on
+% purpose, so that v2 keeps every number of v1, which the ancillary Lean and Sage files
+% and any reader of v1 cite.
+\newtheorem*{thmmainu}{Theorem~\ref*{thm:main}\({}'\)}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -238,7 +253,8 @@
   We prove that \(C_{n,v} = \Phi(n,p_v)\), Legendre's sifting function: the
   number of integers in \([1,n]\) free of prime factors \(\le p_v\). This
   identifies an invariant of a minimal free resolution with a classical object
-  of sieve theory. As consequences we obtain: a proof of Conjecture 4.6 of
+  of sieve theory, and it refines to the grading by total degree, with the
+  number of prime factors carried in a variable. As consequences we obtain: a proof of Conjecture 4.6 of
   \cite{Snellman2000}, which was left open there; the average order
   \(C_n \sim \pi(n)^2/2\) of the total number of minimal generators, showing that
   the lower bound \(C_n \ge \binom{\pi(n)+1}{2}\) of \cite{Snellman2000} is
@@ -418,12 +434,12 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
   conversely every such pair \((a,m')\) gives a \(q\)-rough integer. Counting
   those with \(m \le y\) according to \(a\) gives
   \begin{equation}\label{eq:Rsum}
-    R_P(y) = \sum_{a \ge 0}\Phi\!\left(y/q^{a},\,q\right),
+    R_q(y) = \sum_{a \ge 0}\Phi\!\left(y/q^{a},\,q\right),
   \end{equation}
   a finite sum, since the terms vanish once \(q^{a} > y\). Substituting
   \eqref{eq:Rsum} into \eqref{eq:CasR}, the two sums telescope:
   \begin{align*}
-    C_{n,v}&= R_P(n)-R_P(n/q)\\
+    C_{n,v}&= R_q(n)-R_q(n/q)\\
            &= \sum_{a \ge 0}\Phi\!\left(\frac{n}{q^{a}},q\right)
             -\sum_{a \ge 0}\Phi\!\left(\frac{n}{q^{a+1}},q\right)\\
            &= \Phi(n,q).\qedhere
@@ -439,6 +455,66 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
   the set of Theorem~\ref{thm:S32} for \(v = 2\) is
   \(\{9,11,13,15,17,19,21,23,25\}\) --- a different set of the same size.
 \end{example}
+
+The same argument refines to the grading. Give \(S\) the standard grading,
+\(\deg x_i = 1\), so that the monomial of weight \(m\) has degree \(\Om(m)\), and
+let
+\[
+  C_{n,v,d} = \#\{\,m \in G(I_n) : \min(m) = v,\ \deg m = d\,\}
+\]
+be the refined counts tabulated in Figure 2 of \cite{Snellman2000}. With
+\(\Om\) carried in a variable,
+\[
+  \Phi(x,y;u) = \sum_{\substack{m \le x\\ p \mid m \implies p > y}} u^{\Om(m)},
+  \qquad \Phi(x,y;1) = \Phi(x,y),
+\]
+the telescoping survives, with a correction that vanishes at \(u = 1\).
+
+\begin{thmmainu}
+  For all \(n \ge 2\) and \(1 \le v \le \pi(n)\), with \(q = p_v\),
+  \[
+    \sum_{d}C_{n,v,d}\,u^{d-1}
+      = \Phi(n,q;u)-(1-u)\sum_{a \ge 1}u^{a-1}\,\Phi\!\left(n/q^{a},\,q;u\right).
+  \]
+\end{thmmainu}
+
+\begin{proof}
+  A monomial \(m\) with \(\min(m) = v\) lies in \(G(I_n)\) exactly when
+  \(w(m) > n\) and \(w(m/x_i) \le n\) for every \(x_i \mid m\); the largest of the
+  \(w(m/x_i)\) is \(w(m)/q\), since \(q\) is the least prime in the support. So
+  these generators correspond bijectively to the \(q\)-rough \(x = w(m)/q\) in
+  \((n/q,n]\) --- the set of Theorem~\ref{thm:S32} --- and \(\deg m = 1+\Om(x)\).
+  Hence the left-hand side is \(R_q(n;u)-R_q(n/q;u)\), where
+  \(R_q(y;u) = \sum u^{\Om(m)}\) over the \(q\)-rough \(m \le y\). Factoring
+  \(m = q^{a}m'\) as in the proof of Theorem~\ref{thm:main}, now with
+  \(u^{\Om(m)} = u^{a}u^{\Om(m')}\), gives
+  \(R_q(y;u) = \sum_{a \ge 0}u^{a}\,\Phi(y/q^{a},q;u)\), and therefore
+  \begin{align*}
+    R_q(n;u)-R_q(n/q;u)
+      &= \sum_{a \ge 0}u^{a}\,\Phi\!\left(\frac{n}{q^{a}},q;u\right)
+        -\sum_{a \ge 1}u^{a-1}\,\Phi\!\left(\frac{n}{q^{a}},q;u\right)\\
+      &= \Phi(n,q;u)+\sum_{a \ge 1}\bigl(u^{a}-u^{a-1}\bigr)
+        \Phi\!\left(\frac{n}{q^{a}},q;u\right).\qedhere
+  \end{align*}
+\end{proof}
+
+\begin{remark*}
+  At \(u = 1\) the correction vanishes and Theorem~\ref{thm:main} is what
+  remains. Pinning the degree instead of carrying it, write \(\Phi_{k}(x,y)\) for
+  the number of \(m \le x\) free of prime factors \(\le y\) with \(\Om(m) = k\).
+  Comparing coefficients of \(u^{d-1}\),
+  \[
+    C_{n,v,d} = \Phi_{d-1}(n,q)-\sum_{a \ge 1}
+      \Bigl(\Phi_{d-a}\!\left(n/q^{a},q\right)-\Phi_{d-a-1}\!\left(n/q^{a},q\right)\Bigr),
+  \]
+  so the natural guess \(C_{n,v,d} = \Phi_{d-1}(n,q)\) is false: the upper index
+  shifts with \(a\), and the sums no longer cancel. It fails already at
+  \(n = 4\), where the generator \(x_1^{3}\) of weight \(8\) gives
+  \(C_{4,1,3} = 1\) while no odd integer \(\le 4\) has two prime factors.
+  Theorem~\ref{thm:main}\({}'\) and the coefficient formula were checked against
+  the minimal generators enumerated directly for every \(n \le 200\) and every
+  \(v\), and against every entry of Figure 2 of \cite{Snellman2000}.
+\end{remark*}
 
 Splitting \([1,n]\) into \(1\), the primes and the composites gives at once the
 following reformulation, which is the form we shall use.
@@ -1426,12 +1502,14 @@ sieve theory, and the questions it raises are correspondingly analytic.
 \end{openproblem}
 
 \begin{openproblem}
-  Theorem~\ref{thm:main} counts minimal generators by least support only. Is
-  there a comparable sieve-theoretic description of the refined counts
-  \(C_{n,v,d}\), which additionally fix the total degree \(d = \Om\)? A natural
-  guess is a \(\Phi\)-analogue restricted to integers with exactly \(d\) prime
-  factors; the tables in Figure 2 of \cite{Snellman2000} are the data to test
-  it against.
+  Theorem~\ref{thm:main}\({}'\) determines the refined counts \(C_{n,v,d}\)
+  exactly, through the generating function \(\Phi(x,y;u)\), and the remark
+  following it shows that the restriction to a fixed number of prime factors
+  alone does not. What it does not give is their size: find
+  asymptotics for \(C_{n,v,d}\), uniformly in \(v\) and \(d\), and thence for
+  the graded Betti numbers of \(\Gam_n\) in each internal degree. The
+  \(u\)-analogue \(\Phi(x,y;u)\) is the natural object, since at \(u = 1\) it
+  returns the ungraded profile of the previous problem.
 \end{openproblem}
 
 \begin{openproblem}
@@ -1485,6 +1563,7 @@ Collected for reference; equation numbers point at the defining display.
   \(\lpf(m)\)               & least prime factor of \(m > 1\) \\
   \(\operatorname{sfp}(m)\) & squarefree part of \(m\) \\
   \(\Phi(x,y)\)             & Legendre's sifting function, \eqref{eq:phidef} \\
+  \(\Phi(x,y;u)\), \(\Phi_{k}(x,y)\) & the same weighted by \(u^{\Om}\); restricted to \(\Om = k\) (Thm.~\ref{thm:main}\({}'\)) \\
   \(R_p(y)\)                & number of \(p\)-rough integers \(\le y\) \\
   \(\omega(u)\)             & Buchstab's function, \emph{not} the count of distinct prime factors \\
   \addlinespace
@@ -1496,6 +1575,7 @@ Collected for reference; equation numbers point at the defining display.
   \(\min(m)\), \(\max(m)\)  & least and greatest index occurring in \(m\) \\
   \(\operatorname{supp}(m)\) & the set of indices occurring in \(m\) \\
   \(C_{n,v}\), \(C_n\)      & generator counts by least support, and their total, \eqref{eq:Cdef} \\
+  \(C_{n,v,d}\)            & the same, by least support and degree (Thm.~\ref{thm:main}\({}'\)) \\
   \(E(n,v)\)                & composites \(\le n\) with every prime factor \(>p_v\), \eqref{eq:Edef} \\
   \(D_n\), \(q_n\)          & denominators of the Poincaré--Betti series, \eqref{eq:PB} \\
   \(\ell_1\), \(\ell_2\)    & the exponents of Conjecture 4.6 \\
@@ -1607,7 +1687,7 @@ The errata of Section~\ref{sec:errata} were found by Claude while re-reading
 \cite{Snellman2000} with the author, by recomputing every table in that paper
 along a route independent of the one used there. Found likewise by Claude,
 working with the author in interactive sessions: Theorem~\ref{thm:main} and its
-proof; the reduction of Conjecture 4.6 to the order of vanishing of \(D_n\) at
+proof, and its graded refinement, Theorem~\ref{thm:main}\({}'\); the reduction of Conjecture 4.6 to the order of vanishing of \(D_n\) at
 \(t = -1\) (Lemma~\ref{lem:secondiff} and Proposition~\ref{prop:order}); the
 asymptotic Theorem~\ref{thm:asymp}; the identification of \(C_n\) with
 \seqnum{A182843}; Theorem~\ref{thm:error} together with Lemmas
