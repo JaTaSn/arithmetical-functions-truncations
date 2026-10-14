@@ -23,6 +23,7 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * The abstract (two clauses) and the Introduction list the erratum; the abstract
     also mentions the graded refinement. Notation and the AI disclosure updated.
   * A typo fixed: the main theorem's proof wrote R_P for R_q.
+  * The [Sne00] bibliography entry now carries its DOI, 10.4310/hha.2000.v2.n1.a2.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
