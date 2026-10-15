@@ -55,7 +55,8 @@ miscomputed one.
 
 FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
 
-  ABSTRACT -- changed: paste the current abstract.txt body (1562 chars, limit
+  ABSTRACT -- changed: paste the body of arxiv/dirichlet-revisited/abstract.txt
+  (everything after the title and author lines; 1562 chars, limit
   1920). Two edits: the graded refinement after the sieve sentence, and "one worked
   example is miscomputed" in the errata sentence.
 
@@ -74,6 +75,10 @@ FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
     NOTE: the report is v1's text; it does not contain Section 4.2.
 
   REPORT NUMBER -- unchanged: LiTH-MAT-R-2026/03
+
+  MSC-CLASS -- unchanged from v1 (its own form field; NOT part of the abstract):
+    13D02 (Primary); 11A25, 11N25, 13D40, 13F55 (Secondary)
+  MSC 2020, the same codes as \subjclass[2020] in the manuscript.
 
 UPLOAD: the bundle truncations-revisited-arxiv-YYYYMMDD.tar.gz (dated the day it is built) at the repo root,
 built with the regeneration command further down.
