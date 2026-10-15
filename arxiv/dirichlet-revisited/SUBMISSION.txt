@@ -27,6 +27,7 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * Every display inside a theorem, lemma, proposition, corollary or open problem is
     now numbered and labelled (13 displays, Jan's instruction 2026-10-15). So v2's
     EQUATION numbers differ from v1's -- accepted. THEOREM numbers are still v1's.
+  * Corollary 7 and Theorem 18 restated with their formulas as numbered displays.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):

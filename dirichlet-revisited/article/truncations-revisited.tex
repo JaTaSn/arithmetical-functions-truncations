@@ -4,6 +4,9 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan's wording: Corollary 7 now reads "For the
+%     total number of minimal generators, it holds that" + eq:Cntotal; Theorem 18 "For n >= 4,"
+%     + eq:Cnbounds (the chain, one number, one line).  Both had been inline \displaystyle.
 %   2026-10-15  Claude-Code (jts-office) -- v2, Jan's instruction: every displayed equation
 %     inside a theorem-like environment (theorem, lemma, proposition, corollary, definition,
 %     conjecture, open problem, Theorem 4') is now numbered and labelled -- 13 displays,
@@ -558,9 +561,11 @@ Corollary~\ref{cor:split} contains Theorem 3.4(2) of \cite{Snellman2000} (put
 \(v\) gives a closed form for the total.
 
 \begin{corollary}\label{cor:total}
-  \(\displaystyle
+  For the total number of minimal generators, it holds that
+  \begin{equation}\label{eq:Cntotal}
     C_n = \binom{\pi(n)+1}{2}+\sum_{\substack{x \le n\\ x\text{ composite}}}
-        \bigl(\pi(\lpf x)-1\bigr)\).
+        \bigl(\pi(\lpf x)-1\bigr).
+  \end{equation}
 \end{corollary}
 
 \begin{proof}
@@ -935,8 +940,11 @@ contributes in the limit.
 
 \begin{theorem}\label{thm:asymp}
   For \(n \ge 4\),
-  \(\displaystyle 0 \le C_n-\binom{\pi(n)+1}{2} \le n\bigl(\pi(\sqrt n)-1\bigr)
-    =O\!\left(n^{3/2}/\log n\right)\), and consequently
+  \begin{equation}\label{eq:Cnbounds}
+    0 \le C_n-\binom{\pi(n)+1}{2} \le n\bigl(\pi(\sqrt n)-1\bigr)
+      =O\!\left(n^{3/2}/\log n\right),
+  \end{equation}
+  and consequently
   \begin{equation}\label{eq:Cnasymp}
     C_n \sim \binom{\pi(n)+1}{2} \sim \frac{\pi(n)^{2}}{2} \sim \frac{n^{2}}{2\log^{2}n}.
   \end{equation}
