@@ -6,7 +6,8 @@
 % Changelog (reverse chronological):
 %   2026-10-15  Claude-Code (jts-office) -- v2, Jan's wording: the definitions of C_{n,v,d}
 %     and of Phi(x,y;u) before Theorem 4' are now labelled equations, eq:Cvddef and eq:phiu,
-%     the latter introduced as a generating function in ZZ[[u]]; the Notation table points at
+%     the latter introduced as a generating function in ZZ[u] (a finite sum, so a polynomial;
+%     first written ZZ[[u]]); the Notation table points at
 %     them.
 %   2026-10-15  Claude-Code (jts-office) -- v2: "average order" -> "asymptotics" in the
 %     abstract, the Introduction and the title of Section 6.  What Section 6 proves is the
@@ -486,7 +487,7 @@ be the refined counts tabulated in Figure 2 of \cite{Snellman2000}. Let
 \(\Phi(x,y;u)\) be the generating function
 \begin{equation}\label{eq:phiu}
   \Phi(x,y;u) = \sum_{\substack{m \le x\\ p \mid m \implies p > y}} u^{\Om(m)}
-    \in \ZZ[[u]].
+    \in \ZZ[u].
 \end{equation}
 Note that the telescoping survives, and that specialising \(u = 1\) recovers
 \(\Phi(x,y;1) = \Phi(x,y)\); here, the correction vanishes.
