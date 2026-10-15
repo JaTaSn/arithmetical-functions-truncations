@@ -30,6 +30,7 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * Corollary 7 and Theorem 18 restated with their formulas as numbered displays.
   * "average order" -> "asymptotics" in the abstract, the Introduction and the title of
     Section 6 (and in abstract.txt): Section 6 proves the pointwise asymptotic of C_n.
+  * The definitions of C_{n,v,d} and Phi(x,y;u) before Theorem 4' are labelled equations.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):

@@ -4,6 +4,10 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan's wording: the definitions of C_{n,v,d}
+%     and of Phi(x,y;u) before Theorem 4' are now labelled equations, eq:Cvddef and eq:phiu,
+%     the latter introduced as a generating function in ZZ[[u]]; the Notation table points at
+%     them.
 %   2026-10-15  Claude-Code (jts-office) -- v2: "average order" -> "asymptotics" in the
 %     abstract, the Introduction and the title of Section 6.  What Section 6 proves is the
 %     pointwise asymptotic of C_n, which never averages anything; for C_n, increasing, it
@@ -475,16 +479,17 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
 The same argument refines to the grading. Give \(S\) the standard grading,
 \(\deg x_i = 1\), so that the monomial of weight \(m\) has degree \(\Om(m)\), and
 let
-\[
+\begin{equation}\label{eq:Cvddef}
   C_{n,v,d} = \#\{\,m \in G(I_n) : \min(m) = v,\ \deg m = d\,\}
-\]
-be the refined counts tabulated in Figure 2 of \cite{Snellman2000}. With
-\(\Om\) carried in a variable,
-\[
-  \Phi(x,y;u) = \sum_{\substack{m \le x\\ p \mid m \implies p > y}} u^{\Om(m)},
-  \qquad \Phi(x,y;1) = \Phi(x,y),
-\]
-the telescoping survives, with a correction that vanishes at \(u = 1\).
+\end{equation}
+be the refined counts tabulated in Figure 2 of \cite{Snellman2000}. Let
+\(\Phi(x,y;u)\) be the generating function
+\begin{equation}\label{eq:phiu}
+  \Phi(x,y;u) = \sum_{\substack{m \le x\\ p \mid m \implies p > y}} u^{\Om(m)}
+    \in \ZZ[[u]].
+\end{equation}
+Note that the telescoping survives, and that specialising \(u = 1\) recovers
+\(\Phi(x,y;1) = \Phi(x,y)\); here, the correction vanishes.
 
 \begin{thmmainu}
   For all \(n \ge 2\) and \(1 \le v \le \pi(n)\), with \(q = p_v\),
@@ -1584,7 +1589,7 @@ Collected for reference; equation numbers point at the defining display.
   \(\lpf(m)\)               & least prime factor of \(m > 1\) \\
   \(\operatorname{sfp}(m)\) & squarefree part of \(m\) \\
   \(\Phi(x,y)\)             & Legendre's sifting function, \eqref{eq:phidef} \\
-  \(\Phi(x,y;u)\), \(\Phi_{k}(x,y)\) & the same weighted by \(u^{\Om}\); restricted to \(\Om = k\) (Thm.~\ref{thm:main}\({}'\)) \\
+  \(\Phi(x,y;u)\), \(\Phi_{k}(x,y)\) & the same weighted by \(u^{\Om}\), \eqref{eq:phiu}; restricted to \(\Om = k\) \\
   \(R_p(y)\)                & number of \(p\)-rough integers \(\le y\) \\
   \(\omega(u)\)             & Buchstab's function, \emph{not} the count of distinct prime factors \\
   \addlinespace
@@ -1596,7 +1601,7 @@ Collected for reference; equation numbers point at the defining display.
   \(\min(m)\), \(\max(m)\)  & least and greatest index occurring in \(m\) \\
   \(\operatorname{supp}(m)\) & the set of indices occurring in \(m\) \\
   \(C_{n,v}\), \(C_n\)      & generator counts by least support, and their total, \eqref{eq:Cdef} \\
-  \(C_{n,v,d}\)            & the same, by least support and degree (Thm.~\ref{thm:main}\({}'\)) \\
+  \(C_{n,v,d}\)            & the same, by least support and degree, \eqref{eq:Cvddef} \\
   \(E(n,v)\)                & composites \(\le n\) with every prime factor \(>p_v\), \eqref{eq:Edef} \\
   \(D_n\), \(q_n\)          & denominators of the Poincaré--Betti series, \eqref{eq:PB} \\
   \(\ell_1\), \(\ell_2\)    & the exponents of Conjecture 4.6 \\
