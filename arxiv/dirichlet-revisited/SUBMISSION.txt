@@ -35,6 +35,8 @@ WHAT CHANGED SINCE v1 (the whole of it):
     Outside the shared counter, like Theorem 4', so no later theorem number moves.
   * The telescoping chains in the proofs of Theorems 4 and 4', and the corrected series of
     Section 4.2, are numbered displays.
+  * Examples end in a left triangle and Remarks in a right one (etoolbox), as in the
+    exterior-convex papers: Example 5 used to run on unmarked into the text.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):

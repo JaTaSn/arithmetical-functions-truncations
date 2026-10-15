@@ -4,6 +4,9 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan: Examples end in \triangleleft and Remarks
+%     in \triangleright (etoolbox \AtEndEnvironment), after Example 5 ran on unmarked into
+%     the text.  Same device as exterior-convex article 2.
 %   2026-10-15  Claude-Code (jts-office) -- v2, Jan's instructions: the telescoping chains in
 %     the proofs of Theorems 4 and 4' are now numbered (eq:telescope, eq:telescopeu, one number
 %     each), and so is the corrected series of Section 4.2 (eq:goodex).  New Example after
@@ -219,6 +222,21 @@
 % Example 5' (graded, after Theorem 4', added in v2): outside the shared counter, like
 % Theorem 4', so that every later number of v1 survives.
 \newtheorem*{exampleprime}{Example~\ref*{ex:n25}\({}'\)}
+% End-of-environment markers (v2, 2026-10-15, Jan): an Example ends in a left-pointing
+% triangle and a Remark in a right-pointing one, playing the part of a q.e.d. box.  Reason:
+% examples and remarks are set upright, in the same face as the prose, and Example 5 ran on
+% into the following paragraph with nothing to show where it stopped.  The same device as
+% exterior-convex article 2 (which also marks definitions; this paper has none).  Plain
+% \triangleleft / \triangleright are core LaTeX, safe under xelatex and pdflatex alike.
+\usepackage{etoolbox}
+\AtEndEnvironment{example}{\hfill\(\triangleleft\)}
+\AtEndEnvironment{exampleprime}{\hfill\(\triangleleft\)}
+\AtEndEnvironment{remark}{\ifendmark\hfill\(\triangleright\)\fi\global\endmarktrue}
+\AtEndEnvironment{remark*}{\ifendmark\hfill\(\triangleright\)\fi\global\endmarktrue}
+% A remark that ends in a list would get its marker alone on a line after the list; there
+% the marker goes by hand at the end of the last item, via \remarkendhere.
+\newif\ifendmark \endmarktrue
+\newcommand{\remarkendhere}{\hfill\(\triangleright\)\global\endmarkfalse}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 \newtheorem*{remark*}{Remark}
@@ -1370,7 +1388,7 @@ Riemann sum is needed below --- only a count of the primes involved.
       afterwards, the tail of Lemma~\ref{lem:tail} being \(O(e^{-W})\). This
       matters to anyone wishing to formalise the argument in a proof assistant,
       since it removes the need for a prime number theorem \emph{with} an error
-      term.
+      term.\remarkendhere
   \end{enumerate}
 \end{remark}
 
