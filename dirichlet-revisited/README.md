@@ -26,9 +26,9 @@ The new note proves
 
 Legendre's sifting function — the number of integers in [1,n] with no prime factor ≤ p_v. Hence the
 generator counts governing a minimal free resolution are values of the classical sieve. Consequences:
-a proof of Conjecture 4.6 of the 2000 paper, left open there; the average order C_n ~ π(n)²/2,
+a proof of Conjecture 4.6 of the 2000 paper, left open there; the asymptotics C_n ~ π(n)²/2,
 showing that Theorem 3.4(3)'s lower bound is asymptotically an equality; and the identification of
-C_n with OEIS [A182843](https://oeis.org/A182843). The error term in that average order is then
+C_n with OEIS [A182843](https://oeis.org/A182843). The error term in that asymptotic is then
 determined exactly,
 
 > **C_n − binom(π(n)+1, 2) ~ (2/3)·π(√n)³ ~ (16/3)·n^{3/2}/log³n**,

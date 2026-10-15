@@ -16,7 +16,7 @@ integers in $[1,n]$ free of prime factors $\le p_v$. This identifies an invarian
 of a minimal free resolution with a classical object of sieve theory, and it
 refines to the grading by total degree, with the number of prime factors carried
 in a variable. As consequences we obtain: a proof of Conjecture 4.6 of the 2000 paper, which was
-left open there; the average order $C_n \sim \pi(n)^2/2$ of the total number of
+left open there; the asymptotics $C_n \sim \pi(n)^2/2$ of the total number of
 minimal generators, showing that the lower bound $C_n \ge \binom{\pi(n)+1}{2}$ of
 that paper is asymptotically sharp, together with the exact order
 

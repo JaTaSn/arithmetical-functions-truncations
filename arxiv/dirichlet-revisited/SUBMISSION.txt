@@ -28,6 +28,8 @@ WHAT CHANGED SINCE v1 (the whole of it):
     now numbered and labelled (13 displays, Jan's instruction 2026-10-15). So v2's
     EQUATION numbers differ from v1's -- accepted. THEOREM numbers are still v1's.
   * Corollary 7 and Theorem 18 restated with their formulas as numbered displays.
+  * "average order" -> "asymptotics" in the abstract, the Introduction and the title of
+    Section 6 (and in abstract.txt): Section 6 proves the pointwise asymptotic of C_n.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
@@ -40,7 +42,7 @@ miscomputed one.
 
 FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
 
-  ABSTRACT -- changed: paste the current abstract.txt body (1564 chars, limit
+  ABSTRACT -- changed: paste the current abstract.txt body (1562 chars, limit
   1920). Two edits: the graded refinement after the sieve sentence, and "one worked
   example is miscomputed" in the errata sentence.
 
