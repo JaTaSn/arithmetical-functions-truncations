@@ -4,6 +4,11 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan's list: nine inline formulas made unnumbered
+%     displays (Omega in Section 2; R_q twice in the proof of Theorem 4'; b* and a(b) in the
+%     proof of Proposition 9; e^{-W} and (W+1)e^W/M in the proof of Proposition 25; P = pi(X)
+%     and the two closing asymptotic chains in the proof of Theorem 26; the dropped sum in
+%     Remark 27(1); Buchstab's asymptotic in Related work).
 %   2026-10-15  Claude-Code (jts-office) -- v2, Jan: (1) em-dash sweep, dogmatic, for dashes
 %     near mathematics: 23 removed in 14 sentences, recast with commas, colons, parentheses,
 %     "namely" or new sentences.  (2) A pass against blader/humanizer (SKILL.md v3.1.0), applied
@@ -441,7 +446,10 @@ For a monomial \(m = x_1^{a_1}\cdots x_r^{a_r}\) we write \(\min(m)\) and
 \(\max(m)\) for the least and greatest \(i\) with \(a_i > 0\), and
 \(|m|=\sum_i a_i\). For an integer \(m > 1\), \(\Om(m)\) denotes the number of
 prime factors of \(m\) counted with multiplicity, so that
-\(\Om(p_1^{a_1}\cdots p_r^{a_r}) = a_1+\dots+a_r\), with \(\Om(1) = 0\); following
+\[
+  \Om(p_1^{a_1}\cdots p_r^{a_r}) = a_1+\dots+a_r,\qquad \Om(1) = 0;
+\]
+following
 \cite{Snellman2000} we also write \(\lambda\) for \(\Om\). The companion
 function counting prime factors \emph{without} multiplicity, usually written
 \(\omega\), is not used in this note. The symbol \(\omega\) does appear in
@@ -546,11 +554,17 @@ Note that the telescoping survives, and that specialising \(u = 1\) recovers
   these generators correspond bijectively to the \(q\)-rough \(x = w(m)/q\) in
   \((n/q,n]\), which form the set of Theorem~\ref{thm:S32}, and
   \(\deg m = 1+\Om(x)\).
-  Hence the left-hand side is \(R_q(n;u)-R_q(n/q;u)\), where
-  \(R_q(y;u) = \sum u^{\Om(m)}\) over the \(q\)-rough \(m \le y\). Factoring
+  Hence
+  \[
+    \sum_{d}C_{n,v,d}\,u^{d-1} = R_q(n;u)-R_q(n/q;u),
+  \]
+  where \(R_q(y;u) = \sum u^{\Om(m)}\) over the \(q\)-rough \(m \le y\). Factoring
   \(m = q^{a}m'\) as in the proof of Theorem~\ref{thm:main}, now with
   \(u^{\Om(m)} = u^{a}u^{\Om(m')}\), gives
-  \(R_q(y;u) = \sum_{a \ge 0}u^{a}\,\Phi(y/q^{a},q;u)\), and therefore
+  \[
+    R_q(y;u) = \sum_{a \ge 0}u^{a}\,\Phi(y/q^{a},q;u),
+  \]
+  and therefore
   \begin{equation}\label{eq:telescopeu}
   \begin{split}
     R_q(n;u)-R_q(n/q;u)
@@ -715,8 +729,12 @@ Theorem 3.4(2)--(3) of \cite{Snellman2000} actually establishes.
   give distinct generators, whence the inequality.
 
   For the equality range, count the generators supported on \(\{1,2\}\)
-  exactly. Let \(b^{*} = \max\{\,b \ge 1 : 3^{b} \le n\,\}\), and for
-  \(1 \le b \le b^{*}\) put \(a(b) = \min\{\,a \ge 1 : 2^{a}3^{b} > n\,\}\). Then
+  exactly. Let
+  \[
+    b^{*} = \max\{\,b \ge 1 : 3^{b} \le n\,\},\qquad
+    a(b) = \min\{\,a \ge 1 : 2^{a}3^{b} > n\,\}
+  \]
+  for \(1 \le b \le b^{*}\). Then
   \(x_1^{a(b)}x_2^{b}\) is a minimal generator: its weight exceeds \(n\) by
   definition; \(2^{a(b)-1}3^{b} \le n\) by minimality of \(a(b)\) when
   \(a(b) \ge 2\), and because \(3^{b} \le n\) when \(a(b) = 1\); and
@@ -1291,8 +1309,10 @@ Riemann sum is needed below, only a count of the primes involved.
   \]
   with an absolute implied constant. Now take \(W = \tfrac{1}{2}\log M\), legitimate
   for \(M \ge e^{2}\) since then \(W \ge 1\) and \(M \ge 2W\). It gives
-  \(e^{-W} = M^{-1/2}\) and \((W+1)e^{W}/M = (\tfrac{1}{2}\log M+1)/\sqrt M\), both
-  \(O(\log M/\sqrt M)\), while \(\log n/n^{1/4}\) is smaller than either.
+  \[
+    e^{-W} = M^{-1/2},\qquad \frac{(W+1)e^{W}}{M} = \frac{\tfrac{1}{2}\log M+1}{\sqrt M},
+  \]
+  both \(O(\log M/\sqrt M)\), while \(\log n/n^{1/4}\) is smaller than either.
 \end{proof}
 
 \begin{theorem}\label{thm:error}
@@ -1319,7 +1339,11 @@ Riemann sum is needed below, only a count of the primes involved.
   By \eqref{eq:sqexact} it suffices to bound \(T(n)/P^{3}-1\), since the
   remaining terms \(1/(2P)-1/(6P^{2})\) are \(O(1/P) = O(\log n/\sqrt n)\), far
   smaller than the claimed bound. By Lemma~\ref{lem:pnt-unif} with \(a = 0\) and
-  \(W = 1\), \(P = \pi(X) = (X/M)(1+2\theta A_1/M)\), so
+  \(W = 1\),
+  \[
+    P = \pi(X) = (X/M)(1+2\theta A_1/M),
+  \]
+  so
   \[
     \frac{T(n)}{P^{3}} = \frac{M^{3}}{X^{3}}T(n) \cdot \Bigl(\frac{X}{MP}\Bigr)^{3}
       =\Bigl(1+O\bigl(\tfrac{\log M}{\sqrt M}\bigr)\Bigr)
@@ -1330,8 +1354,14 @@ Riemann sum is needed below, only a count of the primes involved.
   \eqref{eq:explicit}.
 
   For the asymptotic statements, \(P = \pi(\sqrt n)\) and, by the prime number
-  theorem, \(\pi(\sqrt n)^{3} \sim (2\sqrt n/\log n)^{3} = 8n^{3/2}/\log^{3}n\),
-  so \(S_2(n) \sim \tfrac{2}{3}\pi(\sqrt n)^{3} \sim \tfrac{16}{3}n^{3/2}/\log^{3}n\).
+  theorem,
+  \[
+    \pi(\sqrt n)^{3} \sim \Bigl(\frac{2\sqrt n}{\log n}\Bigr)^{3} = \frac{8n^{3/2}}{\log^{3}n},
+  \]
+  so
+  \[
+    S_2(n) \sim \tfrac{2}{3}\pi(\sqrt n)^{3} \sim \frac{16}{3}\cdot\frac{n^{3/2}}{\log^{3}n}.
+  \]
   Lemma~\ref{lem:semiprime} transfers this to \(S\), and Corollary
   \ref{cor:total} to \(C_n\).
 \end{proof}
@@ -1352,7 +1382,11 @@ Riemann sum is needed below, only a count of the primes involved.
       missing. On \(1 \le u \le 2\) one has \(\omega(u) = 1/u\), so the one-term
       estimate amounts to replacing the second factor of \(g\) by \(\pi(n/p)\)
       alone, that is, to dropping the \(-\pi(p)+1\). What is dropped is
-      therefore \(\sum_j(j-1)^{2} = (P-1)P(2P-1)/6 \sim P^{3}/3\), which is
+      therefore
+      \[
+        \sum_j(j-1)^{2} = \frac{(P-1)P(2P-1)}{6} \sim \frac{P^{3}}{3},
+      \]
+      which is
       \(\tfrac{8}{3}\,n^{3/2}/\log^{3}n\); restoring it gives
       \(8-\tfrac{8}{3} = \tfrac{16}3\). So the discrepancy is not a subtlety about
       \(\Phi\) at all, but the exact square sum that Lemma~\ref{lem:split}
@@ -1562,8 +1596,11 @@ arithmetic enters there.
 
 Second, and more to the point, the bridge Theorem~\ref{thm:main} builds appears
 to be new. The asymptotic behaviour of \(\Phi(x,y)\) is classical: Buchstab
-\cite{Buchstab} obtained \(\Phi(x,x^{1/u}) \sim u\,\omega(u)\,x/\log x\) in
-terms of the function that now bears his name, and de Bruijn \cite{deBruijn}
+\cite{Buchstab} obtained
+\[
+  \Phi(x,x^{1/u}) \sim u\,\omega(u)\,\frac{x}{\log x}
+\]
+in terms of the function that now bears his name, and de Bruijn \cite{deBruijn}
 gave an approximation uniform for all \(x \ge y \ge 2\); see
 \cite{Tenenbaum} for a textbook account, \cite{Fan} for numerically explicit
 estimates, \cite{Gorodetsky} for short intervals, and \cite{Holt} for the

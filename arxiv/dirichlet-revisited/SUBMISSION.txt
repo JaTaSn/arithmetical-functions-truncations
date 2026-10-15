@@ -42,6 +42,7 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * A small CORRECTION in the Introduction: the stability inequality
     w(m x_j/x_i) = w(m) p_j/p_i > w(m) was stated "whenever j >= i"; it is strict only for
     j > i (j = i is the trivial case). Also printed twice in a row; now once.
+  * Nine inline formulas set as unnumbered displays, for readability.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
