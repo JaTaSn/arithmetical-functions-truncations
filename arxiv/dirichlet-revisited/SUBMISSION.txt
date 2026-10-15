@@ -17,13 +17,16 @@ WHAT CHANGED SINCE v1 (the whole of it):
     v1's Open problem 34 as posed; that problem now asks for the size of C_{n,v,d}.
     New ancillary script anc/code/sage/verify_graded_phi.sage checks it for every
     n <= 200 and against every cell of the 2000 paper's Figure 2.
-  * EVERY THEOREM NUMBER OF v1 IS KEPT. Theorem 4' sits outside the shared counter
+  * EVERY THEOREM NUMBER OF v1 IS KEPT (equation numbers are not: see below). Theorem 4' sits outside the shared counter
     on purpose: the ancillary Lean and Sage files, and readers of v1, cite numbers.
     Checked by comparing the theorem heads of the v1 and v2 PDFs.
   * The abstract (two clauses) and the Introduction list the erratum; the abstract
     also mentions the graded refinement. Notation and the AI disclosure updated.
   * A typo fixed: the main theorem's proof wrote R_P for R_q.
   * The [Sne00] bibliography entry now carries its DOI, 10.4310/hha.2000.v2.n1.a2.
+  * Every display inside a theorem, lemma, proposition, corollary or open problem is
+    now numbered and labelled (13 displays, Jan's instruction 2026-10-15). So v2's
+    EQUATION numbers differ from v1's -- accepted. THEOREM numbers are still v1's.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
@@ -56,7 +59,7 @@ FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
 
   REPORT NUMBER -- unchanged: LiTH-MAT-R-2026/03
 
-UPLOAD: the bundle truncations-revisited-arxiv-20261014.tar.gz at the repo root,
+UPLOAD: the bundle truncations-revisited-arxiv-YYYYMMDD.tar.gz (dated the day it is built) at the repo root,
 built with the regeneration command further down.
 
 AFTER POSTING: tag the commit, as v1 was tagged:

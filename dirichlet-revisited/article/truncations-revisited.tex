@@ -4,6 +4,13 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan's instruction: every displayed equation
+%     inside a theorem-like environment (theorem, lemma, proposition, corollary, definition,
+%     conjecture, open problem, Theorem 4') is now numbered and labelled -- 13 displays,
+%     \[...\] -> equation with eq:S32, eq:main, eq:graded, eq:lowerbound, eq:supp2,
+%     eq:Cnasymp, eq:Tdef, eq:tailbound, eq:Tasymp, eq:Sasymp, eq:Cnexpand, eq:socle,
+%     eq:type.  Proofs, remarks and examples untouched.  EQUATION numbers therefore change
+%     from v1 (accepted by Jan); THEOREM numbers do not -- separate counter.
 %   2026-10-14  Claude-Code (jts-office) -- v2: DOI 10.4310/hha.2000.v2.n1.a2 (supplied by
 %     Jan) added to the [Sne00] entry; no other entry carries one.
 %   2026-10-14  Claude-Code (jts-office) -- v2, at Jan's request: the graded counts
@@ -397,10 +404,10 @@ We shall use the following description, which is Theorem 3.2 of
 
 \begin{theorem}[\cite{Snellman2000}, Thm.~3.2]\label{thm:S32}
   For \(1 \le v \le \pi(n)\),
-  \[
+  \begin{equation}\label{eq:S32}
     C_{n,v} = \#\{\,x \in \NN : n/p_v < x \le n \text{ and }
     p \mid x \implies p \ge p_v \,\}.
-  \]
+  \end{equation}
 \end{theorem}
 
 It will be convenient to name the counting function appearing implicitly there.
@@ -424,9 +431,9 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
 
 \begin{theorem}\label{thm:main}
   For all \(n \ge 2\) and \(1 \le v \le \pi(n)\),
-  \[
+  \begin{equation}\label{eq:main}
     C_{n,v} = \Phi(n,p_v),
-  \]
+  \end{equation}
   the number of integers in \([1,n]\) having no prime factor \(\le p_v\).
 \end{theorem}
 
@@ -474,10 +481,10 @@ the telescoping survives, with a correction that vanishes at \(u = 1\).
 
 \begin{thmmainu}
   For all \(n \ge 2\) and \(1 \le v \le \pi(n)\), with \(q = p_v\),
-  \[
+  \begin{equation}\label{eq:graded}
     \sum_{d}C_{n,v,d}\,u^{d-1}
       = \Phi(n,q;u)-(1-u)\sum_{a \ge 1}u^{a-1}\,\Phi\!\left(n/q^{a},\,q;u\right).
-  \]
+  \end{equation}
 \end{thmmainu}
 
 \begin{proof}
@@ -532,9 +539,9 @@ following reformulation, which is the form we shall use.
       x \text{ composite},\ p \mid x \implies p > p_v\,\}.
   \end{equation}
   In particular
-  \[
+  \begin{equation}\label{eq:lowerbound}
     C_{n,v}\ \ge \ \pi(n)-v+1,
-  \]
+  \end{equation}
   with equality if and only if \(p_{v+1}^{2} > n\).
 \end{corollary}
 
@@ -605,10 +612,10 @@ Theorem 3.4(2)--(3) of \cite{Snellman2000} actually establishes.
 
 \begin{proposition}\label{prop:fixed35}
   For every \(n \ge 2\),
-  \[
+  \begin{equation}\label{eq:supp2}
     \#\{\,m \in G(I_n) : |\!\operatorname{supp}(m)|=2\,\}
       \ \ge \ \binom{\pi(n)}{2},
-  \]
+  \end{equation}
   with equality exactly for \(2 \le n \le 8\).
 \end{proposition}
 
@@ -930,9 +937,9 @@ contributes in the limit.
   For \(n \ge 4\),
   \(\displaystyle 0 \le C_n-\binom{\pi(n)+1}{2} \le n\bigl(\pi(\sqrt n)-1\bigr)
     =O\!\left(n^{3/2}/\log n\right)\), and consequently
-  \[
+  \begin{equation}\label{eq:Cnasymp}
     C_n \sim \binom{\pi(n)+1}{2} \sim \frac{\pi(n)^{2}}{2} \sim \frac{n^{2}}{2\log^{2}n}.
-  \]
+  \end{equation}
   In particular the bound of Theorem 3.4(3) of \cite{Snellman2000} is
   asymptotically an equality.
 \end{theorem}
@@ -1024,9 +1031,9 @@ asymptotics from the analysis, replacing it by an exact elementary sum.
 
 \begin{lemma}[Exact splitting]\label{lem:split}
   Let \(p_1 < p_2 < \dots < p_P\) be the primes \(\le \sqrt n\), and put
-  \[
+  \begin{equation}\label{eq:Tdef}
     T(n) = \sum_{j = 1}^{P}(j-1)\,\pi(n/p_j).
-  \]
+  \end{equation}
   Then
   \begin{equation}\label{eq:split-exact}
     S_2(n) = T(n)-\frac{(P-1)P(2P-1)}{6}.
@@ -1117,11 +1124,11 @@ Riemann sum is needed below --- only a count of the primes involved.
 \begin{lemma}\label{lem:tail}
   There is an absolute constant \(c_0\) such that, for every \(W\) with
   \(1 \le W \le M/2\),
-  \[
+  \begin{equation}\label{eq:tailbound}
     \sum_{p \le Xe^{-W}}\pi(p)\,\pi(n/p)
       \ \le \ c_0\,e^{-W}\,\frac{X^{3}}{M^{3}}
       \ +\ c_0\,\frac{X^{3}}{M^{3}} \cdot \frac{\log n}{n^{1/4}} .
-  \]
+  \end{equation}
   The same bound holds for \(\sum_{p \le Xe^{-W}}g(p)\) and for
   \(\sum_{p \le Xe^{-W}}(\pi(p)-1)\pi(n/p)\), both summands being at most
   \(\pi(p)\pi(n/p)\).
@@ -1152,10 +1159,10 @@ Riemann sum is needed below --- only a count of the primes involved.
 
 \begin{proposition}\label{prop:T}
   There are absolute constants \(C_0\) and \(n_0\) such that for \(n \ge n_0\)
-  \[
+  \begin{equation}\label{eq:Tasymp}
     \left|\;\frac{M^{3}}{X^{3}}\,T(n)-1\;\right|
       \ \le \ C_0\,\frac{\log M}{\sqrt M} .
-  \]
+  \end{equation}
 \end{proposition}
 
 \begin{proof}
@@ -1208,15 +1215,15 @@ Riemann sum is needed below --- only a count of the primes involved.
       \ \le \ C\,\frac{\log\log n}{\sqrt{\log n}} .
   \end{equation}
   In particular, as \(n \to \infty\),
-  \[
+  \begin{equation}\label{eq:Sasymp}
     S(n)\;\sim \;\tfrac{2}{3}\,\pi(\sqrt n)^{3}
             \;\sim \;\frac{16}{3} \cdot \frac{n^{3/2}}{\log^{3}n},
-  \]
+  \end{equation}
   and consequently
-  \[
+  \begin{equation}\label{eq:Cnexpand}
     C_n = \binom{\pi(n)+1}{2}
         +\Bigl(\tfrac{16}{3}+o(1)\Bigr)\frac{n^{3/2}}{\log^{3}n}.
-  \]
+  \end{equation}
   In particular the upper bound of Theorem~\ref{thm:asymp} overshoots by a
   factor \(\asymp\log^{2}n\).
 \end{theorem}
@@ -1360,11 +1367,11 @@ multigraded subspace and hence spanned by the monomials in it. See
   Let \(n \ge 2\). Then \(\operatorname{soc}(\Gam_n)\) is spanned by the
   monomials of weight \(m\) with \(n/2 < m \le n\); under the identification of
   the \(K\)-basis of \(\Gam_n\) with \(\{1,\dots,n\}\),
-  \[
+  \begin{equation}\label{eq:socle}
     \operatorname{soc}(\Gam_n) = \bigoplus_{n/2 < m \le n}K \cdot m,
     \qquad
     \dim_K\operatorname{soc}(\Gam_n) = \Bigl\lceil\frac{n}{2}\Bigr\rceil .
-  \]
+  \end{equation}
 \end{proposition}
 
 \begin{proof}
@@ -1378,10 +1385,10 @@ multigraded subspace and hence spanned by the monomials in it. See
 
 \begin{corollary}\label{cor:type}
   For \(n \ge 2\) the Cohen--Macaulay type of \(\Gam_n\) is
-  \[
+  \begin{equation}\label{eq:type}
     \operatorname{type}(\Gam_n) = \beta^{S}_{r}(\Gam_n)
       =C_{n,1} = \Phi(n,2) = \Bigl\lceil\frac{n}{2}\Bigr\rceil,
-  \]
+  \end{equation}
   and \(\Gam_n\) is Gorenstein if and only if \(n \le 2\).
 \end{corollary}
 
