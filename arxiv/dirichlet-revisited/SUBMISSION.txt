@@ -31,10 +31,14 @@ WHAT CHANGED SINCE v1 (the whole of it):
   * "average order" -> "asymptotics" in the abstract, the Introduction and the title of
     Section 6 (and in abstract.txt): Section 6 proves the pointwise asymptotic of C_n.
   * The definitions of C_{n,v,d} and Phi(x,y;u) before Theorem 4' are labelled equations.
+  * New Example 5' (n = 30, v = 2), after Theorem 4': contrasts the two telescopings.
+    Outside the shared counter, like Theorem 4', so no later theorem number moves.
+  * The telescoping chains in the proofs of Theorems 4 and 4', and the corrected series of
+    Section 4.2, are numbered displays.
   Built from tag arxiv-submission-2026-08-30 plus those edits.
 
 VERIFIED 2026-10-14, in an empty directory, under pdflatex (arXiv's engine):
-three passes exit 0, 24 pages (v1: 23), no undefined references, no overfull
+three passes exit 0, 25 pages (v1: 23), no undefined references, no overfull
 boxes. Section 4.2's mathematics checked
 independently in Sage/Singular: the graded Betti table of I_5, and that the 2000
 paper's printed P^{S/I}_K(t,u) -- equal to the n = 5 row of its Figure 3 --
@@ -49,11 +53,11 @@ FIELDS FOR THE REPLACEMENT (everything not listed: unchanged from v1 below):
 
   COMMENTS -- USE THIS ONE (332 chars):
 
-24 pages, 2 figures. v2: adds Theorem 4', the graded refinement of the main theorem, and Section 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
+25 pages, 2 figures. v2: adds Theorem 4', the graded refinement of the main theorem, and Section 4.2, an erratum to Example 4.5 of the 2000 paper. Written with substantial assistance from a large language model (Claude, Anthropic); see the "Disclosure of AI assistance" section. The author takes full responsibility for the results.
 
     shorter, if the field complains (236 chars):
 
-24 pages, 2 figures. v2: adds Thm 4' (graded refinement) and Sect. 4.2 (erratum to Ex. 4.5 of the 2000 paper). Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
+25 pages, 2 figures. v2: adds Thm 4' (graded refinement) and Sect. 4.2 (erratum to Ex. 4.5 of the 2000 paper). Written with substantial AI assistance (Claude, Anthropic); see the disclosure section. The author takes full responsibility.
 
   DOI -- NEW, fill in now: 10.3384/LiTH-MAT-R-2026-03
     The LiTH report has appeared (report date 2026-09-01; DiVA urn:nbn:se:liu:

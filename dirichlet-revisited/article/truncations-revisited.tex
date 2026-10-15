@@ -4,6 +4,12 @@
 % Compile with xelatex (house engine; two passes).
 %
 % Changelog (reverse chronological):
+%   2026-10-15  Claude-Code (jts-office) -- v2, Jan's instructions: the telescoping chains in
+%     the proofs of Theorems 4 and 4' are now numbered (eq:telescope, eq:telescopeu, one number
+%     each), and so is the corrected series of Section 4.2 (eq:goodex).  New Example after
+%     Theorem 4' (Example 5'): n = 30, v = 2, contrasting the two telescopings; checked in Sage.
+%     It is Example 5' -- outside the shared counter, like Theorem 4' -- so no later theorem
+%     number moves.  The remark after it now opens "As the above example illustrates".
 %   2026-10-15  Claude-Code (jts-office) -- v2, Jan's wording: the definitions of C_{n,v,d}
 %     and of Phi(x,y;u) before Theorem 4' are now labelled equations, eq:Cvddef and eq:phiu,
 %     the latter introduced as a generating function in ZZ[u] (a finite sum, so a polynomial;
@@ -210,6 +216,9 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{example}[definition]{Example}
+% Example 5' (graded, after Theorem 4', added in v2): outside the shared counter, like
+% Theorem 4', so that every later number of v1 survives.
+\newtheorem*{exampleprime}{Example~\ref*{ex:n25}\({}'\)}
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
 \newtheorem*{remark*}{Remark}
@@ -459,15 +468,17 @@ so \(R_p\) and \(\Phi\) differ precisely by the multiples of \(p\) that are
   \end{equation}
   a finite sum, since the terms vanish once \(q^{a} > y\). Substituting
   \eqref{eq:Rsum} into \eqref{eq:CasR}, the two sums telescope:
-  \begin{align*}
+  \begin{equation}\label{eq:telescope}
+  \begin{split}
     C_{n,v}&= R_q(n)-R_q(n/q)\\
            &= \sum_{a \ge 0}\Phi\!\left(\frac{n}{q^{a}},q\right)
             -\sum_{a \ge 0}\Phi\!\left(\frac{n}{q^{a+1}},q\right)\\
-           &= \Phi(n,q).\qedhere
-  \end{align*}
+           &= \Phi(n,q).
+  \end{split}
+  \end{equation}
 \end{proof}
 
-\begin{example}
+\begin{example}\label{ex:n25}
   Take \(n = 25\), so \(r = 9\). The integers in \([1,25]\) with no prime factor
   \(\le 2\) are the thirteen odd numbers, so \(C_{25,1} = 13\); those with no
   prime factor \(\le 3\) are \(1,5,7,11,13,17,19,23,25\), so \(C_{25,2} = 9\);
@@ -511,18 +522,45 @@ Note that the telescoping survives, and that specialising \(u = 1\) recovers
   \(m = q^{a}m'\) as in the proof of Theorem~\ref{thm:main}, now with
   \(u^{\Om(m)} = u^{a}u^{\Om(m')}\), gives
   \(R_q(y;u) = \sum_{a \ge 0}u^{a}\,\Phi(y/q^{a},q;u)\), and therefore
-  \begin{align*}
+  \begin{equation}\label{eq:telescopeu}
+  \begin{split}
     R_q(n;u)-R_q(n/q;u)
       &= \sum_{a \ge 0}u^{a}\,\Phi\!\left(\frac{n}{q^{a}},q;u\right)
         -\sum_{a \ge 1}u^{a-1}\,\Phi\!\left(\frac{n}{q^{a}},q;u\right)\\
       &= \Phi(n,q;u)+\sum_{a \ge 1}\bigl(u^{a}-u^{a-1}\bigr)
-        \Phi\!\left(\frac{n}{q^{a}},q;u\right).\qedhere
-  \end{align*}
+        \Phi\!\left(\frac{n}{q^{a}},q;u\right).
+  \end{split}
+  \end{equation}
 \end{proof}
 
+\begin{exampleprime}
+  Take \(n = 30\) and \(v = 2\), so \(q = 3\). In the ungraded telescoping
+  \eqref{eq:telescope} the terms cancel in pairs and leave
+  \(C_{30,2} = \Phi(30,3) = 10\), the integers in \([1,30]\) prime to \(6\)
+  being \(1,5,7,11,13,17,19,23,25,29\). In the graded telescoping
+  \eqref{eq:telescopeu} the same terms carry the weights \(u^{a}\) and
+  \(u^{a-1}\), and no longer cancel. Here
+  \[
+    \Phi(30,3;u) = 1+8u+u^{2},\qquad \Phi(10,3;u) = 1+2u,
+  \]
+  \(\Phi(30/9,3;u) = \Phi(30/27,3;u) = 1\), and the terms with \(a \ge 4\)
+  vanish, so
+  \[
+    \sum_{d}C_{30,2,d}\,u^{d-1}
+      = (1+8u+u^{2})-(1-u)\bigl((1+2u)+u+u^{2}\bigr)
+      = 6u+3u^{2}+u^{3}.
+  \]
+  This is what the generators say: they are \(3x\) with \(x\) odd in
+  \((10,30]\), namely the six primes \(11,13,17,19,23,29\) (degree \(2\)),
+  \(15,21,25\) (degree \(3\)) and \(27\) (degree \(4\)). The leading term
+  \(\Phi(30,3;u)\) alone would be wrong in every coefficient. Setting \(u = 1\)
+  in the graded identity, the correction vanishes and both sides give
+  \(1+8+1 = 6+3+1 = 10\), which is the ungraded count.
+\end{exampleprime}
+
 \begin{remark*}
-  At \(u = 1\) the correction vanishes and Theorem~\ref{thm:main} is what
-  remains. Pinning the degree instead of carrying it, write \(\Phi_{k}(x,y)\) for
+  As the above example illustrates, at \(u = 1\) the correction vanishes and
+  Theorem~\ref{thm:main} is what remains. Pinning the degree instead of carrying it, write \(\Phi_{k}(x,y)\) for
   the number of \(m \le x\) free of prime factors \(\le y\) with \(\Om(m) = k\).
   Comparing coefficients of \(u^{d-1}\),
   \[
@@ -679,10 +717,12 @@ with the factor \((1+t)\). Corollary 4.2 of the same paper has \((1+tu)\), and
 that is the correct factor: a minimal generator of degree \(j\) contributes to
 homological degree \(i\) in \emph{internal} degree \(i+j\), so the variable
 marking internal degree must accompany \(t\). Restoring it,
-\begin{align*}
+\begin{equation}\label{eq:goodex}
+\begin{split}
   P^{S}_{I_5}(t,u) &= u^{2}+2u^{2}(1+tu)+(2u^{2}+u^{3})(1+tu)^{2}\\
     &= 5u^{2}+u^{3}+(6u^{3}+2u^{4})t+(2u^{4}+u^{5})t^{2},
-\end{align*}
+\end{split}
+\end{equation}
 whereas \eqref{eq:badex} expands to
 \(5u^{2}+u^{3}+(6u^{2}+2u^{3})t+(2u^{2}+u^{3})t^{2}\). The corrected
 coefficients are the graded Betti numbers of \(I_5\), namely
